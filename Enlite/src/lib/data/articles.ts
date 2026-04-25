@@ -1,0 +1,118 @@
+import type { Article } from "@/types";
+
+export const articles: Article[] = [
+  {
+    id: "1",
+    slug: "enlite-luh-first-flight-milestone",
+    title: "Enlite LUH Completes First Flight Milestone Ahead of Schedule",
+    excerpt:
+      "The Light Utility Helicopter program reached a critical milestone as the first prototype successfully completed its maiden flight, demonstrating all primary flight parameters within expected ranges.",
+    content: `The Enlite Light Utility Helicopter (LUH) program achieved a major milestone today as the first prototype aircraft completed its maiden flight at the company's flight test facility in Bengaluru. The flight lasted approximately 45 minutes and covered all primary flight envelope parameters including hover stability, forward flight transitions, and autorotation checks.\n\nChief Test Pilot Captain Rajesh Kumar reported that the aircraft handled exceptionally well, with all systems performing within expected parameters. "The LUH demonstrated remarkable stability and responsiveness throughout the flight envelope," said Captain Kumar. "The glass cockpit and fly-by-wire controls are intuitive and precise."\n\nThe successful first flight comes two months ahead of the originally planned schedule, a testament to the engineering team's dedication and the robust design methodology employed throughout the development process. The LUH program is expected to achieve Initial Operational Capability (IOC) within 18 months, with full certification following 12 months later.\n\nThe LUH is designed to replace aging fleets across both military and paramilitary services, offering significantly enhanced performance, safety, and maintenance characteristics compared to legacy platforms.`,
+    image: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&h=500&fit=crop",
+    category: "Defense",
+    tags: ["LUH", "First Flight", "Milestone", "Defense"],
+    author: {
+      name: "Priya Sharma",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+      role: "Defense Correspondent",
+    },
+    publishedAt: "2025-12-15",
+    readingTime: 4,
+    featured: true,
+  },
+  {
+    id: "2",
+    slug: "defence-expo-2025-enlite-showcase",
+    title: "Enlite Helicopters Showcases Full Fleet at Defence Expo 2025",
+    excerpt:
+      "The company presented its complete product portfolio including the new Cargo-X heavy-lift concept at India's premier defense exhibition, drawing significant interest from domestic and international delegations.",
+    content: `Enlite Helicopters made a strong showing at Defence Expo 2025 in Gandhinagar, Gujarat, presenting its full range of rotorcraft platforms to an audience of defense officials, military leaders, and industry partners from over 40 countries.\n\nThe highlight of the exhibition was the first public reveal of the Enlite Cargo-X heavy-lift helicopter concept, designed to address the growing demand for aerial logistics capability in both military and disaster relief operations.\n\nSeveral Memorandums of Understanding (MoUs) were signed during the expo, including partnerships for technology transfer and co-development programs with international aerospace firms. The company also announced plans to expand its manufacturing facility to support increased production rates.`,
+    image: "https://images.unsplash.com/photo-1556388158-158ea5ccacbd?w=800&h=500&fit=crop",
+    category: "Events",
+    tags: ["Defence Expo", "Cargo-X", "Exhibition", "Partnerships"],
+    author: {
+      name: "Vikram Mehta",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+      role: "Industry Analyst",
+    },
+    publishedAt: "2025-11-28",
+    readingTime: 3,
+    featured: true,
+  },
+  {
+    id: "3",
+    slug: "high-altitude-trials-success",
+    title: "MUH Successfully Completes High-Altitude Trials in Ladakh",
+    excerpt:
+      "The Medium Utility Helicopter demonstrated outstanding performance during winter trials at altitudes exceeding 5,500 meters in the Ladakh region, validating its capability for Himalayan operations.",
+    content: `The Enlite Medium Utility Helicopter (MUH) has successfully completed a rigorous series of high-altitude performance trials in the Ladakh region, operating at altitudes exceeding 5,500 meters above sea level in temperatures as low as -35°C.\n\nThe trials, conducted in collaboration with the Indian Air Force, validated the helicopter's performance in hot-and-high conditions, cold weather starting, and operations from unprepared landing sites. The MUH demonstrated the ability to carry a full complement of troops and equipment at altitudes that challenge most helicopters in its class.\n\nThese trials are a critical step toward full certification for Himalayan operations, where reliable helicopter capability is essential for both defense and humanitarian missions.`,
+    image: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800&h=500&fit=crop",
+    category: "Defense",
+    tags: ["MUH", "High Altitude", "Trials", "Ladakh"],
+    author: {
+      name: "Ananya Desai",
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
+      role: "Aviation Editor",
+    },
+    publishedAt: "2025-10-20",
+    readingTime: 5,
+    featured: false,
+  },
+  {
+    id: "4",
+    slug: "civil-200-ems-certification",
+    title: "Civil 200 Receives HEMS Certification for Emergency Medical Services",
+    excerpt:
+      "The Enlite Civil 200 has been certified for Helicopter Emergency Medical Services operations, opening new market opportunities in the civilian healthcare aviation sector.",
+    content: `Enlite Helicopters announced today that the Civil 200 platform has received full certification for Helicopter Emergency Medical Services (HEMS) operations from the Directorate General of Civil Aviation (DGCA).\n\nThe certification process involved extensive testing of the medical interior configuration, patient loading systems, medical equipment integration, and emergency procedures. The Civil 200 can accommodate two stretcher patients with a full medical team, and is equipped with an integrated medical oxygen system, patient monitoring interfaces, and vibration-isolated stretcher mounts.\n\nThis certification positions the Civil 200 as a leading platform for air ambulance operations in India's growing healthcare aviation market, where demand for rapid medical transport is increasing significantly.`,
+    image: "https://images.unsplash.com/photo-1567521464027-f127ff144326?w=800&h=500&fit=crop",
+    category: "Civilian",
+    tags: ["Civil 200", "HEMS", "Certification", "Medical"],
+    author: {
+      name: "Priya Sharma",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+      role: "Defense Correspondent",
+    },
+    publishedAt: "2025-09-12",
+    readingTime: 4,
+    featured: false,
+  },
+  {
+    id: "5",
+    slug: "manufacturing-expansion-announcement",
+    title: "Enlite Announces ₹2,500 Crore Manufacturing Facility Expansion",
+    excerpt:
+      "A new state-of-the-art composite manufacturing facility will triple production capacity and create over 1,500 new engineering jobs in the Bengaluru aerospace cluster.",
+    content: `Enlite Helicopters has announced a major expansion of its manufacturing capabilities with a ₹2,500 crore investment in a new composite manufacturing facility at its Bengaluru campus. The expansion will triple the company's current production capacity and is expected to create over 1,500 new high-skilled engineering and manufacturing jobs.\n\nThe new facility will feature advanced automated fiber placement machines, state-of-the-art autoclaves, and a fully digital production management system. It will also house a new research and development center focused on next-generation materials and manufacturing processes.\n\nConstruction is expected to begin in Q2 2026 and the facility should be fully operational by Q4 2027, aligning with the ramp-up of the Cargo-X heavy-lift helicopter program.`,
+    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&h=500&fit=crop",
+    category: "Corporate",
+    tags: ["Manufacturing", "Expansion", "Investment", "Jobs"],
+    author: {
+      name: "Vikram Mehta",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+      role: "Industry Analyst",
+    },
+    publishedAt: "2025-08-05",
+    readingTime: 3,
+    featured: true,
+  },
+  {
+    id: "6",
+    slug: "cargo-transfer-maritime-operations",
+    title: "Cargo-X Completes Maritime Replenishment Demonstration",
+    excerpt:
+      "The heavy-lift helicopter demonstrated precision cargo transfer to naval vessels in challenging sea conditions, showcasing its maritime operations capability.",
+    content: `In a significant operational demonstration, the Enlite Cargo-X successfully completed a series of maritime vertical replenishment (VERTREP) operations with the Indian Navy's Western Fleet. The trials were conducted in Sea State 4 conditions, demonstrating the helicopter's precision hover capability and advanced cargo management system.\n\nThe demonstrations included underslung load transfers of ammunition, provisions, and fuel bladders to multiple vessel types, including destroyers and frigates. The Cargo-X's autonomous load management system and precision hover hold capability significantly reduced transfer times compared to current platforms.\n\nNaval officials expressed strong interest in the Cargo-X's potential to transform fleet logistics operations, noting its ability to operate effectively in conditions that ground other helicopters.`,
+    image: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?w=800&h=500&fit=crop",
+    category: "Cargo Transfer",
+    tags: ["Cargo-X", "Maritime", "Navy", "Demonstration"],
+    author: {
+      name: "Ananya Desai",
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
+      role: "Aviation Editor",
+    },
+    publishedAt: "2025-07-18",
+    readingTime: 4,
+    featured: false,
+  },
+];

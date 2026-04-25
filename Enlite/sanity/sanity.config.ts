@@ -1,0 +1,20 @@
+import { defineConfig } from "sanity";
+import { deskTool } from "sanity/desk";
+import { visionTool } from "@sanity/vision";
+import { schemaTypes } from "./schemas";
+
+export default defineConfig({
+  name: "default",
+  title: "Enlite Helicopters",
+
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "58dq9m9q",
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+
+  basePath: "/admin",
+
+  plugins: [deskTool(), visionTool()],
+
+  schema: {
+    types: schemaTypes,
+  },
+});
