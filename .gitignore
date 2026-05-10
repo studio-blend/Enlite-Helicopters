@@ -25,6 +25,7 @@ build/
 AGENTS.md
 CLAUDE.md
 .unlighthouse/
+.claude/
 
 # debug
 npm-debug.log*

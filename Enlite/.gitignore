@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Skilld references (recreated by `skilld install`)
+.skilld
+.claude/
