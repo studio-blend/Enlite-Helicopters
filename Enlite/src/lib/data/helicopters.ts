@@ -36,9 +36,9 @@ export const helicopters: Helicopter[] = [
     id: "r3",
     slug: "enlite-r3",
     name: "Enlite R3",
-    tagline: "Heavy-Lift Autonomous Cargo Helicopter",
+    tagline: "High-Altitude Tactical Cargo Helicopter",
     description:
-      "A heavy-lift variant optimized for industrial and defense applications, providing unmatched payload capacity and operational endurance for the most demanding supply chain challenges. With advanced terrain-following navigation and stealthy low-altitude flight capabilities, the R3 is the ultimate workhorse for remote locations and defense logistics.",
+      "A specialized variant optimized for defense applications and mountainous regions, providing unmatched operational endurance for the most demanding supply chain challenges. Engineered to operate at ceilings up to 20,000 ft, the R3 utilizes a sophisticated speed-vs-altitude tradeoff algorithm to deliver up to 50 kg of critical payload to extreme elevations. With advanced terrain-following navigation and stealthy low-altitude flight capabilities, the R3 is the ultimate workhorse for tactical resupply.",
     category: "Defense",
     image: "/images/r3-main.png",
     gallery: [
@@ -49,13 +49,13 @@ export const helicopters: Helicopter[] = [
     specs: [
       { label: "Max Speed", value: "240", unit: "km/h" },
       { label: "Range", value: "800", unit: "km" },
-      { label: "Payload Capacity", value: "200+", unit: "kg" },
-      { label: "Turnaround Time", value: "15", unit: "mins" },
-      { label: "Propulsion", value: "Hybrid VTOL", unit: "" },
+      { label: "Standard Payload", value: "200+", unit: "kg" },
+      { label: "High-Altitude Payload", value: "50", unit: "kg" },
+      { label: "Max Altitude", value: "20,000", unit: "ft" },
     ],
     features: [
-      "Unmatched payload capacity",
-      "Terrain-following navigation",
+      "20,000 ft operational ceiling variant",
+      "Dynamic speed-vs-altitude optimization",
       "Stealthy low-altitude flight capability",
       "Redundant triple-flight systems",
       "Automated dangerous supply routes",

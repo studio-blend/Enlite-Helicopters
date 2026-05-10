@@ -63,6 +63,22 @@ export default async function HelicopterDetailPage({ params }: Props) {
 
   return (
     <div className="flex flex-col min-h-screen bg-bg-primary">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": heli.name,
+            "image": `https://enlitehelicopters.com${heli.image}`,
+            "description": heli.tagline,
+            "brand": {
+              "@type": "Brand",
+              "name": "Enlite Helicopters"
+            }
+          })
+        }}
+      />
       {/* Hero Section */}
       <section className="bg-bg-hero pt-32 pb-20 border-b border-border-default transition-colors duration-400">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">

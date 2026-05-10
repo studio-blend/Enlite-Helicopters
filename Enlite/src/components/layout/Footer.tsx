@@ -83,6 +83,7 @@ export async function Footer() {
             <ul className="space-y-4">
               {[
                 { label: "Our Fleet", href: "/helicopters" },
+                { label: "Markets", href: "/markets" },
                 { label: "Enlite R2", href: "/helicopters/enlite-r2" },
                 { label: "Enlite R3", href: "/helicopters/enlite-r3" },
                 { label: "Download Brochure", href: "/brochure.pdf" }
@@ -155,6 +156,13 @@ export async function Footer() {
               </li>
             </ul>
           </div>
+        </div>
+
+        {/* Demo Disclaimer */}
+        <div className="py-3 border-t border-white/5 text-center">
+          <p className="text-[11px] text-amber-400/70 tracking-wide">
+            Demo build with placeholder content for visual reference. Final content will be sourced from Enlite.
+          </p>
         </div>
 
         {/* Bottom Bar */}

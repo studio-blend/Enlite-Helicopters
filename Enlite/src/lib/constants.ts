@@ -4,7 +4,7 @@ export const siteConfig: SiteConfig = {
   name: "Enlite Helicopters",
   tagline: "Engineering the Future of Vertical Flight",
   description:
-    "Enlite Helicopters is a leading aerospace company specializing in advanced rotorcraft design, manufacturing, and support services for defense and civilian operations.",
+    "Enlite designs autonomous unmanned cargo helicopters that deliver 70 kg payloads up to 500 km — next-generation aerial logistics for civilian and defence operations across India's most demanding terrain.",
   url: "https://enlitehelicopters.com",
   email: "info@enlitehelicopters.com",
   phone: "+91 81486 70820",
@@ -25,6 +25,7 @@ export const navigation: NavItem[] = [
   { label: "Careers", href: "/careers" },
   { label: "Gallery", href: "/gallery" },
   { label: "News", href: "/news" },
+  { label: "Investor", href: "/investor" },
   { label: "Contact", href: "/contact" },
 ];
 

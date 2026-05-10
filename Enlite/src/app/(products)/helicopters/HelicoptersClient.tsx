@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Download } from "lucide-react";
+import { Download, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/shared/ScrollReveal";
 import { Helicopter } from "@/types";
@@ -146,6 +146,16 @@ export default function HelicoptersClient({ helicopters }: HelicoptersClientProp
               </StaggerItem>
             ))}
           </StaggerContainer>
+
+          <div className="text-center mb-16">
+            <ScrollReveal>
+              <Link href="/markets">
+                <Button size="lg" className="bg-brand-red hover:bg-brand-red-hover text-white px-10 py-6 h-auto text-lg font-bold">
+                  Explore All Use Cases <ArrowRight className="ml-2 w-5 h-5 inline" />
+                </Button>
+              </Link>
+            </ScrollReveal>
+          </div>
 
           <ScrollReveal>
             <div className="bg-bg-tertiary rounded-2xl p-10 flex flex-col sm:flex-row items-center justify-between gap-6 border border-border-default">

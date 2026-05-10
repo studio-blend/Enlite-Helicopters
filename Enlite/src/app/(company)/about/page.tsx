@@ -148,7 +148,7 @@ export default function AboutPage() {
             </ScrollReveal>
             <ScrollReveal direction="right" className="relative">
                <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl">
-                 <Image src="https://images.unsplash.com/photo-1534481016308-0fca71578ae5?w=1200&h=800&fit=crop" alt="Innovation" fill className="object-cover" />
+                 <Image src="https://images.unsplash.com/photo-1534481016308-0fca71578ae5?w=1200&h=800&fit=crop" alt="Innovation" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
                  <div className="absolute inset-0 bg-brand-red/10 mix-blend-multiply" />
                </div>
                <div className="absolute -top-6 -right-6 w-32 h-32 bg-brand-red rounded-full flex items-center justify-center text-white font-bold text-center p-4 shadow-xl z-10">
@@ -165,7 +165,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-24 items-center">
             <ScrollReveal direction="left" className="order-2 lg:order-1 relative">
                <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl">
-                 <Image src="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&h=800&fit=crop" alt="Technology" fill className="object-cover" />
+                 <Image src="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&h=800&fit=crop" alt="Technology" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
                  <div className="absolute inset-0 bg-brand-red/10 mix-blend-multiply" />
                </div>
                <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-red rounded-full flex items-center justify-center text-white font-bold text-center p-4 shadow-xl z-10">

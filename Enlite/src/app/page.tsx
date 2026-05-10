@@ -1,6 +1,6 @@
 import { client } from "@/lib/sanity";
 import { allHelicoptersQuery, allArticlesQuery, allPartnersQuery, homePageQuery } from "@/lib/sanity-queries";
-import HomeClient from "./HomeClient";
+import HomeClient from "@/components/HomeClient";
 import { helicopters as staticHelicopters } from "@/lib/data/helicopters";
 import { articles as staticArticles } from "@/lib/data/articles";
 import { Helicopter, Article } from "@/types";
