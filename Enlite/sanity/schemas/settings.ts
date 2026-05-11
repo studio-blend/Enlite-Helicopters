@@ -1,9 +1,11 @@
 import { defineField, defineType } from "sanity";
+import { Settings } from "lucide-react";
 
 export default defineType({
   name: "settings",
   title: "Site Settings",
   type: "document",
+  icon: Settings,
   fields: [
     defineField({
       name: "siteName",

@@ -1,9 +1,11 @@
 import { defineField, defineType } from "sanity";
+import { Mail } from "lucide-react";
 
 export default defineType({
   name: "contact",
   title: "Contact Submission",
   type: "document",
+  icon: Mail,
   fields: [
     defineField({
       name: "name",
@@ -49,9 +51,10 @@ export default defineType({
       date: "submittedAt",
     },
     prepare({ title, subtitle, date }) {
+      const dateStr = date ? new Date(date).toLocaleDateString() : "No date";
       return {
-        title,
-        subtitle: `${new Date(date).toLocaleDateString()} - ${subtitle}`,
+        title: title || "Unknown",
+        subtitle: `${dateStr} — ${subtitle || "No subject"}`,
       };
     },
   },

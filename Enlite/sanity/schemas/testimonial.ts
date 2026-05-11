@@ -1,9 +1,18 @@
 import { defineField, defineType } from "sanity";
+import { Star } from "lucide-react";
 
 export default defineType({
   name: "testimonial",
   title: "Testimonial",
   type: "document",
+  icon: Star,
+  preview: {
+    select: {
+      title: "name",
+      subtitle: "company",
+      media: "image",
+    },
+  },
   fields: [
     defineField({
       name: "name",

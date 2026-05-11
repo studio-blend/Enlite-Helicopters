@@ -1,9 +1,18 @@
 import { defineField, defineType } from "sanity";
+import { ShoppingBag } from "lucide-react";
 
 export default defineType({
   name: "product",
   title: "Product",
   type: "document",
+  icon: ShoppingBag,
+  preview: {
+    select: {
+      title: "name",
+      subtitle: "category",
+      media: "image",
+    },
+  },
   fields: [
     defineField({
       name: "name",

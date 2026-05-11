@@ -22,11 +22,22 @@ interface HomeClientProps {
     heroTitle?: string;
     heroSubtitle?: string;
     heroDescription?: string;
-    heroImage?: string;
+    heroImageLight?: string;
+    heroImageDark?: string;
     solutionTitle?: string;
     solutionDescription?: string;
     solutionImage?: string;
+    solutionTags?: string[];
     stats?: { label: string; value: string }[];
+    featuresTitle?: string;
+    features?: { title: string; description: string; image: string }[];
+    aircraftTitle?: string;
+    aircraftDescription?: string;
+    aircraftImage?: string;
+    aircraftFeatures?: string[];
+    rangeTitle?: string;
+    rangeDescription?: string;
+    rangeBullets?: string[];
   };
 }
 
@@ -109,7 +120,9 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
               className="relative aspect-square w-full max-w-[600px] mx-auto flex items-center justify-center"
             >
               <Image
-                src={theme === "dark" ? "/images/hero-3d-dark.png" : "/images/hero-3d-light.png"}
+                src={theme === "dark" 
+                  ? (homeData?.heroImageDark || "/images/hero-3d-dark.png") 
+                  : (homeData?.heroImageLight || "/images/hero-3d-light.png")}
                 alt="Enlite 3D Helicopter Render"
                 width={800}
                 height={800}
@@ -159,12 +172,12 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <ScrollReveal>
             <h2 className="text-3xl font-bold tracking-tight text-center mb-16">
-              Why Current Logistics Solutions Don't Scale?
+              {homeData?.featuresTitle || "Why Current Logistics Solutions Don't Scale?"}
             </h2>
           </ScrollReveal>
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, i) => (
+            {(homeData?.features || features).map((feature, i) => (
               <StaggerItem key={i}>
                 <div className="rounded-xl bg-bg-card border border-border-default overflow-hidden group hover:border-brand-red/30 hover:shadow-xl transition-all h-full flex flex-col">
                   <div className="relative aspect-[4/3] overflow-hidden">
@@ -211,7 +224,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                 {homeData?.solutionDescription || "Enlite Helicopters introduces a new class of cargo helicopters designed to combine the heavy-lift capabilities of traditional helicopters with the cost efficiency and autonomy of modern drones. Our platforms are built for intercity, high-payload cargo logistics, enabling businesses to scale deliveries effortlessly across regions."}
               </p>
               <div className="flex flex-wrap gap-3">
-                {solutionTags.map((tag, i) => (
+                {(homeData?.solutionTags || solutionTags).map((tag, i) => (
                   <span key={i} className="px-4 py-2 bg-brand-red text-white text-xs font-bold uppercase tracking-wider rounded">
                     {tag}
                   </span>
@@ -227,14 +240,18 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal>
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              The <span className="text-brand-red">Enlite</span> Aircraft
+              {homeData?.aircraftTitle ? (
+                <span dangerouslySetInnerHTML={{ __html: homeData.aircraftTitle.replace("Enlite", '<span class="text-brand-red">Enlite</span>') }} />
+              ) : (
+                <>The <span className="text-brand-red">Enlite</span> Aircraft</>
+              )}
             </h2>
             <p className="text-text-secondary text-lg leading-relaxed mb-16 max-w-3xl mx-auto">
-              Enlite Helicopters has pioneered the next era of logistics with our class of cargo helicopters. Built for speed, endurance, and reliability, these aircraft deliver unmatched performance in intercity, remote, and offshore delivery operations.
+              {homeData?.aircraftDescription || "Enlite Helicopters has pioneered the next era of logistics with our class of cargo helicopters. Built for speed, endurance, and reliability, these aircraft deliver unmatched performance in intercity, remote, and offshore delivery operations."}
             </p>
             <div className="relative max-w-5xl mx-auto aspect-video mb-16 rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] bg-black">
               <Image
-                src="/images/aircraft.png"
+                src={homeData?.aircraftImage || "/images/aircraft.png"}
                 alt="Enlite autonomous cargo helicopter fleet overview"
                 fill
                 className="object-cover"
@@ -244,11 +261,11 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
           </ScrollReveal>
 
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-left">
-            {[
+            {(homeData?.aircraftFeatures || [
               "Fully Autonomous", "Obstacle Avoidance", "Terrain Following",
               "Fail-safe GPS Navigation", "Real-time Telemetrics",
               "Redundant Communication", "Custom Cargo Compartment"
-            ].map((f, i) => (
+            ]).map((f, i) => (
               <StaggerItem key={i}>
                 <div className="flex items-center gap-3 p-4 bg-bg-card border border-border-default rounded-xl shadow-sm">
                   <div className="w-2 h-2 rounded-full bg-brand-red shrink-0" />
@@ -266,18 +283,22 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal direction="left">
               <h2 className="text-4xl font-bold mb-6">
-                Unmatched <span className="text-brand-red">Operational Range</span>
+                {homeData?.rangeTitle ? (
+                  <span dangerouslySetInnerHTML={{ __html: homeData.rangeTitle.replace("Operational Range", '<span class="text-brand-red">Operational Range</span>') }} />
+                ) : (
+                  <>Unmatched <span className="text-brand-red">Operational Range</span></>
+                )}
               </h2>
               <p className="text-text-secondary text-lg leading-relaxed mb-8">
-                Unlike battery-powered drones that are restricted to short-distance deliveries, our platforms offer a 500 km operational radius. This makes true intercity cargo logistics possible, bypassing unpredictable road infrastructure.
+                {homeData?.rangeDescription || "Unlike battery-powered drones that are restricted to short-distance deliveries, our platforms offer a 500 km operational radius. This makes true intercity cargo logistics possible, bypassing unpredictable road infrastructure."}
               </p>
               <ul className="space-y-4 mb-8">
-                {[
+                {(homeData?.rangeBullets || [
                   "Bypass highway traffic and road delays",
                   "Reach remote and mountainous terrains",
                   "Connect tier-2 and tier-3 cities rapidly",
                   "Deliver critical supplies in a fraction of the time"
-                ].map((item, i) => (
+                ]).map((item, i) => (
                   <li key={i} className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
                     <span className="text-text-primary font-medium">{item}</span>
@@ -317,9 +338,9 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                   </div>
                   <div className="space-y-6">
                     {[
-                      { title: "Intercity Cargo Delivery", desc: "Rapid transportation of goods between urban centers, bypassing ground congestion.", href: "/intercity-cargo-delivery" },
-                      { title: "Remote Location Delivery", desc: "Reliable supply chain connection for mountainous, island, and rural areas.", href: "/remote-location-delivery" },
-                      { title: "Medical & Emergency", desc: "Swift delivery of critical medical supplies, organs, and disaster relief aid.", href: "/medical-emergency-delivery" }
+                      { title: "Intercity Cargo Delivery", desc: "Rapid transportation of goods between urban centers, bypassing ground congestion.", href: "/markets/intercity-cargo-delivery" },
+                      { title: "Remote Location Delivery", desc: "Reliable supply chain connection for mountainous, island, and rural areas.", href: "/markets/remote-location-delivery" },
+                      { title: "Medical & Emergency", desc: "Swift delivery of critical medical supplies, organs, and disaster relief aid.", href: "/markets/medical-emergency-delivery" }
                     ].map((item, i) => (
                       <Link href={item.href} key={i} className="flex gap-4 group cursor-pointer">
                         <div className="w-1.5 h-1.5 rounded-full bg-brand-red mt-2.5 shrink-0 group-hover:scale-150 transition-transform" />
@@ -369,7 +390,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                         { title: "Stealthy Operations", desc: "Low-altitude, autonomous flight paths to minimize radar detection." },
                         { title: "Heavy-Lift Capabilities", desc: "Transporting critical equipment in rugged terrains where trucks cannot reach." }
                       ].map((item, i) => (
-                        <Link href="/defence-applications" key={i} className="flex gap-4 group cursor-pointer">
+                        <Link href="/markets/defence-applications" key={i} className="flex gap-4 group cursor-pointer">
                           <div className="w-1.5 h-1.5 rounded-full bg-brand-red mt-2.5 shrink-0 group-hover:scale-150 transition-transform" />
                           <div>
                             <h4 className="font-bold text-xl mb-1 group-hover:text-brand-red transition-colors">{item.title}</h4>

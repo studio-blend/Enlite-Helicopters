@@ -1,9 +1,17 @@
 import { defineField, defineType } from "sanity";
+import { HelpCircle } from "lucide-react";
 
 export default defineType({
   name: "faq",
   title: "FAQ",
   type: "document",
+  icon: HelpCircle,
+  preview: {
+    select: {
+      title: "question",
+      subtitle: "category",
+    },
+  },
   fields: [
     defineField({
       name: "question",

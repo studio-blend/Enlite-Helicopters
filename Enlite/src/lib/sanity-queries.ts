@@ -149,10 +149,25 @@ export const homePageQuery = groq`
     heroTitle,
     heroSubtitle,
     heroDescription,
-    "heroImage": heroImage.asset->url,
+    "heroImageLight": heroImageLight.asset->url,
+    "heroImageDark": heroImageDark.asset->url,
+    stats,
+    featuresTitle,
+    features[] {
+      title,
+      description,
+      "image": image.asset->url
+    },
     solutionTitle,
     solutionDescription,
     "solutionImage": solutionImage.asset->url,
-    stats
+    solutionTags,
+    aircraftTitle,
+    aircraftDescription,
+    "aircraftImage": aircraftImage.asset->url,
+    aircraftFeatures,
+    rangeTitle,
+    rangeDescription,
+    rangeBullets
   }
 `;

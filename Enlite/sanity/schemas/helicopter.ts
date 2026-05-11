@@ -1,9 +1,18 @@
 import { defineField, defineType } from "sanity";
+import { Plane } from "lucide-react";
 
 export default defineType({
   name: "helicopter",
   title: "Helicopter",
   type: "document",
+  icon: Plane,
+  preview: {
+    select: {
+      title: "name",
+      subtitle: "tagline",
+      media: "image",
+    },
+  },
   fields: [
     defineField({
       name: "name",

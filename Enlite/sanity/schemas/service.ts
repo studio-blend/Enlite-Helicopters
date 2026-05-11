@@ -1,9 +1,17 @@
 import { defineField, defineType } from "sanity";
+import { Layers } from "lucide-react";
 
 export default defineType({
   name: "service",
   title: "Service",
   type: "document",
+  icon: Layers,
+  preview: {
+    select: {
+      title: "name",
+      media: "image",
+    },
+  },
   fields: [
     defineField({
       name: "name",

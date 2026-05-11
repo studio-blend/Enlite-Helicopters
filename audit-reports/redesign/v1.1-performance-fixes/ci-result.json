@@ -1,0 +1,18 @@
+[
+  {
+    "path": "/interactive-range",
+    "score": 0.96,
+    "performance": 0.89,
+    "accessibility": 0.93,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/markets",
+    "score": 0.97,
+    "performance": 0.92,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  }
+]

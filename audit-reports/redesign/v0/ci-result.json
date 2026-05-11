@@ -1,0 +1,138 @@
+[
+  {
+    "path": "/",
+    "score": 0.91,
+    "performance": 0.74,
+    "accessibility": 0.94,
+    "best-practices": 0.96,
+    "seo": 1
+  },
+  {
+    "path": "/about",
+    "score": 0.98,
+    "performance": 0.97,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/careers",
+    "score": 0.98,
+    "performance": 0.97,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/contact",
+    "score": 0.98,
+    "performance": 0.98,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/gallery",
+    "score": 0.95,
+    "performance": 0.84,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/helicopters",
+    "score": 0.96,
+    "performance": 0.96,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 0.91
+  },
+  {
+    "path": "/helicopters/enlite-r2",
+    "score": 0.97,
+    "performance": 0.92,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/helicopters/enlite-r3",
+    "score": 0.97,
+    "performance": 0.91,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/investor",
+    "score": 0.97,
+    "performance": 0.96,
+    "accessibility": 0.91,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/news",
+    "score": 0.96,
+    "performance": 0.91,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/news/cargo-transfer-maritime-operations",
+    "score": 0.98,
+    "performance": 0.97,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/news/civil-200-ems-certification",
+    "score": 0.98,
+    "performance": 0.97,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/news/defence-expo-2025-enlite-showcase",
+    "score": 0.98,
+    "performance": 0.98,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/news/enlite-luh-first-flight-milestone",
+    "score": 0.98,
+    "performance": 0.96,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/news/high-altitude-trials-success",
+    "score": 0.98,
+    "performance": 0.94,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/news/manufacturing-expansion-announcement",
+    "score": 0.97,
+    "performance": 0.95,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/team",
+    "score": 0.98,
+    "performance": 0.97,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  }
+]

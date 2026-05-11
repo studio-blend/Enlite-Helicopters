@@ -1,0 +1,370 @@
+[
+  {
+    "path": "/",
+    "score": 0.83,
+    "performance": 0.6,
+    "accessibility": 0.89,
+    "best-practices": 0.96,
+    "seo": 0.85
+  },
+  {
+    "path": "/%e0%a4%ad%e0%a5%82%e0%a4%b2-%e0%a4%9c%e0%a4%be%e0%a4%87%e0%a4%8f-%e0%a4%a1%e0%a5%8d%e0%a4%b0%e0%a5%8b%e0%a4%a8-%e0%a4%94%e0%a4%b0-%e0%a4%a1%e0%a4%bf%e0%a4%b2%e0%a5%80%e0%a4%b5%e0%a4%b0%e0%a5%80/",
+    "score": 0.82,
+    "performance": 0.6,
+    "accessibility": 0.87,
+    "best-practices": 0.96,
+    "seo": 0.85
+  },
+  {
+    "path": "/%e0%ae%9a%e0%af%82%e0%ae%9a%e0%af%88%e0%ae%9f%e0%af%81-%e0%ae%9f%e0%af%8d%e0%ae%b0%e0%af%8b%e0%ae%a9%e0%af%8d-500-%e0%ae%95%e0%ae%bf-%e0%ae%ae%e0%af%80-%e0%ae%a4%e0%af%81%e0%ae%be%e0%ae%b0/",
+    "score": 0.82,
+    "performance": 0.61,
+    "accessibility": 0.87,
+    "best-practices": 0.96,
+    "seo": 0.85
+  },
+  {
+    "path": "/about/",
+    "score": 0.84,
+    "performance": 0.6,
+    "accessibility": 0.87,
+    "best-practices": 0.96,
+    "seo": 0.92
+  },
+  {
+    "path": "/advanced-drones-long-range-cargo-helicopters/",
+    "score": 0.83,
+    "performance": 0.62,
+    "accessibility": 0.87,
+    "best-practices": 0.96,
+    "seo": 0.85
+  },
+  {
+    "path": "/aero-defcon-2025-enlite-helicopters/",
+    "score": 0.82,
+    "performance": 0.6,
+    "accessibility": 0.87,
+    "best-practices": 0.96,
+    "seo": 0.85
+  },
+  {
+    "path": "/aerodefcon25-%e0%ae%9a%e0%af%86%e0%ae%a9%e0%af%8d%e0%ae%a9%e0%af%88-%e0%ae%b5%e0%ae%b0%e0%af%8d%e0%ae%a4%e0%af%8d%e0%ae%a4%e0%ae%95-%e0%ae%ae%e0%af%88%e0%ae%af%e0%ae%a4%e0%af%8d%e0%ae%a4%e0%ae%bf/",
+    "score": 0.81,
+    "performance": 0.56,
+    "accessibility": 0.87,
+    "best-practices": 0.96,
+    "seo": 0.85
+  },
+  {
+    "path": "/article-published-on-geo-politics-10-02-2025/",
+    "score": 0.82,
+    "performance": 0.59,
+    "accessibility": 0.87,
+    "best-practices": 0.96,
+    "seo": 0.85
+  },
+  {
+    "path": "/author/enliteadmin/",
+    "score": 0.78,
+    "performance": 0.59,
+    "accessibility": 0.8,
+    "best-practices": 0.96,
+    "seo": 0.77
+  },
+  {
+    "path": "/blog-10/",
+    "score": 0.8,
+    "performance": 0.6,
+    "accessibility": 0.87,
+    "best-practices": 0.96,
+    "seo": 0.77
+  },
+  {
+    "path": "/career-form/",
+    "score": 0.83,
+    "performance": 0.62,
+    "accessibility": 0.87,
+    "best-practices": 0.96,
+    "seo": 0.85
+  },
+  {
+    "path": "/careers/",
+    "score": 0.86,
+    "performance": 0.65,
+    "accessibility": 0.87,
+    "best-practices": 1,
+    "seo": 0.92
+  },
+  {
+    "path": "/category/blog/",
+    "score": 0.75,
+    "performance": 0.43,
+    "accessibility": 0.8,
+    "best-practices": 1,
+    "seo": 0.77
+  },
+  {
+    "path": "/contact-us/",
+    "score": 0.82,
+    "performance": 0.62,
+    "accessibility": 0.88,
+    "best-practices": 1,
+    "seo": 0.77
+  },
+  {
+    "path": "/contact/",
+    "score": 0.86,
+    "performance": 0.62,
+    "accessibility": 0.88,
+    "best-practices": 1,
+    "seo": 0.92
+  },
+  {
+    "path": "/defence-military-applications/",
+    "score": 0.87,
+    "performance": 0.66,
+    "accessibility": 0.89,
+    "best-practices": 1,
+    "seo": 0.92
+  },
+  {
+    "path": "/elementor-thhf/enlite-footer/",
+    "score": 0.84,
+    "performance": 0.62,
+    "accessibility": 0.89,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/elementor-thhf/enlite-header/",
+    "score": 0.84,
+    "performance": 0.61,
+    "accessibility": 0.89,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/elementskit-content/dynamic-content-megamenu-menuitem9872/",
+    "score": 0.91,
+    "performance": 0.82,
+    "accessibility": 0.88,
+    "best-practices": 1,
+    "seo": 0.92
+  },
+  {
+    "path": "/enlite-helicopter-polimer-news-tamil-today/",
+    "score": 0.84,
+    "performance": 0.63,
+    "accessibility": 0.87,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/enlite-helicopter-thanthi-news-tamil-today/",
+    "score": 0.82,
+    "performance": 0.61,
+    "accessibility": 0.87,
+    "best-practices": 0.96,
+    "seo": 0.85
+  },
+  {
+    "path": "/enlites-unmanned-cargo-helicopters-set-to-be-ready-for-commercial-use-by-h1-of-2026/",
+    "score": 0.84,
+    "performance": 0.64,
+    "accessibility": 0.87,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/featured-in-asianet-suvarna-news/",
+    "score": 0.83,
+    "performance": 0.62,
+    "accessibility": 0.87,
+    "best-practices": 0.96,
+    "seo": 0.85
+  },
+  {
+    "path": "/gallery/",
+    "score": 0.85,
+    "performance": 0.62,
+    "accessibility": 0.87,
+    "best-practices": 1,
+    "seo": 0.92
+  },
+  {
+    "path": "/industries/",
+    "score": 0.84,
+    "performance": 0.65,
+    "accessibility": 0.9,
+    "best-practices": 0.96,
+    "seo": 0.85
+  },
+  {
+    "path": "/intercity-cargo-delivery/",
+    "score": 0.86,
+    "performance": 0.64,
+    "accessibility": 0.89,
+    "best-practices": 1,
+    "seo": 0.92
+  },
+  {
+    "path": "/investor/",
+    "score": 0.84,
+    "performance": 0.6,
+    "accessibility": 0.87,
+    "best-practices": 0.96,
+    "seo": 0.92
+  },
+  {
+    "path": "/news/",
+    "score": 0.82,
+    "performance": 0.65,
+    "accessibility": 0.87,
+    "best-practices": 1,
+    "seo": 0.77
+  },
+  {
+    "path": "/portfolio/ai/",
+    "score": 0.85,
+    "performance": 0.65,
+    "accessibility": 0.9,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/portfolio/machine-learning/",
+    "score": 0.84,
+    "performance": 0.61,
+    "accessibility": 0.9,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/portfolio/partners-1/",
+    "score": 0.86,
+    "performance": 0.69,
+    "accessibility": 0.9,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/portfolio/partners-2/",
+    "score": 0.86,
+    "performance": 0.67,
+    "accessibility": 0.9,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/portfolio/partners-4/",
+    "score": 0.9,
+    "performance": 0.86,
+    "accessibility": 0.9,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/portfolio/partners-6-2/",
+    "score": 0.86,
+    "performance": 0.68,
+    "accessibility": 0.9,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/portfolio/partners-6/",
+    "score": 0.86,
+    "performance": 0.68,
+    "accessibility": 0.9,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/portfolio/robotics/",
+    "score": 0.86,
+    "performance": 0.68,
+    "accessibility": 0.9,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/products/",
+    "score": 0.87,
+    "performance": 0.67,
+    "accessibility": 0.89,
+    "best-practices": 1,
+    "seo": 0.92
+  },
+  {
+    "path": "/project-type/industries/",
+    "score": 0.84,
+    "performance": 0.66,
+    "accessibility": 0.84,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/project-type/our-partners/",
+    "score": 0.84,
+    "performance": 0.66,
+    "accessibility": 0.84,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/project-type/test/",
+    "score": 0.84,
+    "performance": 0.67,
+    "accessibility": 0.84,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/remote-location-delivery/",
+    "score": 0.87,
+    "performance": 0.66,
+    "accessibility": 0.89,
+    "best-practices": 1,
+    "seo": 0.92
+  },
+  {
+    "path": "/south-western-command-showcase/",
+    "score": 0.85,
+    "performance": 0.67,
+    "accessibility": 0.87,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/testimonial/",
+    "score": 0.81,
+    "performance": 0.62,
+    "accessibility": 0.82,
+    "best-practices": 0.96,
+    "seo": 0.85
+  },
+  {
+    "path": "/this-unmanned-cargo-chopper-can-zip-between-cities/",
+    "score": 0.84,
+    "performance": 0.65,
+    "accessibility": 0.87,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/unmanned-chopper-to-deliver-cargo-between-cities-in-2-hours/",
+    "score": 0.84,
+    "performance": 0.65,
+    "accessibility": 0.87,
+    "best-practices": 1,
+    "seo": 0.85
+  },
+  {
+    "path": "/unveiling-the-unmanned-helicopter-10-02-2025/",
+    "score": 0.84,
+    "performance": 0.62,
+    "accessibility": 0.87,
+    "best-practices": 1,
+    "seo": 0.85
+  }
+]

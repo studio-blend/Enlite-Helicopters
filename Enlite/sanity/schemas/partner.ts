@@ -1,9 +1,17 @@
 import { defineField, defineType } from "sanity";
+import { Handshake } from "lucide-react";
 
 export default defineType({
   name: "partner",
   title: "Partner",
   type: "document",
+  icon: Handshake,
+  preview: {
+    select: {
+      title: "name",
+      media: "logo",
+    },
+  },
   fields: [
     defineField({
       name: "name",

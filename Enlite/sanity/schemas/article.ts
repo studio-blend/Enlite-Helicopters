@@ -1,9 +1,22 @@
 import { defineField, defineType } from "sanity";
+import { FileText } from "lucide-react";
 
 export default defineType({
   name: "article",
   title: "Article",
   type: "document",
+  icon: FileText,
+  preview: {
+    select: {
+      title: "title",
+      author: "author.name",
+      media: "image",
+    },
+    prepare(selection) {
+      const { author } = selection;
+      return { ...selection, subtitle: author ? `by ${author}` : "" };
+    },
+  },
   fields: [
     defineField({
       name: "title",

@@ -1,9 +1,18 @@
 import { defineField, defineType } from "sanity";
+import { Users } from "lucide-react";
 
 export default defineType({
   name: "team",
   title: "Team",
   type: "document",
+  icon: Users,
+  preview: {
+    select: {
+      title: "name",
+      subtitle: "role",
+      media: "image",
+    },
+  },
   fields: [
     defineField({
       name: "name",
