@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, Clock, Download, MapPin } from "lucide-react";
+import { ArrowRight, Calendar, Clock, Download, MapPin, Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/shared/ScrollReveal";
 import { ComparisonTable } from "@/components/ui/ComparisonTable";
@@ -27,7 +27,13 @@ interface HomeClientProps {
     solutionTitle?: string;
     solutionDescription?: string;
     solutionImage?: string;
+    solutionVideoUrl?: string;
     solutionTags?: string[];
+    missionTitle?: string;
+    missionSubtitle?: string;
+    missionDescription?: string;
+    missionVideoUrl?: string;
+    missionThumbnail?: string;
     stats?: { label: string; value: string }[];
     featuresTitle?: string;
     features?: { title: string; description: string; image: string }[];
@@ -35,6 +41,9 @@ interface HomeClientProps {
     aircraftDescription?: string;
     aircraftImage?: string;
     aircraftFeatures?: string[];
+    testingTitle?: string;
+    testingDescription?: string;
+    testingVideos?: { title: string; subtitle: string; videoUrl: string; thumbnail: string }[];
     rangeTitle?: string;
     rangeDescription?: string;
     rangeBullets?: string[];
@@ -209,23 +218,37 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
       <section className="py-24 bg-bg-secondary border-y border-border-default">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-bg-tertiary">
-              <Image src={homeData?.solutionImage || "/images/solution.png"} alt="Enlite autonomous cargo helicopter in flight" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+            <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-bg-tertiary shadow-lg group">
+              {homeData?.solutionVideoUrl ? (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000"
+                  poster={homeData?.solutionImage || "/images/solution.png"}
+                >
+                  <source src={homeData.solutionVideoUrl} type="video/mp4" />
+                </video>
+              ) : (
+                <Image src={homeData?.solutionImage || "/images/solution.png"} alt="Enlite autonomous cargo helicopter in flight" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent" />
             </div>
             <ScrollReveal direction="right">
-              <h2 className="text-3xl font-bold mb-6">
+              <h2 className="text-4xl font-bold mb-6">
                 {homeData?.solutionTitle ? (
                   <span dangerouslySetInnerHTML={{ __html: homeData.solutionTitle.replace("Enlite", '<span class="text-brand-red">Enlite</span>') }} />
                 ) : (
                   <>The <span className="text-brand-red">Enlite</span> Solution: A New Class of Aerial Logistics</>
                 )}
               </h2>
-              <p className="text-text-secondary leading-relaxed mb-8">
-                {homeData?.solutionDescription || "Enlite Helicopters introduces a new class of cargo helicopters designed to combine the heavy-lift capabilities of traditional helicopters with the cost efficiency and autonomy of modern drones. Our platforms are built for intercity, high-payload cargo logistics, enabling businesses to scale deliveries effortlessly across regions."}
+              <p className="text-text-secondary text-lg leading-relaxed mb-8">
+                {homeData?.solutionDescription || "We are bridging the gap between small-scale battery drones and expensive manned helicopters. Enlite introduces a dedicated class of autonomous cargo platforms designed specifically for the heavy-lift requirements of regional and intercity logistics."}
               </p>
               <div className="flex flex-wrap gap-3">
                 {(homeData?.solutionTags || solutionTags).map((tag, i) => (
-                  <span key={i} className="px-4 py-2 bg-brand-red text-white text-xs font-bold uppercase tracking-wider rounded">
+                  <span key={i} className="px-4 py-2 bg-brand-red/10 text-brand-red text-xs font-bold uppercase tracking-wider rounded border border-brand-red/20">
                     {tag}
                   </span>
                 ))}
@@ -235,19 +258,81 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
         </div>
       </section>
 
-      {/* The Enlite Aircraft */}
-      <section className="py-24 bg-bg-primary text-center">
+      {/* The Vision Behind Enlite (Founder & Mission) */}
+      <section className="py-24 bg-bg-primary relative overflow-hidden border-b border-border-default">
+        {/* Background Decorative Elements ... */}
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-brand-red/5 blur-[120px] rounded-full translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-1/4 h-full bg-brand-red/5 blur-[100px] rounded-full -translate-x-1/2" />
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+          <div className="grid lg:grid-cols-5 gap-16 items-center">
+            <div className="lg:col-span-2">
+              <ScrollReveal direction="left">
+                <h3 className="text-brand-red font-bold text-sm uppercase tracking-widest mb-4">
+                  {homeData?.missionSubtitle || "A Message from our Founder"}
+                </h3>
+                <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight">
+                  {homeData?.missionTitle || "The Vision Behind Enlite"}
+                </h2>
+                <div className="relative pl-8 border-l-4 border-brand-red mb-10">
+                  <p className="text-xl lg:text-2xl text-text-primary italic font-medium leading-relaxed">
+                    {homeData?.missionDescription || "\"We didn't just build a helicopter; we built a lifeline for remote communities and a safer future for logistics.\""}
+                  </p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-bg-tertiary overflow-hidden border border-border-default">
+                    <div className="w-full h-full bg-brand-red/20 flex items-center justify-center text-brand-red font-bold">VS</div>
+                  </div>
+                  <div>
+                    <div className="font-bold text-text-primary">Vimal Selvam</div>
+                    <div className="text-sm text-text-muted italic">Founder & CEO, Enlite Helicopters</div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+
+            <div className="lg:col-span-3">
+              <ScrollReveal direction="right">
+                <div className="group relative aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black cursor-pointer">
+                  <Image 
+                    src={homeData?.missionThumbnail || "/images/mission-thumb.png"} 
+                    alt="Founder and Mission Video" 
+                    fill 
+                    className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" 
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-20 h-20 rounded-full bg-brand-red flex items-center justify-center text-white shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                      <Play className="w-8 h-8 fill-current ml-1" />
+                    </div>
+                  </div>
+                  <div className="absolute bottom-6 left-6 right-6 p-4 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
+                      <span className="text-sm font-medium text-white">Watch: Our Journey (4:20)</span>
+                    </div>
+                    <div className="text-xs text-white/60 font-medium uppercase tracking-widest">4K Ultra HD</div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Enlite Aircraft Special Features */}
+      <section className="py-24 bg-bg-secondary text-center">
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal>
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
               {homeData?.aircraftTitle ? (
                 <span dangerouslySetInnerHTML={{ __html: homeData.aircraftTitle.replace("Enlite", '<span class="text-brand-red">Enlite</span>') }} />
               ) : (
-                <>The <span className="text-brand-red">Enlite</span> Aircraft</>
+                <>The <span className="text-brand-red">Enlite</span> Aircraft: Special Features</>
               )}
             </h2>
             <p className="text-text-secondary text-lg leading-relaxed mb-16 max-w-3xl mx-auto">
-              {homeData?.aircraftDescription || "Enlite Helicopters has pioneered the next era of logistics with our class of cargo helicopters. Built for speed, endurance, and reliability, these aircraft deliver unmatched performance in intercity, remote, and offshore delivery operations."}
+              {homeData?.aircraftDescription || "Engineered for precision and built for the extremes. Our aircraft are equipped with advanced sensor suites and redundant systems to ensure mission success in environments where traditional logistics fail."}
             </p>
             <div className="relative max-w-5xl mx-auto aspect-video mb-16 rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] bg-black">
               <Image
@@ -257,6 +342,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                 className="object-cover"
                 sizes="(max-width: 1280px) 100vw, 1024px"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
           </ScrollReveal>
 
@@ -267,8 +353,8 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
               "Redundant Communication", "Custom Cargo Compartment"
             ]).map((f, i) => (
               <StaggerItem key={i}>
-                <div className="flex items-center gap-3 p-4 bg-bg-card border border-border-default rounded-xl shadow-sm">
-                  <div className="w-2 h-2 rounded-full bg-brand-red shrink-0" />
+                <div className="flex items-center gap-3 p-4 bg-bg-card border border-border-default rounded-xl shadow-sm hover:border-brand-red/30 transition-colors group">
+                  <div className="w-2 h-2 rounded-full bg-brand-red shrink-0 group-hover:scale-125 transition-transform" />
                   <span className="text-sm font-semibold text-text-primary">{f}</span>
                 </div>
               </StaggerItem>
@@ -278,33 +364,38 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
       </section>
 
       {/* Operational Range Map */}
-      <section className="py-24 bg-bg-secondary border-t border-border-default">
+      <section className="py-24 bg-bg-primary border-t border-border-default">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal direction="left">
-              <h2 className="text-4xl font-bold mb-6">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight">
                 {homeData?.rangeTitle ? (
                   <span dangerouslySetInnerHTML={{ __html: homeData.rangeTitle.replace("Operational Range", '<span class="text-brand-red">Operational Range</span>') }} />
                 ) : (
                   <>Unmatched <span className="text-brand-red">Operational Range</span></>
                 )}
               </h2>
-              <p className="text-text-secondary text-lg leading-relaxed mb-8">
-                {homeData?.rangeDescription || "Unlike battery-powered drones that are restricted to short-distance deliveries, our platforms offer a 500 km operational radius. This makes true intercity cargo logistics possible, bypassing unpredictable road infrastructure."}
+              <p className="text-text-secondary text-lg leading-relaxed mb-10">
+                {homeData?.rangeDescription || "Enlite platforms are designed to operate where others can't. With a 500km range and 3-hour endurance, our helicopters bridge the gap between regional hubs and remote locations."}
               </p>
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4 mb-10">
                 {(homeData?.rangeBullets || [
-                  "Bypass highway traffic and road delays",
-                  "Reach remote and mountainous terrains",
-                  "Connect tier-2 and tier-3 cities rapidly",
-                  "Deliver critical supplies in a fraction of the time"
+                  "500km operational radius",
+                  "3-hour flight endurance",
+                  "All-weather capability",
+                  "Remote & Offshore landing ready"
                 ]).map((item, i) => (
-                  <li key={i} className="flex items-center gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-brand-red shrink-0" />
-                    <span className="text-text-primary font-medium">{item}</span>
+                  <li key={i} className="flex items-center gap-4 text-text-primary font-medium">
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand-red" />
+                    {item}
                   </li>
                 ))}
               </ul>
+              <Link href="/interactive-range">
+                <Button size="lg" className="bg-brand-red hover:bg-brand-red/90 text-white px-8">
+                  Explore Applications <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
             </ScrollReveal>
             <ScrollReveal direction="right">
               <div className="flex flex-col items-center">
@@ -317,6 +408,55 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
               </div>
             </ScrollReveal>
           </div>
+        </div>
+      </section>
+
+      {/* Proven in Flight (Testing Gallery) */}
+      <section className="py-24 bg-bg-secondary relative overflow-hidden border-y border-border-default">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div className="max-w-2xl">
+              <ScrollReveal direction="left">
+                <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+                  {homeData?.testingTitle || "Proven in Flight"}
+                </h2>
+                <p className="text-text-secondary text-lg leading-relaxed">
+                  {homeData?.testingDescription || "Our technology is not just on paper. We rigorously test our platforms in real-world conditions to ensure mission reliability across diverse environments."}
+                </p>
+              </ScrollReveal>
+            </div>
+            <ScrollReveal direction="right">
+              <Button variant="outline" className="border-brand-red text-brand-red hover:bg-brand-red hover:text-white transition-all group">
+                View All Missions <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </ScrollReveal>
+          </div>
+
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {(homeData?.testingVideos || [
+              { title: "Autonomous Hover Test", subtitle: "Bangalore Facility | Aug 2024", videoUrl: "#", thumbnail: "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&h=600&fit=crop" },
+              { title: "Payload Stress Flight", subtitle: "High Altitude Testing | Oct 2024", videoUrl: "#", thumbnail: "https://images.unsplash.com/photo-1534481016308-0fca71578ae5?w=800&h=600&fit=crop" },
+              { title: "Precision Landing", subtitle: "Offshore Platform Demo | Dec 2024", videoUrl: "#", thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" }
+            ]).map((test: { title: string; subtitle: string; videoUrl: string; thumbnail: string }, i: number) => (
+              <StaggerItem key={i}>
+                <div className="group relative rounded-2xl overflow-hidden bg-bg-card border border-border-default hover:border-brand-red/30 transition-all duration-500 shadow-sm hover:shadow-xl cursor-pointer">
+                  <div className="relative aspect-video">
+                    <Image src={test.thumbnail} alt={test.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="w-14 h-14 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-500">
+                        <Play className="w-6 h-6 fill-current ml-1" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <div className="text-brand-red text-xs font-bold uppercase tracking-widest mb-2">{test.subtitle}</div>
+                    <h3 className="text-xl font-bold text-text-primary mb-2 group-hover:text-brand-red transition-colors">{test.title}</h3>
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
 

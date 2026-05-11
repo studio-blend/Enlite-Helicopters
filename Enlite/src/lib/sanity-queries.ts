@@ -161,13 +161,111 @@ export const homePageQuery = groq`
     solutionTitle,
     solutionDescription,
     "solutionImage": solutionImage.asset->url,
+    "solutionVideoUrl": solutionVideo.asset->url,
     solutionTags,
+    missionTitle,
+    missionSubtitle,
+    missionDescription,
+    missionVideoUrl,
+    "missionThumbnail": missionThumbnail.asset->url,
     aircraftTitle,
     aircraftDescription,
     "aircraftImage": aircraftImage.asset->url,
     aircraftFeatures,
+    testingTitle,
+    testingDescription,
+    testingVideos[] {
+      title,
+      subtitle,
+      videoUrl,
+      "thumbnail": thumbnail.asset->url
+    },
     rangeTitle,
     rangeDescription,
     rangeBullets
   }
 `;
+
+export const aboutPageQuery = groq`
+  *[_type == "aboutPage"][0] {
+    title,
+    subtitle,
+    videoTitle,
+    videoSubtitle,
+    videoDescription,
+    videoUrl,
+    "videoThumbnail": videoThumbnail.asset->url,
+    stats,
+    sections[] {
+      title,
+      highlightText,
+      content,
+      "image": image.asset->url,
+      "videoUrl": video.asset->url,
+      badge,
+      reverse
+    },
+    values[] {
+      title,
+      description,
+      "image": image.asset->url
+    }
+  }
+`;
+
+export const investorPageQuery = groq`
+  *[_type == "investorPage"][0] {
+    title,
+    subtitle,
+    partnerSection {
+      title,
+      highlightText,
+      content
+    },
+    formTitle,
+    formDescription
+  }
+`;
+
+export const allMarketsQuery = groq`
+  *[_type == "marketPage"] | order(_createdAt asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    category,
+    heroSubtitle,
+    themeVariant,
+    "heroImage": heroImage.asset->url,
+    seoDescription
+  }
+`;
+
+export const marketBySlugQuery = groq`
+  *[_type == "marketPage" && slug.current == $slug][0] {
+    title,
+    "slug": slug.current,
+    category,
+    themeVariant,
+    seoDescription,
+    "heroImage": heroImage.asset->url,
+    "heroVideoUrl": heroVideo.asset->url,
+    heroHeadline,
+    heroHeadlineHighlight,
+    heroSubtitle,
+    heroCtaText,
+    contextTitle,
+    contextTitleHighlight,
+    contextParagraphs,
+    "contextImage": contextImage.asset->url,
+    capabilitiesTitle,
+    capabilities[] {
+      title,
+      description,
+      icon
+    },
+    ctaTitle,
+    ctaDescription,
+    ctaButtonText
+  }
+`;
+

@@ -21,11 +21,12 @@ export const navigation: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Products", href: "/helicopters" },
+  { label: "Markets", href: "/markets" },
   { label: "Team", href: "/team" },
-  { label: "Careers", href: "/careers" },
+  { label: "Investor", href: "/investor" },
   { label: "Gallery", href: "/gallery" },
   { label: "News", href: "/news" },
-  { label: "Investor", href: "/investor" },
+  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ];
 
