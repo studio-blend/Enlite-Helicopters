@@ -12,7 +12,7 @@ export default async function TeamPage() {
   let team = [];
 
   try {
-    const sanityTeam = await sanityFetch({ query: allTeamMembersQuery, tags: ["team"] });
+    const sanityTeam = await sanityFetch<any[]>({ query: allTeamMembersQuery, tags: ["team"] });
     team = sanityTeam || [];
   } catch (error) {
     console.error("Sanity fetch error:", error);

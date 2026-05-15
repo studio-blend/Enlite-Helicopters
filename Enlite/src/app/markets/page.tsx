@@ -26,7 +26,7 @@ export default async function MarketsPage() {
   }[] = [];
 
   try {
-    const sanityMarkets = await sanityFetch({ query: allMarketsQuery, tags: ["marketPage"] });
+    const sanityMarkets = await sanityFetch<any[]>({ query: allMarketsQuery, tags: ["marketPage"] });
     if (sanityMarkets?.length > 0) {
       markets = sanityMarkets;
     }

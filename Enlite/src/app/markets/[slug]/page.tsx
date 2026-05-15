@@ -43,7 +43,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const market = await sanityFetch({ query: marketBySlugQuery, params: { slug }, tags: ["marketPage"] });
+  const market = await sanityFetch<any>({ query: marketBySlugQuery, params: { slug }, tags: ["marketPage"] });
   if (!market) return { title: "Market Not Found" };
   return {
     title: market.title,
@@ -61,7 +61,7 @@ export default async function MarketPage({
   const { slug } = await params;
 
   // Fetch from Sanity
-  let market = await sanityFetch({ query: marketBySlugQuery, params: { slug }, tags: ["marketPage"] }).catch(() => null);
+  let market = await sanityFetch<any>({ query: marketBySlugQuery, params: { slug }, tags: ["marketPage"] }).catch(() => null);
 
   if (!market) notFound();
 

@@ -17,7 +17,7 @@ export default async function AboutPage() {
   let pageData: any = null;
 
   try {
-    pageData = await sanityFetch({ query: aboutPageQuery, tags: ["aboutPage"] });
+    pageData = await sanityFetch<any>({ query: aboutPageQuery, tags: ["aboutPage"] });
   } catch (error) {
     console.error("Sanity fetch error:", error);
   }

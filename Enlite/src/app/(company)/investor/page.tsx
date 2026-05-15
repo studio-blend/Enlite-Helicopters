@@ -22,7 +22,7 @@ export default async function InvestorPage() {
   } | null = null;
 
   try {
-    pageData = await sanityFetch({ query: investorPageQuery, tags: ["investorPage"] });
+    pageData = await sanityFetch<any>({ query: investorPageQuery, tags: ["investorPage"] });
   } catch {
     // use fallbacks
   }

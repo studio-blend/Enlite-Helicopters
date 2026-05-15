@@ -13,8 +13,8 @@ export default async function HomePage() {
     const [sanityHelicopters, sanityArticles, sanityPartners, sanityHomeData] = await Promise.all([
       sanityFetch<Helicopter[]>({ query: allHelicoptersQuery, tags: ["product"] }),
       sanityFetch<Article[]>({ query: allArticlesQuery, tags: ["article"] }),
-      sanityFetch({ query: allPartnersQuery, tags: ["partner"] }),
-      sanityFetch({ query: homePageQuery, tags: ["homePage"] }),
+      sanityFetch<any[]>({ query: allPartnersQuery, tags: ["partner"] }),
+      sanityFetch<any>({ query: homePageQuery, tags: ["homePage"] }),
     ]);
 
     helicopters = sanityHelicopters || [];
