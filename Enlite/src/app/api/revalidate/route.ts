@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Revalidate based on document type
-    revalidateTag(body._type);
+    revalidateTag(body._type, "default");
 
     return NextResponse.json({
       status: 200,
