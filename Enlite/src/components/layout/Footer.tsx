@@ -2,13 +2,13 @@ import Link from "next/link";
 import { EnliteLogo } from "@/components/ui/Logo";
 import { siteConfig, navigation } from "@/lib/constants";
 import { Mail, Phone, MapPin, ChevronRight } from "lucide-react";
-import { client } from "@/lib/sanity";
+import { sanityFetch } from "@/lib/sanity";
 import { siteSettingsQuery } from "@/lib/sanity-queries";
 
 export async function Footer() {
   let settings = siteConfig;
   try {
-    const sanitySettings = await client.fetch(siteSettingsQuery);
+    const sanitySettings = await sanityFetch<any>({ query: siteSettingsQuery, tags: ["settings"] });
     if (sanitySettings) {
       settings = {
         ...siteConfig,
