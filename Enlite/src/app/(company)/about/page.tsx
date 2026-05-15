@@ -4,12 +4,12 @@ import Link from "next/link";
 import { Play } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/shared/ScrollReveal";
-import { client } from "@/lib/sanity";
+import { sanityFetch } from "@/lib/sanity";
 import { aboutPageQuery } from "@/lib/sanity-queries";
 import { PortableText } from "@portabletext/react";
 
 export const metadata: Metadata = { title: "About" };
-export const revalidate = 60;
+
 
 
 
@@ -17,7 +17,7 @@ export default async function AboutPage() {
   let pageData: any = null;
 
   try {
-    pageData = await client.fetch(aboutPageQuery);
+    pageData = await sanityFetch({ query: aboutPageQuery, tags: ["aboutPage"] });
   } catch (error) {
     console.error("Sanity fetch error:", error);
   }

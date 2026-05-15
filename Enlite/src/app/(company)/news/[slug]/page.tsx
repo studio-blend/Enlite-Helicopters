@@ -6,7 +6,7 @@ import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { ArticleCard } from "@/components/ui/Card";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
-import { client } from "@/lib/sanity";
+import { client, sanityFetch } from "@/lib/sanity";
 import { articleBySlugQuery, allArticlesQuery } from "@/lib/sanity-queries";
 import { Article } from "@/types";
 import { PortableText } from "@portabletext/react";
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   let article: Article | undefined;
 
   try {
-    article = await client.fetch<Article>(articleBySlugQuery, { slug });
+    article = await sanityFetch<Article>({ query: articleBySlugQuery, params: { slug }, tags: ["article"] });
   } catch (error) {
     console.error("Error fetching article for metadata:", error);
   }
@@ -46,7 +46,7 @@ export default async function ArticleDetailPage({ params }: Props) {
   let article: Article | undefined;
 
   try {
-    article = await client.fetch<Article>(articleBySlugQuery, { slug });
+    article = await sanityFetch<Article>({ query: articleBySlugQuery, params: { slug }, tags: ["article"] });
   } catch (error) {
     console.error("Error fetching article:", error);
   }
@@ -56,7 +56,7 @@ export default async function ArticleDetailPage({ params }: Props) {
   // Related articles from sanity
   let related: Article[] = [];
   try {
-    const allArticles = await client.fetch<Article[]>(allArticlesQuery);
+    const allArticles = await sanityFetch<Article[]>({ query: allArticlesQuery, tags: ["article"] });
     related = allArticles.filter((a) => a.id !== article!.id && a.category === article!.category).slice(0, 2);
   } catch (e) {
     console.error(e);

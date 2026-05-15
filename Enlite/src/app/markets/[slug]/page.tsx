@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, Clock, Package, Shield, Mountain, Wind, HeartPulse, Battery, Timer, ThermometerSnowflake, Activity, ShieldPlus, Radar, Crosshair, PlaneTakeoff, MapPin, ShieldCheck, LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/shared/ScrollReveal";
-import { client } from "@/lib/sanity";
+import { client, sanityFetch } from "@/lib/sanity";
 import { allMarketsQuery, marketBySlugQuery } from "@/lib/sanity-queries";
 
 // Map icon name strings from Sanity → actual Lucide components
@@ -28,7 +28,7 @@ const iconMap: Record<string, React.ReactNode> = {
   ShieldCheck: <ShieldCheck className="w-6 h-6" />,
 };
 
-export const revalidate = 60;
+
 
 // Pre-render all market slugs at build time
 export async function generateStaticParams() {
@@ -43,7 +43,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const market = await client.fetch(marketBySlugQuery, { slug });
+  const market = await sanityFetch({ query: marketBySlugQuery, params: { slug }, tags: ["marketPage"] });
   if (!market) return { title: "Market Not Found" };
   return {
     title: market.title,
@@ -61,7 +61,7 @@ export default async function MarketPage({
   const { slug } = await params;
 
   // Fetch from Sanity
-  let market = await client.fetch(marketBySlugQuery, { slug }).catch(() => null);
+  let market = await sanityFetch({ query: marketBySlugQuery, params: { slug }, tags: ["marketPage"] }).catch(() => null);
 
   if (!market) notFound();
 

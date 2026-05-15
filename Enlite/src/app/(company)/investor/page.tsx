@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { Input, Textarea } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
-import { client } from "@/lib/sanity";
+import { sanityFetch } from "@/lib/sanity";
 import { investorPageQuery } from "@/lib/sanity-queries";
 
 export const metadata: Metadata = { title: "Investor" };
-export const revalidate = 60;
+
 
 export default async function InvestorPage() {
   let pageData: {
@@ -22,7 +22,7 @@ export default async function InvestorPage() {
   } | null = null;
 
   try {
-    pageData = await client.fetch(investorPageQuery);
+    pageData = await sanityFetch({ query: investorPageQuery, tags: ["investorPage"] });
   } catch {
     // use fallbacks
   }

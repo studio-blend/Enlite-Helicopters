@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Target } from "lucide-react";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/shared/ScrollReveal";
-import { client } from "@/lib/sanity";
+import { sanityFetch } from "@/lib/sanity";
 import { allMarketsQuery } from "@/lib/sanity-queries";
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Explore the civilian and defence markets served by Enlite's autonomous cargo helicopters, including intercity delivery, remote logistics, medical supply, and tactical resupply.",
 };
 
-export const revalidate = 60;
+
 
 export default async function MarketsPage() {
   // Fetch markets from Sanity
@@ -26,7 +26,7 @@ export default async function MarketsPage() {
   }[] = [];
 
   try {
-    const sanityMarkets = await client.fetch(allMarketsQuery);
+    const sanityMarkets = await sanityFetch({ query: allMarketsQuery, tags: ["marketPage"] });
     if (sanityMarkets?.length > 0) {
       markets = sanityMarkets;
     }

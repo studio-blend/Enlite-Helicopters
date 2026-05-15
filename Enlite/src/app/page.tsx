@@ -1,9 +1,7 @@
-import { client } from "@/lib/sanity";
+import { sanityFetch } from "@/lib/sanity";
 import { allHelicoptersQuery, allArticlesQuery, allPartnersQuery, homePageQuery } from "@/lib/sanity-queries";
 import HomeClient from "@/components/HomeClient";
 import { Helicopter, Article } from "@/types";
-
-export const revalidate = 60; // Revalidate every minute
 
 export default async function HomePage() {
   let helicopters: Helicopter[] = [];
@@ -13,10 +11,10 @@ export default async function HomePage() {
 
   try {
     const [sanityHelicopters, sanityArticles, sanityPartners, sanityHomeData] = await Promise.all([
-      client.fetch<Helicopter[]>(allHelicoptersQuery),
-      client.fetch<Article[]>(allArticlesQuery),
-      client.fetch(allPartnersQuery),
-      client.fetch(homePageQuery),
+      sanityFetch<Helicopter[]>({ query: allHelicoptersQuery, tags: ["product"] }),
+      sanityFetch<Article[]>({ query: allArticlesQuery, tags: ["article"] }),
+      sanityFetch({ query: allPartnersQuery, tags: ["partner"] }),
+      sanityFetch({ query: homePageQuery, tags: ["homePage"] }),
     ]);
 
     helicopters = sanityHelicopters || [];

@@ -6,7 +6,7 @@ import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
-import { client } from "@/lib/sanity";
+import { client, sanityFetch } from "@/lib/sanity";
 import { helicopterBySlugQuery, allHelicoptersQuery } from "@/lib/sanity-queries";
 import { Helicopter } from "@/types";
 
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   let heli: Helicopter | undefined;
 
   try {
-    heli = await client.fetch<Helicopter>(helicopterBySlugQuery, { slug });
+    heli = await sanityFetch<Helicopter>({ query: helicopterBySlugQuery, params: { slug }, tags: ["product"] });
   } catch (error) {
     console.error("Error fetching helicopter for metadata:", error);
   }
@@ -45,7 +45,7 @@ export default async function HelicopterDetailPage({ params }: Props) {
   let heli: Helicopter | undefined;
 
   try {
-    heli = await client.fetch<Helicopter>(helicopterBySlugQuery, { slug });
+    heli = await sanityFetch<Helicopter>({ query: helicopterBySlugQuery, params: { slug }, tags: ["product"] });
   } catch (error) {
     console.error("Error fetching helicopter:", error);
   }
