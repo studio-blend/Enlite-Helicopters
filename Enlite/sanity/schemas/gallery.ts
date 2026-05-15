@@ -11,6 +11,15 @@ export default defineType({
       title: "title",
       subtitle: "category",
       media: "image",
+      externalImageUrl: "externalImageUrl",
+    },
+    prepare({ title, subtitle, media, externalImageUrl }) {
+      return {
+        title,
+        subtitle,
+        media: media || undefined,
+        description: !media && externalImageUrl ? `🔗 ${externalImageUrl}` : undefined,
+      };
     },
   },
   fields: [
@@ -27,10 +36,16 @@ export default defineType({
     }),
     defineField({
       name: "image",
-      title: "Image",
+      title: "Image (Upload)",
       type: "image",
       options: { hotspot: true },
-      validation: (Rule) => Rule.required(),
+      description: "Upload a local image. If provided, this takes priority over the External Image URL.",
+    }),
+    defineField({
+      name: "externalImageUrl",
+      title: "External Image URL",
+      type: "url",
+      description: "Paste a direct image URL (e.g. from Unsplash or a CDN). Used only if no image is uploaded above.",
     }),
     defineField({
       name: "category",
@@ -38,10 +53,10 @@ export default defineType({
       type: "string",
       options: {
         list: [
-          { title: "Military", value: "Military" },
-          { title: "Civilian", value: "Civilian" },
-          { title: "Interiors", value: "Interiors" },
-          { title: "Action", value: "Action" },
+          { title: "Flight Test", value: "Flight Test" },
+          { title: "Manufacturing", value: "Manufacturing" },
+          { title: "Events", value: "Events" },
+          { title: "People", value: "People" },
         ],
       },
       validation: (Rule) => Rule.required(),

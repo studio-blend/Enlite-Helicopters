@@ -101,13 +101,16 @@ export default function HelicoptersClient({ helicopters }: HelicoptersClientProp
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <ScrollReveal direction={index % 2 === 0 ? "left" : "right"} className={index % 2 === 0 ? "" : "order-1 lg:order-2"}>
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-bg-tertiary">
-                  <Image 
-                    src={helicopter.image} 
-                    alt={helicopter.name} 
-                    fill 
-                    className="object-cover hover:scale-105 transition-transform duration-500" 
-                    sizes="(max-width: 1024px) 100vw, 50vw" 
-                  />
+                  {helicopter.image && (
+                    <Image 
+                      src={helicopter.image} 
+                      alt={helicopter.name} 
+                      fill 
+                      className="object-cover hover:scale-105 transition-transform duration-500" 
+                      sizes="(max-width: 1024px) 100vw, 50vw" 
+                      priority={index === 0}
+                    />
+                  )}
                 </div>
               </ScrollReveal>
               <ScrollReveal direction={index % 2 === 0 ? "right" : "left"} className={index % 2 === 0 ? "" : "order-2 lg:order-1"}>

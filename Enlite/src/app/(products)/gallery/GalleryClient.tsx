@@ -78,13 +78,16 @@ export default function GalleryClient({ galleryItems, categories }: GalleryClien
                       onClick={() => openLightbox(idx)}
                       className="group relative h-full rounded-xl overflow-hidden cursor-pointer"
                     >
-                      <Image 
-                        src={item.image} 
-                        alt={item.title} 
-                        fill 
-                        className="object-cover transition-transform duration-500 group-hover:scale-110" 
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
+                      {item.image && (
+                        <Image 
+                          src={item.image} 
+                          alt={item.title} 
+                          fill 
+                          className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          priority={idx < 4}
+                        />
+                      )}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 pointer-events-none" />
                       <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 pointer-events-none">
                         <p className="text-white font-semibold text-center">{item.title}</p>

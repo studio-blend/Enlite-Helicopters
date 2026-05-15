@@ -33,6 +33,12 @@ export default defineType({
       options: { hotspot: true },
     }),
     defineField({
+      name: "externalImageUrl",
+      title: "External Image URL",
+      type: "string",
+      description: "Fallback image URL (e.g. /images/team-ceo.png) if no image is uploaded",
+    }),
+    defineField({
       name: "bio",
       title: "Bio",
       type: "text",

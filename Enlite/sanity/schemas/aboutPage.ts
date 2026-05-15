@@ -70,7 +70,7 @@ export default defineType({
           fields: [
             { name: "title", type: "string", title: "Title" },
             { name: "highlightText", type: "string", title: "Highlight Text (Red)" },
-            { name: "content", type: "array", of: [{ type: "text" }], title: "Paragraphs" },
+            { name: "content", type: "array", of: [{ type: "block" }], title: "Paragraphs" },
             { name: "image", type: "image", title: "Image", options: { hotspot: true } },
             { 
               name: "video", 

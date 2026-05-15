@@ -6,60 +6,12 @@ import { Button } from "@/components/ui/Button";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/shared/ScrollReveal";
 import { client } from "@/lib/sanity";
 import { aboutPageQuery } from "@/lib/sanity-queries";
+import { PortableText } from "@portabletext/react";
 
 export const metadata: Metadata = { title: "About" };
 export const revalidate = 60;
 
-const fallbackStats = [
-  { label: "Year Founded", value: "2020" },
-  { label: "Max Speed", value: "200 km/h" },
-  { label: "Flight Range", value: "500 km" },
-  { label: "Make in India", value: "70%" },
-];
 
-const fallbackSections = [
-  {
-    title: "Unmanned Cargo Helicopters",
-    highlightText: "Helicopters",
-    content: [
-      "In the last few years the global drone industry has grown by leaps and bounds. However drone regulation in India has also accelerated this growth trajectory and paved the way for Indian drone companies to compete internationally.",
-      "We have chosen to take up challenging tasks such as aerial assistance platforms for missions and vaccines to remote, hilly, and inaccessible locations."
-    ],
-    image: "https://images.unsplash.com/photo-1534481016308-0fca71578ae5?w=1200&h=800&fit=crop",
-    videoUrl: "https://vjselvam.github.io/enlite-assets/videos/helicopter-loop.mp4",
-    badge: "Made in India",
-    reverse: false
-  },
-  {
-    title: "Redefining Drone Technology",
-    highlightText: "Technology",
-    content: [
-      "Traditional Multicopter Drones fly at a top speed of around 60 km/h with a range of 5-8 km. These battery-operated drones have an endurance of under 30 mins and max payload capacity is only around 2 to 5 kg.",
-      "Enlite is taking this technology to the next level. With experts from industry-leading companies like Airbus and ADA, our product has reached a high level of maturity, offering 500+ km range and 70-100 kg payload capacity."
-    ],
-    image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&h=800&fit=crop",
-    badge: "Future Ready",
-    reverse: true
-  }
-];
-
-const fallbackValues = [
-  { 
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop", 
-    title: "Engineering Excellence", 
-    description: "Our team of experts continuously pushes the boundaries of aerospace technology, focusing on robust and scalable designs." 
-  },
-  { 
-    image: "https://images.unsplash.com/photo-1580893223894-2b24de58e5fe?w=800&h=600&fit=crop", 
-    title: "Reliability in Real-World Operations", 
-    description: "We build platforms meant to endure extreme conditions and deliver consistent performance, day in and day out." 
-  },
-  { 
-    image: "https://images.unsplash.com/photo-1534481016308-0fca71578ae5?w=800&h=600&fit=crop", 
-    title: "Indigenous Capability", 
-    description: "Proudly designed and manufactured in India, strengthening the nation's self-reliance in advanced aviation technology." 
-  },
-];
 
 export default async function AboutPage() {
   let pageData: any = null;
@@ -73,9 +25,9 @@ export default async function AboutPage() {
   const {
     title: heroTitle = pageData?.title || "About Us",
     subtitle: heroSubtitle = pageData?.subtitle || "Powering the next generation of aerial transport through innovation and excellence.",
-    stats = pageData?.stats?.length ? pageData.stats : fallbackStats,
-    sections = pageData?.sections?.length ? pageData.sections : fallbackSections,
-    values = pageData?.values?.length ? pageData.values : fallbackValues,
+    stats = pageData?.stats || [],
+    sections = pageData?.sections || [],
+    values = pageData?.values || [],
   } = pageData || {};
 
   return (
@@ -239,16 +191,18 @@ export default async function AboutPage() {
                 {isReverse ? (
                   <>
                     <ScrollReveal direction="left" className="order-2 lg:order-1 relative">
-                       <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl">
-                         {section.videoUrl ? (
-                            <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
-                              <source src={section.videoUrl} type="video/mp4" />
-                            </video>
-                         ) : (
-                            <Image src={section.image} alt={section.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
-                         )}
-                         <div className="absolute inset-0 bg-brand-red/10 mix-blend-multiply" />
-                       </div>
+                       {(section.videoUrl || section.image) && (
+                         <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl">
+                           {section.videoUrl ? (
+                              <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
+                                <source src={section.videoUrl} type="video/mp4" />
+                              </video>
+                           ) : (
+                              <Image src={section.image} alt={section.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                           )}
+                           <div className="absolute inset-0 bg-brand-red/10 mix-blend-multiply" />
+                         </div>
+                       )}
                        {section.badge && (
                          <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-red rounded-full flex items-center justify-center text-white font-bold text-center p-4 shadow-xl z-10">
                            {section.badge}
@@ -263,8 +217,8 @@ export default async function AboutPage() {
                           section.title
                         )}
                       </h2>
-                      <div className="space-y-6 text-text-secondary text-lg leading-relaxed border-l-2 border-brand-red pl-8">
-                        {section.content.map((p: string, pi: number) => <p key={pi}>{p}</p>)}
+                      <div className="space-y-6 text-text-secondary text-lg leading-relaxed border-l-2 border-brand-red pl-8 prose prose-lg dark:prose-invert max-w-none prose-p:text-text-secondary prose-p:leading-relaxed">
+                        {Array.isArray(section.content) && <PortableText value={section.content} />}
                       </div>
                     </ScrollReveal>
                   </>
@@ -278,21 +232,23 @@ export default async function AboutPage() {
                           section.title
                         )}
                       </h2>
-                      <div className="space-y-6 text-text-secondary text-lg leading-relaxed border-l-2 border-brand-red pl-8">
-                        {section.content.map((p: string, pi: number) => <p key={pi}>{p}</p>)}
+                      <div className="space-y-6 text-text-secondary text-lg leading-relaxed border-l-2 border-brand-red pl-8 prose prose-lg dark:prose-invert max-w-none prose-p:text-text-secondary prose-p:leading-relaxed">
+                        {Array.isArray(section.content) && <PortableText value={section.content} />}
                       </div>
                     </ScrollReveal>
                     <ScrollReveal direction="right" className="relative">
-                       <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl">
-                         {section.videoUrl ? (
-                            <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
-                              <source src={section.videoUrl} type="video/mp4" />
-                            </video>
-                         ) : (
-                            <Image src={section.image} alt={section.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
-                         )}
-                         <div className="absolute inset-0 bg-brand-red/10 mix-blend-multiply" />
-                       </div>
+                       {(section.videoUrl || section.image) && (
+                         <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl">
+                           {section.videoUrl ? (
+                              <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
+                                <source src={section.videoUrl} type="video/mp4" />
+                              </video>
+                           ) : (
+                              <Image src={section.image} alt={section.title} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                           )}
+                           <div className="absolute inset-0 bg-brand-red/10 mix-blend-multiply" />
+                         </div>
+                       )}
                        {section.badge && (
                          <div className="absolute -top-6 -right-6 w-32 h-32 bg-brand-red rounded-full flex items-center justify-center text-white font-bold text-center p-4 shadow-xl z-10">
                            {section.badge}

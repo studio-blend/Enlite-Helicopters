@@ -72,7 +72,7 @@ export const structure: StructureResolver = (S) =>
         .title("Fleet Management")
         .icon(Plane)
         .child(
-          S.documentTypeList("helicopter")
+          S.documentTypeList("product")
             .title("Helicopters")
         ),
       S.divider(),
@@ -95,10 +95,6 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title("Business")
             .items([
-              S.listItem()
-                .title("Products")
-                .icon(ShoppingBag)
-                .child(S.documentTypeList("product")),
               S.listItem()
                 .title("Services")
                 .icon(Layers)

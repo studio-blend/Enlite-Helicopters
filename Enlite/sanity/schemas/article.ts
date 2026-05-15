@@ -45,10 +45,16 @@ export default defineType({
     }),
     defineField({
       name: "image",
-      title: "Featured Image",
+      title: "Featured Image (Upload)",
       type: "image",
       options: { hotspot: true },
-      validation: (Rule) => Rule.required(),
+      description: "Upload a featured image. Takes priority over External Image URL.",
+    }),
+    defineField({
+      name: "externalImageUrl",
+      title: "External Image URL",
+      type: "url",
+      description: "Paste a direct image URL (Unsplash, CDN, etc.). Used only if no image is uploaded above.",
     }),
     defineField({
       name: "category",

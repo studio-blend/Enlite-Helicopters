@@ -11,7 +11,6 @@ import homePage from "./homePage";
 import aboutPage from "./aboutPage";
 import investorPage from "./investorPage";
 import marketPage from "./marketPage";
-import helicopter from "./helicopter";
 import faq from "./faq";
 import testimonial from "./testimonial";
 import service from "./service";
@@ -30,7 +29,6 @@ export const schemaTypes = [
   aboutPage,
   investorPage,
   marketPage,
-  helicopter,
   faq,
   testimonial,
   service,

@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 import { Plane } from "lucide-react";
 
 export default defineType({
-  name: "helicopter",
+  name: "product",
   title: "Helicopter",
   type: "document",
   icon: Plane,
@@ -57,10 +57,23 @@ export default defineType({
       options: { hotspot: true },
     }),
     defineField({
+      name: "externalImageUrl",
+      title: "External Image URL",
+      type: "string",
+      description: "Fallback image URL if no image is uploaded",
+    }),
+    defineField({
       name: "gallery",
       title: "Gallery",
       type: "array",
       of: [{ type: "image", options: { hotspot: true } }],
+    }),
+    defineField({
+      name: "externalGalleryUrls",
+      title: "External Gallery URLs",
+      type: "array",
+      of: [{ type: "string" }],
+      description: "Fallback gallery URLs",
     }),
     defineField({
       name: "specs",

@@ -9,7 +9,6 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { client } from "@/lib/sanity";
 import { helicopterBySlugQuery, allHelicoptersQuery } from "@/lib/sanity-queries";
 import { Helicopter } from "@/types";
-import { helicopters as staticHelicopters } from "@/lib/data/helicopters";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -24,7 +23,7 @@ export async function generateStaticParams() {
   } catch (error) {
     console.error("Error generating static params:", error);
   }
-  return staticHelicopters.map((h) => ({ slug: h.slug }));
+  return [];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -35,10 +34,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     heli = await client.fetch<Helicopter>(helicopterBySlugQuery, { slug });
   } catch (error) {
     console.error("Error fetching helicopter for metadata:", error);
-  }
-
-  if (!heli) {
-    heli = staticHelicopters.find((h) => h.slug === slug);
   }
 
   if (!heli) return { title: "Not Found" };
@@ -53,10 +48,6 @@ export default async function HelicopterDetailPage({ params }: Props) {
     heli = await client.fetch<Helicopter>(helicopterBySlugQuery, { slug });
   } catch (error) {
     console.error("Error fetching helicopter:", error);
-  }
-
-  if (!heli) {
-    heli = staticHelicopters.find((h) => h.slug === slug);
   }
 
   if (!heli) notFound();

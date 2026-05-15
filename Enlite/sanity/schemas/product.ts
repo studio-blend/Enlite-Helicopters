@@ -49,6 +49,8 @@ export default defineType({
           { title: "Defense", value: "Defense" },
           { title: "Civilian", value: "Civilian" },
           { title: "Cargo", value: "Cargo" },
+          { title: "Cargo Transfer", value: "Cargo Transfer" },
+          { title: "Medical", value: "Medical" },
         ],
       },
     }),
@@ -61,10 +63,23 @@ export default defineType({
       },
     }),
     defineField({
+      name: "externalImageUrl",
+      title: "External Image URL",
+      type: "string",
+      description: "Fallback image URL if no image is uploaded (e.g. /images/r2-main.png)",
+    }),
+    defineField({
       name: "gallery",
       title: "Gallery Images",
       type: "array",
       of: [{ type: "image", options: { hotspot: true } }],
+    }),
+    defineField({
+      name: "externalGalleryUrls",
+      title: "External Gallery URLs",
+      type: "array",
+      of: [{ type: "string" }],
+      description: "Fallback gallery URLs if no gallery images are uploaded",
     }),
     defineField({
       name: "specs",

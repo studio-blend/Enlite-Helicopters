@@ -40,13 +40,19 @@ export default function TeamClient({ team }: TeamClientProps) {
               <StaggerItem key={member.id}>
                 <div className="group flex flex-col h-full bg-bg-card border border-border-default rounded-2xl overflow-hidden hover:shadow-xl hover:border-brand-red/30 transition-all duration-300">
                   <div className="relative aspect-square w-full bg-bg-tertiary overflow-hidden">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
+                    {member.image ? (
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-brand-red/20 to-brand-red/5">
+                        <span className="text-6xl font-bold text-brand-red/40">{member.name.charAt(0)}</span>
+                      </div>
+                    )}
                   </div>
                   <div className="p-8 flex-1 flex flex-col">
                     <h3 className="text-2xl font-bold mb-1 text-text-primary group-hover:text-brand-red transition-colors">{member.name}</h3>

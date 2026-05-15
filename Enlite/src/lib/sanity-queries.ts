@@ -1,7 +1,7 @@
 import { groq } from "next-sanity";
 
 export const allHelicoptersQuery = groq`
-  *[_type == "product" && status == "production"] {
+  *[_type == "product"] {
     _id,
     "id": _id,
     name,
@@ -9,8 +9,8 @@ export const allHelicoptersQuery = groq`
     tagline,
     description,
     category,
-    "image": image.asset->url,
-    "gallery": gallery[].asset->url,
+    "image": select(defined(image.asset) => image.asset->url, externalImageUrl),
+    "gallery": select(defined(gallery) => gallery[].asset->url, externalGalleryUrls),
     specs,
     features,
     status,
@@ -27,8 +27,8 @@ export const helicopterBySlugQuery = groq`
     tagline,
     description,
     category,
-    "image": image.asset->url,
-    "gallery": gallery[].asset->url,
+    "image": select(defined(image.asset) => image.asset->url, externalImageUrl),
+    "gallery": select(defined(gallery) => gallery[].asset->url, externalGalleryUrls),
     specs,
     features,
     status,
@@ -43,12 +43,12 @@ export const allArticlesQuery = groq`
     title,
     "slug": slug.current,
     excerpt,
-    "image": image.asset->url,
+    "image": select(defined(image.asset) => image.asset->url, externalImageUrl),
     "category": category->name,
     tags,
     author {
       name,
-      "avatar": avatar.asset->url,
+      "avatar": select(defined(avatar.asset) => avatar.asset->url, null),
       role
     },
     publishedAt,
@@ -66,12 +66,12 @@ export const articleBySlugQuery = groq`
     "slug": slug.current,
     excerpt,
     content,
-    "image": image.asset->url,
+    "image": select(defined(image.asset) => image.asset->url, externalImageUrl),
     "category": category->name,
     tags,
     author {
       name,
-      "avatar": avatar.asset->url,
+      "avatar": select(defined(avatar.asset) => avatar.asset->url, null),
       role
     },
     publishedAt,
@@ -103,7 +103,7 @@ export const allGalleryItemsQuery = groq`
     "id": _id,
     title,
     description,
-    "image": image.asset->url,
+    "image": select(defined(image.asset) => image.asset->url, externalImageUrl),
     category,
     date
   } | order(date desc)
@@ -115,7 +115,7 @@ export const allTeamMembersQuery = groq`
     "id": _id,
     name,
     role,
-    "image": image.asset->url,
+    "image": select(defined(image.asset) => image.asset->url, externalImageUrl),
     bio,
     order
   } | order(order asc)
@@ -126,7 +126,7 @@ export const allPartnersQuery = groq`
     _id,
     "id": _id,
     name,
-    "logo": logo.asset->url,
+    "logo": select(defined(logo.asset) => logo.asset->url, externalLogoUrl),
     url,
     order
   } | order(order asc)
@@ -235,7 +235,7 @@ export const allMarketsQuery = groq`
     category,
     heroSubtitle,
     themeVariant,
-    "heroImage": heroImage.asset->url,
+    "heroImage": select(defined(heroImage.asset) => heroImage.asset->url, externalHeroImageUrl),
     seoDescription
   }
 `;
@@ -247,7 +247,7 @@ export const marketBySlugQuery = groq`
     category,
     themeVariant,
     seoDescription,
-    "heroImage": heroImage.asset->url,
+    "heroImage": select(defined(heroImage.asset) => heroImage.asset->url, externalHeroImageUrl),
     "heroVideoUrl": heroVideo.asset->url,
     heroHeadline,
     heroHeadlineHighlight,

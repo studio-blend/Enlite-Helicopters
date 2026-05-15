@@ -51,134 +51,7 @@ export async function generateMetadata({
   };
 }
 
-// ── Fallback data (used when Sanity fields are empty) ───────────────────────
-const fallbacks: Record<
-  string,
-  {
-    category: string;
-    heroHeadline: string;
-    heroHeadlineHighlight: string;
-    heroSubtitle: string;
-    heroCtaText: string;
-    heroImage: string;
-    heroVideo?: string;
-    contextTitle: string;
-    contextTitleHighlight: string;
-    contextParagraphs: string[];
-    contextImage: string;
-    capabilitiesTitle: string;
-    capabilities: { title: string; description: string; icon: string }[];
-    ctaTitle: string;
-    ctaDescription: string;
-    ctaButtonText: string;
-    themeVariant: string;
-  }
-> = {
-  "intercity-cargo-delivery": {
-    category: "Civilian Logistics",
-    heroHeadline: "Intercity Cargo",
-    heroHeadlineHighlight: "Delivery",
-    heroSubtitle: "The fastest way to move mid-weight cargo between urban centers. Say goodbye to highway congestion, toll delays, and overnight trucking constraints.",
-    heroCtaText: "Request a Payload Trial",
-    heroImage: "/images/civilian.png",
-    contextTitle: "Redefining the",
-    contextTitleHighlight: "Middle Mile",
-    contextParagraphs: [
-      "Today's logistics networks are constrained by surface infrastructure. Trucks are delayed by traffic, poor road conditions, and regulatory checkpoints. While battery-powered drones offer a solution for last-mile micro-deliveries (2-5 kg), they lack the range and capacity for serious intercity logistics.",
-      "Enlite's autonomous cargo helicopters bridge this gap. Operating at 200 km/h with a 500 km range, they serve as high-speed aerial bridges between distribution centers in different cities.",
-    ],
-    contextImage: "/images/solution.png",
-    capabilitiesTitle: "Key Advantages",
-    capabilities: [
-      { title: "Fraction of the Time", description: "Bypass traffic and indirect road routes. Deliver 70 kg of cargo between cities like Chennai and Bangalore in under 2 hours.", icon: "Clock" },
-      { title: "High Payload Capacity", description: "Unlike multi-rotor drones that carry 2-5 kg, our autonomous helicopters carry up to 70 kg (300 L volume) per trip.", icon: "Package" },
-      { title: "Secure & Tracked", description: "Continuous telemetry and custom cargo compartments ensure high-value and sensitive goods arrive safely.", icon: "ShieldCheck" },
-      { title: "Point-to-Point", description: "VTOL capability means no runway required. Launch from a warehouse in City A and land directly at a distribution center in City B.", icon: "MapPin" },
-    ],
-    ctaTitle: "Ready to upgrade your logistics network?",
-    ctaDescription: "Speak with our integration team to see how Enlite can reduce your intercity transit times by up to 80%.",
-    ctaButtonText: "Contact Our Team",
-    themeVariant: "default",
-  },
-  "remote-location-delivery": {
-    category: "Civilian Logistics",
-    heroHeadline: "Remote Location",
-    heroHeadlineHighlight: "Delivery",
-    heroSubtitle: "Connecting the disconnected. Delivering 70 kg of essential supplies to mountainous, island, and rural areas lacking reliable surface infrastructure.",
-    heroCtaText: "Discuss Your Requirements",
-    heroImage: "/images/why-1.png",
-    contextTitle: "Overcoming",
-    contextTitleHighlight: "Geography",
-    contextParagraphs: [
-      "For many regions in India and worldwide, building and maintaining road infrastructure is ecologically destructive and economically unviable. During monsoons or natural disasters, these fragile links are severed completely.",
-      "Enlite autonomous helicopters act as an instant, resilient supply chain. Requiring zero ground infrastructure other than a clear landing spot, they provide reliable logistics for mining operations, remote healthcare facilities, and disconnected communities.",
-    ],
-    contextImage: "/images/hero.png",
-    capabilitiesTitle: "Operational Capabilities",
-    capabilities: [
-      { title: "Terrain Independent", description: "Mountains, valleys, and rivers are no longer obstacles. Fly directly over impassable terrain.", icon: "Mountain" },
-      { title: "All-Weather Capability", description: "Engineered to withstand high winds and challenging weather conditions that ground smaller battery drones.", icon: "Wind" },
-      { title: "Medical Evacuation & Supply", description: "Deliver life-saving medical supplies, vaccines, and disaster relief aid to cut-off communities instantly.", icon: "HeartPulse" },
-      { title: "Extended Endurance", description: "With a 3-hour flight endurance, reach deep into remote territories and return without needing refueling infrastructure.", icon: "Battery" },
-    ],
-    ctaTitle: "Need logistics in hard-to-reach areas?",
-    ctaDescription: "Speak with our team to discuss how Enlite can solve your remote logistics challenges.",
-    ctaButtonText: "Contact Us",
-    themeVariant: "default",
-  },
-  "medical-emergency-delivery": {
-    category: "Critical Response",
-    heroHeadline: "Medical & Emergency",
-    heroHeadlineHighlight: "Logistics",
-    heroSubtitle: "Swift delivery of critical medical supplies, organs, and disaster relief aid. Bypassing ground congestion to save lives.",
-    heroCtaText: "Partner with Us",
-    heroImage: "/images/why-3.png",
-    contextTitle: "Seconds Save",
-    contextTitleHighlight: "Lives",
-    contextParagraphs: [
-      "In medical emergencies, road infrastructure is too slow, and traditional manned medevac helicopters are scarce and prohibitively expensive for routine transport of blood, organs, and emergency medical equipment.",
-      "Enlite's autonomous heavy-lift platforms provide hospitals and disaster relief agencies with a dedicated, high-speed aerial corridor. With a 70 kg payload and 200 km/h cruising speed, critical care logistics become predictable, rapid, and cost-effective.",
-    ],
-    contextImage: "/images/solution.png",
-    capabilitiesTitle: "Critical Capabilities",
-    capabilities: [
-      { title: "Golden Hour Delivery", description: "When every minute counts, bypass road traffic entirely to deliver life-saving supplies, antivenoms, or blood within the critical golden hour.", icon: "Timer" },
-      { title: "Cold Chain Integrity", description: "Customizable cargo compartments support active temperature control for vaccines, organs, and temperature-sensitive pharmaceuticals.", icon: "ThermometerSnowflake" },
-      { title: "Disaster Relief", description: "Deploy instant supply lines during floods or earthquakes when roads and bridges are washed out or impassable.", icon: "ShieldPlus" },
-      { title: "Hospital to Hospital", description: "VTOL capabilities allow direct landing and takeoff from existing hospital helipads, ensuring zero last-mile transfer delays.", icon: "Activity" },
-    ],
-    ctaTitle: "Equip Your Healthcare Network",
-    ctaDescription: "Speak with our integration team to establish high-speed aerial medical corridors for your institution.",
-    ctaButtonText: "Contact Our Team",
-    themeVariant: "default",
-  },
-  "defence-applications": {
-    category: "Tactical Resupply",
-    heroHeadline: "Tactical",
-    heroHeadlineHighlight: "Resupply",
-    heroSubtitle: "Autonomous logistics for forward operating bases. Safe delivery of ammunition, fuel, and supplies to the front lines without risking human life.",
-    heroCtaText: "Request Defence Briefing",
-    heroImage: "/images/defence.png",
-    contextTitle: "Redefining the",
-    contextTitleHighlight: "Kill Chain Logistics",
-    contextParagraphs: [
-      "In modern warfare, logistics convoys are often the most vulnerable targets. Manned helicopters are expensive assets that are risky to deploy for routine resupply, while ground convoys are susceptible to ambushes and IEDs.",
-      "Enlite's autonomous heavy-lift platforms provide a resilient, distributed logistics network. Operating independently of runways or roads, they ensure forward operating bases receive continuous resupply even in contested environments.",
-    ],
-    contextImage: "/images/defence.png",
-    capabilitiesTitle: "Tactical Capabilities",
-    capabilities: [
-      { title: "High-Altitude Operations", description: "Specialized variants engineered with an operational ceiling of 20,000 ft and capable of delivering 50 kg payloads to high-altitude outposts.", icon: "PlaneTakeoff" },
-      { title: "Stealth & Evasion", description: "Low-altitude, terrain-following autonomous flight paths minimize radar cross-section and detection probability in hostile zones.", icon: "Radar" },
-      { title: "Precision Drops", description: "GPS-denied navigation capabilities and precision airdrop mechanisms for supplying moving units without landing.", icon: "Crosshair" },
-      { title: "Risk Reduction", description: "Eliminate the need to put human pilots or vulnerable supply convoys at risk for routine tactical resupply missions.", icon: "Shield" },
-    ],
-    ctaTitle: "Equip Your Forces",
-    ctaDescription: "Contact our defence integration team to discuss specialized variants and tactical deployment.",
-    ctaButtonText: "Procurement Inquiry",
-    themeVariant: "defence",
-  },
-};
+
 
 export default async function MarketPage({
   params,
@@ -187,32 +60,29 @@ export default async function MarketPage({
 }) {
   const { slug } = await params;
 
-  // Try fetching from Sanity first
+  // Fetch from Sanity
   let market = await client.fetch(marketBySlugQuery, { slug }).catch(() => null);
 
-  // If no Sanity document, use fallback data (graceful degradation)
-  const fb = fallbacks[slug];
-  if (!market && !fb) notFound();
+  if (!market) notFound();
 
-  // Merge: Sanity data takes precedence; fallback fills any missing fields
   const data = {
-    category: market?.category || fb?.category || "",
-    heroHeadline: market?.heroHeadline || fb?.heroHeadline || market?.title || "",
-    heroHeadlineHighlight: market?.heroHeadlineHighlight || fb?.heroHeadlineHighlight || "",
-    heroSubtitle: market?.heroSubtitle || fb?.heroSubtitle || "",
-    heroCtaText: market?.heroCtaText || fb?.heroCtaText || "Contact Our Team",
-    heroImage: market?.heroImage || fb?.heroImage || "",
-    heroVideo: market?.heroVideoUrl || fb?.heroVideo || "",
-    contextTitle: market?.contextTitle || fb?.contextTitle || "",
-    contextTitleHighlight: market?.contextTitleHighlight || fb?.contextTitleHighlight || "",
-    contextParagraphs: market?.contextParagraphs || fb?.contextParagraphs || [],
-    contextImage: market?.contextImage || fb?.contextImage || "",
-    capabilitiesTitle: market?.capabilitiesTitle || fb?.capabilitiesTitle || "Key Advantages",
-    capabilities: (market?.capabilities?.length ? market.capabilities : fb?.capabilities) || [],
-    ctaTitle: market?.ctaTitle || fb?.ctaTitle || "",
-    ctaDescription: market?.ctaDescription || fb?.ctaDescription || "",
-    ctaButtonText: market?.ctaButtonText || fb?.ctaButtonText || "Contact Our Team",
-    themeVariant: market?.themeVariant || fb?.themeVariant || "default",
+    category: market?.category || "",
+    heroHeadline: market?.heroHeadline || market?.title || "",
+    heroHeadlineHighlight: market?.heroHeadlineHighlight || "",
+    heroSubtitle: market?.heroSubtitle || "",
+    heroCtaText: market?.heroCtaText || "Contact Our Team",
+    heroImage: market?.heroImage || "",
+    heroVideo: market?.heroVideoUrl || "",
+    contextTitle: market?.contextTitle || "",
+    contextTitleHighlight: market?.contextTitleHighlight || "",
+    contextParagraphs: market?.contextParagraphs || [],
+    contextImage: market?.contextImage || "",
+    capabilitiesTitle: market?.capabilitiesTitle || "Key Advantages",
+    capabilities: market?.capabilities || [],
+    ctaTitle: market?.ctaTitle || "",
+    ctaDescription: market?.ctaDescription || "",
+    ctaButtonText: market?.ctaButtonText || "Contact Our Team",
+    themeVariant: market?.themeVariant || "default",
   };
 
   const isDefence = data.themeVariant === "defence";

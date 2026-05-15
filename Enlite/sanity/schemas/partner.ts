@@ -21,9 +21,16 @@ export default defineType({
     }),
     defineField({
       name: "logo",
-      title: "Logo",
+      title: "Logo (Upload)",
       type: "image",
       options: { hotspot: true },
+      description: "Upload a logo image. Takes priority over the External Logo URL.",
+    }),
+    defineField({
+      name: "externalLogoUrl",
+      title: "External Logo URL",
+      type: "url",
+      description: "Paste a direct image URL for the logo (e.g. Wikipedia SVG, CDN). Used only if no logo is uploaded.",
     }),
     defineField({
       name: "url",

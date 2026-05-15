@@ -9,7 +9,6 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { client } from "@/lib/sanity";
 import { articleBySlugQuery, allArticlesQuery } from "@/lib/sanity-queries";
 import { Article } from "@/types";
-import { articles as staticArticles } from "@/lib/data/articles";
 import { PortableText } from "@portabletext/react";
 
 interface Props {
@@ -25,7 +24,7 @@ export async function generateStaticParams() {
   } catch (error) {
     console.error("Error generating static params for news:", error);
   }
-  return staticArticles.map((a) => ({ slug: a.slug }));
+  return [];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -36,10 +35,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     article = await client.fetch<Article>(articleBySlugQuery, { slug });
   } catch (error) {
     console.error("Error fetching article for metadata:", error);
-  }
-
-  if (!article) {
-    article = staticArticles.find((a) => a.slug === slug);
   }
 
   if (!article) return { title: "Not Found" };
@@ -56,14 +51,16 @@ export default async function ArticleDetailPage({ params }: Props) {
     console.error("Error fetching article:", error);
   }
 
-  if (!article) {
-    article = staticArticles.find((a) => a.slug === slug);
-  }
-
   if (!article) notFound();
 
-  // Related articles from static for now, or could fetch from sanity
-  const related = staticArticles.filter((a) => a.id !== article!.id && a.category === article!.category).slice(0, 2);
+  // Related articles from sanity
+  let related: Article[] = [];
+  try {
+    const allArticles = await client.fetch<Article[]>(allArticlesQuery);
+    related = allArticles.filter((a) => a.id !== article!.id && a.category === article!.category).slice(0, 2);
+  } catch (e) {
+    console.error(e);
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-bg-primary">

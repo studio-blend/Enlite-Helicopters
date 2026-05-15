@@ -66,6 +66,13 @@ export default defineType({
       group: "hero",
     }),
     defineField({
+      name: "externalHeroImageUrl",
+      title: "External Hero Image URL",
+      type: "string",
+      group: "hero",
+      description: "Fallback image URL if no hero image is uploaded",
+    }),
+    defineField({
       name: "heroVideo",
       title: "Hero Background Video",
       type: "file",

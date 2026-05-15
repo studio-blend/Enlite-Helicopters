@@ -21,43 +21,6 @@ export default defineType({
     // ... stats fields ...
     // ... features fields ...
 
-    // --- SOLUTION SECTION ---
-    defineField({
-      name: "solutionTitle",
-      title: "Solution Section Title",
-      type: "string",
-      group: "solution",
-      initialValue: "The Enlite Solution: A New Class of Aerial Logistics",
-    }),
-    defineField({
-      name: "solutionDescription",
-      title: "Solution Section Description",
-      type: "text",
-      group: "solution",
-    }),
-    defineField({
-      name: "solutionImage",
-      title: "Solution Section Image",
-      type: "image",
-      options: { hotspot: true },
-      group: "solution",
-      description: "Fallback image if video is not available.",
-    }),
-    defineField({
-      name: "solutionVideoUrl",
-      title: "Solution Background Video URL",
-      type: "url",
-      group: "solution",
-      description: "Cinematic, silent loop video (direct link to mp4 or YouTube).",
-    }),
-    defineField({
-      name: "solutionTags",
-      title: "Solution Tags",
-      type: "array",
-      group: "solution",
-      of: [{ type: "string" }],
-    }),
-
     // --- TESTING / PROVEN IN FLIGHT SECTION ---
     defineField({
       name: "testingTitle",
