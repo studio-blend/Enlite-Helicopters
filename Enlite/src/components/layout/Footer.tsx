@@ -171,6 +171,7 @@ export async function Footer() {
             </p>
           </div>
           <div className="flex gap-8">
+            <Link href="/sitemap.xml" className="text-[11px] text-gray-500 hover:text-white uppercase tracking-widest transition-colors font-medium">Sitemap</Link>
             <Link href="/privacy" className="text-[11px] text-gray-500 hover:text-white uppercase tracking-widest transition-colors font-medium">Privacy</Link>
             <Link href="/terms" className="text-[11px] text-gray-500 hover:text-white uppercase tracking-widest transition-colors font-medium">Terms</Link>
           </div>
