@@ -150,36 +150,36 @@ export const homePageQuery = groq`
     heroTitle,
     heroSubtitle,
     heroDescription,
-    "heroImageLight": select(defined(heroImageLight.asset) => heroImageLight.asset->url, heroImageLight),
-    "heroImageDark": select(defined(heroImageDark.asset) => heroImageDark.asset->url, heroImageDark),
+    "heroImageLight": select(defined(heroImageLight.asset) => heroImageLight.asset->url, defined(heroImageLightUrl) => heroImageLightUrl, heroImageLight),
+    "heroImageDark": select(defined(heroImageDark.asset) => heroImageDark.asset->url, defined(heroImageDarkUrl) => heroImageDarkUrl, heroImageDark),
     stats,
     featuresTitle,
     features[] {
       title,
       description,
-      "image": select(defined(image.asset) => image.asset->url, image)
+      "image": select(defined(image.asset) => image.asset->url, defined(imageUrl) => imageUrl, image)
     },
     solutionTitle,
     solutionDescription,
-    "solutionImage": select(defined(solutionImage.asset) => solutionImage.asset->url, solutionImage),
-    "solutionVideoUrl": coalesce(solutionVideo.asset->url, solutionVideoUrl),
+    "solutionImage": select(defined(solutionImage.asset) => solutionImage.asset->url, defined(solutionImageUrl) => solutionImageUrl, solutionImage),
+    "solutionVideoUrl": select(defined(solutionVideo.asset) => solutionVideo.asset->url, defined(solutionVideoUrl) => solutionVideoUrl, null),
     solutionTags,
     missionTitle,
     missionSubtitle,
     missionDescription,
-    missionVideoUrl,
-    "missionThumbnail": select(defined(missionThumbnail.asset) => missionThumbnail.asset->url, missionThumbnail),
+    "missionVideoUrl": select(defined(missionVideo.asset) => missionVideo.asset->url, defined(missionVideoUrl) => missionVideoUrl, null),
+    "missionThumbnail": select(defined(missionThumbnail.asset) => missionThumbnail.asset->url, defined(missionThumbnailUrl) => missionThumbnailUrl, missionThumbnail),
     aircraftTitle,
     aircraftDescription,
-    "aircraftImage": select(defined(aircraftImage.asset) => aircraftImage.asset->url, aircraftImage),
+    "aircraftImage": select(defined(aircraftImage.asset) => aircraftImage.asset->url, defined(aircraftImageUrl) => aircraftImageUrl, aircraftImage),
     aircraftFeatures,
     testingTitle,
     testingDescription,
     testingVideos[] {
       title,
       subtitle,
-      videoUrl,
-      "thumbnail": select(defined(thumbnail.asset) => thumbnail.asset->url, thumbnail)
+      "videoUrl": select(defined(video.asset) => video.asset->url, defined(videoUrl) => videoUrl, null),
+      "thumbnail": select(defined(thumbnail.asset) => thumbnail.asset->url, defined(thumbnailUrl) => thumbnailUrl, thumbnail)
     },
     rangeTitle,
     rangeDescription,
@@ -194,22 +194,22 @@ export const aboutPageQuery = groq`
     videoTitle,
     videoSubtitle,
     videoDescription,
-    videoUrl,
-    "videoThumbnail": select(defined(videoThumbnail.asset) => videoThumbnail.asset->url, videoThumbnail),
+    "videoUrl": select(defined(video.asset) => video.asset->url, defined(videoUrl) => videoUrl, null),
+    "videoThumbnail": select(defined(videoThumbnail.asset) => videoThumbnail.asset->url, defined(videoThumbnailUrl) => videoThumbnailUrl, videoThumbnail),
     stats,
     sections[] {
       title,
       highlightText,
       content,
-      "image": select(defined(image.asset) => image.asset->url, image),
-      "videoUrl": coalesce(video.asset->url, videoUrl),
+      "image": select(defined(image.asset) => image.asset->url, defined(imageUrl) => imageUrl, image),
+      "videoUrl": select(defined(video.asset) => video.asset->url, defined(videoUrl) => videoUrl, null),
       badge,
       reverse
     },
     values[] {
       title,
       description,
-      "image": select(defined(image.asset) => image.asset->url, null)
+      "image": select(defined(image.asset) => image.asset->url, defined(imageUrl) => imageUrl, null)
     }
   }
 `;
@@ -236,7 +236,7 @@ export const allMarketsQuery = groq`
     category,
     heroSubtitle,
     themeVariant,
-    "heroImage": select(defined(heroImage.asset) => heroImage.asset->url, externalHeroImageUrl),
+    "heroImage": select(defined(heroImage.asset) => heroImage.asset->url, defined(externalHeroImageUrl) => externalHeroImageUrl, null),
     seoDescription
   }
 `;
@@ -248,8 +248,8 @@ export const marketBySlugQuery = groq`
     category,
     themeVariant,
     seoDescription,
-    "heroImage": select(defined(heroImage.asset) => heroImage.asset->url, externalHeroImageUrl),
-    "heroVideoUrl": heroVideo.asset->url,
+    "heroImage": select(defined(heroImage.asset) => heroImage.asset->url, defined(externalHeroImageUrl) => externalHeroImageUrl, null),
+    "heroVideoUrl": select(defined(heroVideo.asset) => heroVideo.asset->url, null),
     heroHeadline,
     heroHeadlineHighlight,
     heroSubtitle,
@@ -257,7 +257,7 @@ export const marketBySlugQuery = groq`
     contextTitle,
     contextTitleHighlight,
     contextParagraphs,
-    "contextImage": contextImage.asset->url,
+    "contextImage": select(defined(contextImage.asset) => contextImage.asset->url, defined(externalContextImageUrl) => externalContextImageUrl, null),
     capabilitiesTitle,
     capabilities[] {
       title,

@@ -36,8 +36,14 @@ export default defineType({
       type: "text",
     }),
     defineField({
+      name: "video",
+      title: "Video (Upload)",
+      type: "file",
+      options: { accept: "video/*" },
+    }),
+    defineField({
       name: "videoUrl",
-      title: "Video URL",
+      title: "Video URL (External)",
       type: "url",
     }),
     defineField({
@@ -45,6 +51,11 @@ export default defineType({
       title: "Video Thumbnail",
       type: "image",
       options: { hotspot: true },
+    }),
+    defineField({
+      name: "videoThumbnailUrl",
+      title: "External Video Thumbnail URL",
+      type: "url",
     }),
     defineField({
       name: "stats",
@@ -72,6 +83,7 @@ export default defineType({
             { name: "highlightText", type: "string", title: "Highlight Text (Red)" },
             { name: "content", type: "array", of: [{ type: "block" }], title: "Paragraphs" },
             { name: "image", type: "image", title: "Image", options: { hotspot: true } },
+            { name: "imageUrl", type: "url", title: "External Image URL" },
             { 
               name: "video", 
               type: "file", 
@@ -96,6 +108,7 @@ export default defineType({
             { name: "title", type: "string", title: "Title" },
             { name: "description", type: "text", title: "Description" },
             { name: "image", type: "image", title: "Image", options: { hotspot: true } },
+            { name: "imageUrl", type: "url", title: "External Image URL" },
           ],
         },
       ],

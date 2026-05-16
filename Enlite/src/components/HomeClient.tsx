@@ -299,18 +299,22 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                     className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" 
                     sizes="(max-width: 1024px) 100vw, 60vw"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 rounded-full bg-brand-red flex items-center justify-center text-white shadow-xl transform group-hover:scale-110 transition-transform duration-300">
-                      <Play className="w-8 h-8 fill-current ml-1" />
-                    </div>
-                  </div>
-                  <div className="absolute bottom-6 left-6 right-6 p-4 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
-                      <span className="text-sm font-medium text-white">Watch: Our Journey (4:20)</span>
-                    </div>
-                    <div className="text-xs text-white/60 font-medium uppercase tracking-widest">4K Ultra HD</div>
-                  </div>
+                  {homeData?.missionVideoUrl && (
+                    <>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-20 h-20 rounded-full bg-brand-red flex items-center justify-center text-white shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                          <Play className="w-8 h-8 fill-current ml-1" />
+                        </div>
+                      </div>
+                      <div className="absolute bottom-6 left-6 right-6 p-4 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
+                          <span className="text-sm font-medium text-white">Watch: Our Journey</span>
+                        </div>
+                        <div className="text-xs text-white/60 font-medium uppercase tracking-widest">4K Ultra HD</div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </ScrollReveal>
             </div>
@@ -439,11 +443,13 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                   <div className="relative aspect-video">
                     <Image src={test.thumbnail} alt={`Enlite Flight Test: ${test.title} - ${test.subtitle}`} fill className="object-cover group-hover:scale-110 transition-transform duration-700" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="w-14 h-14 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-500">
-                        <Play className="w-6 h-6 fill-current ml-1" />
+                    {test.videoUrl && test.videoUrl !== "#" && (
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div className="w-14 h-14 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-500">
+                          <Play className="w-6 h-6 fill-current ml-1" />
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                   <div className="p-6">
                     <div className="text-brand-red text-xs font-bold uppercase tracking-widest mb-2">{test.subtitle}</div>

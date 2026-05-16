@@ -47,8 +47,10 @@ export default defineType({
           fields: [
             { name: "title", type: "string", title: "Video Title (e.g., 'Autonomous Hover Test')" },
             { name: "subtitle", type: "string", title: "Location / Detail (e.g., 'Bangalore Facility | Aug 2024')" },
-            { name: "videoUrl", type: "url", title: "Video URL" },
+            { name: "video", type: "file", title: "Video (Upload)", options: { accept: "video/*" } },
+            { name: "videoUrl", type: "url", title: "Video URL (External)" },
             { name: "thumbnail", type: "image", title: "Thumbnail", options: { hotspot: true } },
+            { name: "thumbnailUrl", type: "url", title: "External Thumbnail URL" },
           ],
         },
       ],
@@ -77,8 +79,15 @@ export default defineType({
       group: "mission",
     }),
     defineField({
+      name: "missionVideo",
+      title: "Video (Upload)",
+      type: "file",
+      options: { accept: "video/*" },
+      group: "mission",
+    }),
+    defineField({
       name: "missionVideoUrl",
-      title: "Video URL",
+      title: "Video URL (External)",
       type: "url",
       group: "mission",
       description: "YouTube or Vimeo URL",
@@ -88,6 +97,12 @@ export default defineType({
       title: "Video Thumbnail",
       type: "image",
       options: { hotspot: true },
+      group: "mission",
+    }),
+    defineField({
+      name: "missionThumbnailUrl",
+      title: "External Thumbnail URL",
+      type: "url",
       group: "mission",
     }),
     // --- HERO SECTION ---
@@ -122,6 +137,18 @@ export default defineType({
       title: "Hero Image (Dark Mode)",
       type: "image",
       options: { hotspot: true },
+      group: "hero",
+    }),
+    defineField({
+      name: "heroImageLightUrl",
+      title: "Hero Image (Light) External URL",
+      type: "url",
+      group: "hero",
+    }),
+    defineField({
+      name: "heroImageDarkUrl",
+      title: "Hero Image (Dark) External URL",
+      type: "url",
       group: "hero",
     }),
 
@@ -162,6 +189,7 @@ export default defineType({
             { name: "title", type: "string", title: "Title" },
             { name: "description", type: "text", title: "Description" },
             { name: "image", type: "image", title: "Image", options: { hotspot: true } },
+            { name: "imageUrl", type: "url", title: "External Image URL" },
           ],
         },
       ],
@@ -186,6 +214,12 @@ export default defineType({
       title: "Solution Section Image",
       type: "image",
       options: { hotspot: true },
+      group: "solution",
+    }),
+    defineField({
+      name: "solutionImageUrl",
+      title: "External Image URL",
+      type: "url",
       group: "solution",
     }),
     defineField({
@@ -223,6 +257,12 @@ export default defineType({
       title: "Aircraft Image",
       type: "image",
       options: { hotspot: true },
+      group: "aircraft",
+    }),
+    defineField({
+      name: "aircraftImageUrl",
+      title: "External Image URL",
+      type: "url",
       group: "aircraft",
     }),
     defineField({

@@ -140,6 +140,12 @@ export default defineType({
       group: "context",
       description: "The image shown on the right side of the context section",
     }),
+    defineField({
+      name: "externalContextImageUrl",
+      title: "External Context Image URL",
+      type: "url",
+      group: "context",
+    }),
 
     // ── CAPABILITIES / BENEFITS ───────────────────────────────
     defineField({

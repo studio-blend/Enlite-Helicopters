@@ -120,18 +120,22 @@ export default async function AboutPage() {
                     className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" 
                     sizes="(max-width: 1024px) 100vw, 60vw"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 rounded-full bg-brand-red flex items-center justify-center text-white shadow-xl transform group-hover:scale-110 transition-transform duration-300">
-                      <Play className="w-8 h-8 fill-current ml-1" />
-                    </div>
-                  </div>
-                  <div className="absolute bottom-6 left-6 right-6 p-4 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
-                      <span className="text-sm font-medium text-white">Full Length: Our Journey (8:45)</span>
-                    </div>
-                    <div className="text-xs text-white/60 font-medium uppercase tracking-widest">4K Cinematic</div>
-                  </div>
+                  {pageData?.videoUrl && (
+                    <>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-20 h-20 rounded-full bg-brand-red flex items-center justify-center text-white shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                          <Play className="w-8 h-8 fill-current ml-1" />
+                        </div>
+                      </div>
+                      <div className="absolute bottom-6 left-6 right-6 p-4 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
+                          <span className="text-sm font-medium text-white">Watch: Our Journey</span>
+                        </div>
+                        <div className="text-xs text-white/60 font-medium uppercase tracking-widest">4K Cinematic</div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </ScrollReveal>
             </div>
