@@ -8,7 +8,7 @@ import { getVideoSource } from "@/lib/video-utils";
 const DEFAULT_THUMBNAIL = "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&h=800&fit=crop";
 
 interface DynamicVideoPlayerProps {
-  videoUrl: string;
+  videoUrl?: string;
   thumbnail?: string;
   alt: string;
   playMode?: "click" | "scroll";

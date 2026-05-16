@@ -50,6 +50,8 @@ interface HomeClientProps {
     rangeTitle?: string;
     rangeDescription?: string;
     rangeBullets?: string[];
+    videoPlayMode?: "click" | "scroll";
+    testingVideoPlayMode?: "click" | "scroll";
   };
 }
 
@@ -290,7 +292,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-bg-secondary flex items-center justify-center text-primary font-bold text-lg border border-border-default">M</div>
+                  <div className="w-12 h-12 rounded-full bg-bg-secondary flex items-center justify-center text-brand-red font-bold text-lg border border-border-default">M</div>
                   <div>
                     <div className="font-bold text-text-primary">Mohanakannan</div>
                     <div className="text-sm text-text-muted italic opacity-80">Founder & CEO, Enlite Helicopters</div>
@@ -305,7 +307,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                   videoUrl={homeData?.missionVideoUrl}
                   thumbnail={homeData?.missionThumbnail || "/images/hero.png"}
                   alt="Enlite Helicopters Founder Mohanakannan explaining the mission and vision"
-                  playMode={homeData?.videoPlayMode as any}
+                  playMode={homeData?.videoPlayMode}
                   type="inline"
                   className="aspect-video rounded-3xl overflow-hidden shadow-2xl"
                 />

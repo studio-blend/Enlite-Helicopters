@@ -1,7 +1,7 @@
 /**
  * Simple video utility to handle different video sources
  */
-export const getVideoSource = (url: string) => {
+export const getVideoSource = (url?: string) => {
   if (!url) return null;
 
   // YouTube
