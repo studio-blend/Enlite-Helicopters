@@ -43,7 +43,7 @@ export const allArticlesQuery = groq`
     title,
     "slug": slug.current,
     excerpt,
-    "image": select(defined(image.asset) => image.asset->url, externalImageUrl),
+    "image": select(defined(image.asset) => image.asset->url, defined(externalImageUrl) => externalImageUrl, "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&h=800&fit=crop"),
     "category": category->name,
     tags,
     author {
@@ -103,8 +103,8 @@ export const allGalleryItemsQuery = groq`
     "id": _id,
     title,
     description,
-    "image": select(defined(image.asset) => image.asset->url, externalImageUrl),
-    "videoUrl": coalesce(video.asset->url, videoUrl),
+    "image": select(defined(image.asset) => image.asset->url, defined(externalImageUrl) => externalImageUrl, "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&h=800&fit=crop"),
+    "videoUrl": select(defined(video.asset) => video.asset->url, defined(videoUrl) => videoUrl, null),
     category,
     date
   } | order(date desc)
@@ -168,18 +168,19 @@ export const homePageQuery = groq`
     missionSubtitle,
     missionDescription,
     "missionVideoUrl": select(defined(missionVideo.asset) => missionVideo.asset->url, defined(missionVideoUrl) => missionVideoUrl, null),
-    "missionThumbnail": select(defined(missionThumbnail.asset) => missionThumbnail.asset->url, defined(missionThumbnailUrl) => missionThumbnailUrl, missionThumbnail),
+    "missionThumbnail": select(defined(missionThumbnail.asset) => missionThumbnail.asset->url, defined(videoThumbnailUrl) => videoThumbnailUrl, null),
+    videoPlayMode,
     aircraftTitle,
     aircraftDescription,
     "aircraftImage": select(defined(aircraftImage.asset) => aircraftImage.asset->url, defined(aircraftImageUrl) => aircraftImageUrl, aircraftImage),
     aircraftFeatures,
     testingTitle,
     testingDescription,
-    testingVideos[] {
+    "testingVideos": *[_type == "gallery" && category == "Flight Test"] | order(date desc) [0...3] {
       title,
-      subtitle,
+      "subtitle": category,
       "videoUrl": select(defined(video.asset) => video.asset->url, defined(videoUrl) => videoUrl, null),
-      "thumbnail": select(defined(thumbnail.asset) => thumbnail.asset->url, defined(thumbnailUrl) => thumbnailUrl, thumbnail)
+      "thumbnail": select(defined(image.asset) => image.asset->url, defined(externalImageUrl) => externalImageUrl, "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&h=800&fit=crop")
     },
     rangeTitle,
     rangeDescription,
@@ -195,7 +196,8 @@ export const aboutPageQuery = groq`
     videoSubtitle,
     videoDescription,
     "videoUrl": select(defined(video.asset) => video.asset->url, defined(videoUrl) => videoUrl, null),
-    "videoThumbnail": select(defined(videoThumbnail.asset) => videoThumbnail.asset->url, defined(videoThumbnailUrl) => videoThumbnailUrl, videoThumbnail),
+    "videoThumbnail": select(defined(videoThumbnail.asset) => videoThumbnail.asset->url, defined(videoThumbnailUrl) => videoThumbnailUrl, null),
+    videoPlayMode,
     stats,
     sections[] {
       title,

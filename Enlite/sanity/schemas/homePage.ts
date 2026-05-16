@@ -36,25 +36,6 @@ export default defineType({
       group: "testing",
       initialValue: "Our technology is not just on paper. We rigorously test our platforms in real-world conditions to ensure mission reliability.",
     }),
-    defineField({
-      name: "testingVideos",
-      title: "Test Flight Videos",
-      type: "array",
-      group: "testing",
-      of: [
-        {
-          type: "object",
-          fields: [
-            { name: "title", type: "string", title: "Video Title (e.g., 'Autonomous Hover Test')" },
-            { name: "subtitle", type: "string", title: "Location / Detail (e.g., 'Bangalore Facility | Aug 2024')" },
-            { name: "video", type: "file", title: "Video (Upload)", options: { accept: "video/*" } },
-            { name: "videoUrl", type: "url", title: "Video URL (External)" },
-            { name: "thumbnail", type: "image", title: "Thumbnail", options: { hotspot: true } },
-            { name: "thumbnailUrl", type: "url", title: "External Thumbnail URL" },
-          ],
-        },
-      ],
-    }),
     // ... other fields ...
     // ... after product section fields ...
     // --- MISSION / FOUNDER VIDEO SECTION ---
@@ -100,9 +81,23 @@ export default defineType({
       group: "mission",
     }),
     defineField({
-      name: "missionThumbnailUrl",
-      title: "External Thumbnail URL",
+      name: "videoThumbnailUrl",
+      title: "External Video Thumbnail URL",
       type: "url",
+      group: "mission",
+    }),
+    defineField({
+      name: "videoPlayMode",
+      title: "Video Playback Mode",
+      type: "string",
+      options: {
+        list: [
+          { title: "Play on Click (Inline)", value: "click" },
+          { title: "Play on Scroll (Auto)", value: "scroll" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "click",
       group: "mission",
     }),
     // --- HERO SECTION ---

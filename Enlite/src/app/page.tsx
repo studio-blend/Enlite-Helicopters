@@ -1,4 +1,4 @@
-import { sanityFetch } from "@/lib/sanity";
+import { sanityFetch, client } from "@/lib/sanity";
 import { allHelicoptersQuery, allArticlesQuery, allPartnersQuery, homePageQuery } from "@/lib/sanity-queries";
 import HomeClient from "@/components/HomeClient";
 import { Helicopter, Article } from "@/types";

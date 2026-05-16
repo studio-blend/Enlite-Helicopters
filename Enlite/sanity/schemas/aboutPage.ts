@@ -58,6 +58,19 @@ export default defineType({
       type: "url",
     }),
     defineField({
+      name: "videoPlayMode",
+      title: "Video Playback Mode",
+      type: "string",
+      options: {
+        list: [
+          { title: "Play on Click (Inline)", value: "click" },
+          { title: "Play on Scroll (Auto)", value: "scroll" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "click",
+    }),
+    defineField({
       name: "stats",
       title: "Statistics",
       type: "array",

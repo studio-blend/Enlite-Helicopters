@@ -1,9 +1,11 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, Clock, Download, MapPin, Play } from "lucide-react";
+import { ArrowRight, Calendar, Clock, Download, MapPin, Play, X } from "lucide-react";
+import { DynamicVideoPlayer } from "@/components/shared/DynamicVideoPlayer";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/shared/ScrollReveal";
 import { ComparisonTable } from "@/components/ui/ComparisonTable";
@@ -291,31 +293,14 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
 
             <div className="lg:col-span-3">
               <ScrollReveal direction="right">
-                <div className="group relative aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black cursor-pointer">
-                  <Image 
-                    src={homeData?.missionThumbnail || "/images/mission-thumb.png"} 
-                    alt="Enlite Helicopters Founder Mohanakannan explaining the mission and vision for autonomous aerial logistics" 
-                    fill 
-                    className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" 
-                    sizes="(max-width: 1024px) 100vw, 60vw"
-                  />
-                  {homeData?.missionVideoUrl && (
-                    <>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-20 h-20 rounded-full bg-brand-red flex items-center justify-center text-white shadow-xl transform group-hover:scale-110 transition-transform duration-300">
-                          <Play className="w-8 h-8 fill-current ml-1" />
-                        </div>
-                      </div>
-                      <div className="absolute bottom-6 left-6 right-6 p-4 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
-                          <span className="text-sm font-medium text-white">Watch: Our Journey</span>
-                        </div>
-                        <div className="text-xs text-white/60 font-medium uppercase tracking-widest">4K Ultra HD</div>
-                      </div>
-                    </>
-                  )}
-                </div>
+                <DynamicVideoPlayer
+                  videoUrl={homeData?.missionVideoUrl}
+                  thumbnail={homeData?.missionThumbnail || "/images/hero.png"}
+                  alt="Enlite Helicopters Founder Mohanakannan explaining the mission and vision"
+                  playMode={homeData?.videoPlayMode as any}
+                  type="inline"
+                  className="aspect-video rounded-3xl overflow-hidden shadow-2xl"
+                />
               </ScrollReveal>
             </div>
           </div>
@@ -424,7 +409,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
               </ScrollReveal>
             </div>
             <ScrollReveal direction="right">
-              <Link href="/gallery?filter=Testing">
+              <Link href="/gallery?filter=Flight Test">
                 <Button variant="outline" className="border-brand-red text-brand-red hover:bg-brand-red hover:text-white transition-all group">
                   View More <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -433,24 +418,17 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
           </div>
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {(homeData?.testingVideos || [
-              { title: "Autonomous Hover Test", subtitle: "Bangalore Facility | Aug 2024", videoUrl: "#", thumbnail: "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&h=600&fit=crop" },
-              { title: "Payload Stress Flight", subtitle: "High Altitude Testing | Oct 2024", videoUrl: "#", thumbnail: "https://images.unsplash.com/photo-1534481016308-0fca71578ae5?w=800&h=600&fit=crop" },
-              { title: "Precision Landing", subtitle: "Offshore Platform Demo | Dec 2024", videoUrl: "#", thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" }
-            ]).map((test: { title: string; subtitle: string; videoUrl: string; thumbnail: string }, i: number) => (
+            {(homeData?.testingVideos || []).map((test: any, i: number) => (
               <StaggerItem key={i}>
-                <div className="group relative rounded-2xl overflow-hidden bg-bg-card border border-border-default hover:border-brand-red/30 transition-all duration-500 shadow-sm hover:shadow-xl cursor-pointer">
-                  <div className="relative aspect-video">
-                    <Image src={test.thumbnail} alt={`Enlite Flight Test: ${test.title} - ${test.subtitle}`} fill className="object-cover group-hover:scale-110 transition-transform duration-700" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
-                    {test.videoUrl && test.videoUrl !== "#" && (
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div className="w-14 h-14 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-500">
-                          <Play className="w-6 h-6 fill-current ml-1" />
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                <div className="group flex flex-col rounded-2xl overflow-hidden bg-bg-card border border-border-default hover:border-brand-red/30 transition-all duration-500 shadow-sm hover:shadow-xl">
+                  <DynamicVideoPlayer
+                    videoUrl={test.videoUrl}
+                    thumbnail={test.thumbnail}
+                    alt={test.title}
+                    playMode="click"
+                    type="inline"
+                    className="aspect-video"
+                  />
                   <div className="p-6">
                     <div className="text-brand-red text-xs font-bold uppercase tracking-widest mb-2">{test.subtitle}</div>
                     <h3 className="text-xl font-bold text-text-primary mb-2 group-hover:text-brand-red transition-colors">{test.title}</h3>
