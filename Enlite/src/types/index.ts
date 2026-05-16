@@ -108,4 +108,5 @@ export interface SiteConfig {
     youtube?: string;
     instagram?: string;
   };
+  brochure?: string;
 }
