@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import { sanityFetch } from "@/lib/sanity";
 import { allHelicoptersQuery } from "@/lib/sanity-queries";
 import HelicoptersClient from "./HelicoptersClient";
 import { Helicopter } from "@/types";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Autonomous Unmanned Cargo Helicopter Fleet | Enlite R2 & R3",
+  },
+  description: "Explore the Enlite fleet of autonomous heavy-lift helicopters. From the R2 intercity delivery drone to the R3 tactical resupply platform, we define the future of aerial logistics.",
+};
 
 
 

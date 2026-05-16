@@ -10,7 +10,12 @@ import { PortableText } from "@portabletext/react";
 
 import { AboutVideoSection } from "@/components/AboutVideoSection";
 
-export const metadata: Metadata = { title: "About" };
+export const metadata: Metadata = {
+  title: {
+    absolute: "About Enlite Helicopters | India's First Unmanned Cargo Helicopter Startup",
+  },
+  description: "Learn about Enlite's mission to revolutionize aerial logistics. We design and manufacture autonomous cargo helicopters with 70% indigenous components for civilian and defence sectors.",
+};
 
 
 

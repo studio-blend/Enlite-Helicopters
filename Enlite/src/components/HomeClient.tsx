@@ -53,6 +53,9 @@ interface HomeClientProps {
     videoPlayMode?: "click" | "scroll";
     testingVideoPlayMode?: "click" | "scroll";
   };
+  settings?: {
+    brochure?: string;
+  };
 }
 
 const features = [
@@ -72,10 +75,12 @@ const stats = [
 
 const solutionTags = ["Autonomous", "VTOL Capable", "High Payload", "Cost Effective", "Rapid Response"];
 
-export default function HomeClient({ helicopters, articles, partners, homeData }: HomeClientProps) {
+export default function HomeClient({ helicopters, articles, partners, homeData, settings }: HomeClientProps) {
   const { theme } = useTheme();
 
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+
+  const brochureUrl = settings?.brochure || "/enlite-brochure.pdf";
 
   return (
     <div className="flex flex-col min-h-screen bg-bg-primary text-text-primary">
@@ -113,7 +118,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                   Our Helicopters
                 </Button>
               </Link>
-              <a href="/enlite-brochure.pdf" target="_blank" rel="noopener noreferrer">
+              <a href={brochureUrl} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="outline" className="border-border-default hover:bg-bg-tertiary text-text-primary px-8 py-3 h-auto text-sm font-semibold uppercase tracking-wider flex items-center gap-2 backdrop-blur-sm">
                   <Download className="w-4 h-4" /> Download Brochure
                 </Button>

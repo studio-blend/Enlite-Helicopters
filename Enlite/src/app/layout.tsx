@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   },
   description:
     "Enlite designs autonomous unmanned cargo helicopters that deliver 70 kg payloads up to 500 km — next-generation aerial logistics for civilian and defence operations across India's most demanding terrain.",
+  metadataBase: new URL("https://enlitehelicopters.com"),
   authors: [{ name: "Enlite Helicopters" }],
   openGraph: {
     type: "website",

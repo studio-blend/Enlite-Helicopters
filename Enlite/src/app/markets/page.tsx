@@ -7,9 +7,11 @@ import { sanityFetch } from "@/lib/sanity";
 import { allMarketsQuery } from "@/lib/sanity-queries";
 
 export const metadata: Metadata = {
-  title: "Markets | Enlite Helicopters",
+  title: {
+    absolute: "Autonomous Cargo Helicopter Markets & Applications | Enlite",
+  },
   description:
-    "Explore the civilian and defence markets served by Enlite's autonomous cargo helicopters, including intercity delivery, remote logistics, medical supply, and tactical resupply.",
+    "Scale your logistics with Enlite's autonomous heavy-lift helicopters. Discover specialized solutions for intercity delivery, remote medical supply, and tactical defence resupply across India.",
 };
 
 

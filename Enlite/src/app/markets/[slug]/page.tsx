@@ -45,9 +45,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const market = await sanityFetch<any>({ query: marketBySlugQuery, params: { slug }, tags: ["marketPage"] });
   if (!market) return { title: "Market Not Found" };
+  
   return {
-    title: market.title,
-    description: market.seoDescription || `${market.title} — Enlite autonomous helicopter logistics solutions.`,
+    title: {
+      absolute: `${market.title} | Autonomous Helicopter Solutions | Enlite`,
+    },
+    description: market.seoDescription || `Specialized autonomous cargo helicopter solutions for ${market.title}. Enlite provides 70kg payload capacity and 500km range for demanding ${market.category || 'logistics'} missions.`,
   };
 }
 

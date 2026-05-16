@@ -141,7 +141,8 @@ export const siteSettingsQuery = groq`
     email,
     phone,
     address,
-    social
+    social,
+    "brochure": brochure.asset->url
   }
 `;
 

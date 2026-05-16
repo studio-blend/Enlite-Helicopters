@@ -14,6 +14,8 @@ import marketPage from "./marketPage";
 import faq from "./faq";
 import testimonial from "./testimonial";
 import service from "./service";
+import investorInquiry from "./investorInquiry";
+import careerApplication from "./careerApplication";
 
 export const schemaTypes = [
   product,
@@ -32,5 +34,7 @@ export const schemaTypes = [
   faq,
   testimonial,
   service,
+  investorInquiry,
+  careerApplication,
 ];
 

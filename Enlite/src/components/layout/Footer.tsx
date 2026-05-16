@@ -86,12 +86,18 @@ export async function Footer() {
                 { label: "Markets", href: "/markets" },
                 { label: "Enlite R2", href: "/helicopters/enlite-r2" },
                 { label: "Enlite R3", href: "/helicopters/enlite-r3" },
-                { label: "Download Brochure", href: "/brochure.pdf" }
+                { label: "Download Brochure", href: settings.brochure || "/enlite-brochure.pdf", isExternal: true }
               ].map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-[13px] text-gray-400 hover:text-brand-red hover:translate-x-1 inline-block transition-all duration-200">
-                    {item.label}
-                  </Link>
+                  {item.isExternal ? (
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-[13px] text-gray-400 hover:text-brand-red hover:translate-x-1 inline-block transition-all duration-200">
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link href={item.href} className="text-[13px] text-gray-400 hover:text-brand-red hover:translate-x-1 inline-block transition-all duration-200">
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

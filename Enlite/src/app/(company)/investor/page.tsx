@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
-import { Input, Textarea } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
 import { sanityFetch } from "@/lib/sanity";
 import { investorPageQuery } from "@/lib/sanity-queries";
+import { InvestorClient } from "./InvestorClient";
 
-export const metadata: Metadata = { title: "Investor" };
-
+export const metadata: Metadata = {
+  title: {
+    absolute: "Investor Relations | Partner in Autonomous Aerial Logistics | Enlite",
+  },
+  description:
+    "Explore investment opportunities with Enlite Helicopters. Join us in revolutionizing the future of unmanned aerial cargo transportation and intercity logistics.",
+};
 
 export default async function InvestorPage() {
   let pageData: {
@@ -74,47 +78,7 @@ export default async function InvestorPage() {
       </section>
 
       {/* ── Form Section ─────────────────────────── */}
-      <section className="py-24 bg-bg-primary">
-        <div className="max-w-4xl mx-auto px-6 lg:px-10">
-          <ScrollReveal>
-            <div className="bg-bg-card border border-border-default rounded-2xl p-8 lg:p-12 shadow-xl">
-              <h2 className="text-3xl font-bold mb-4">{formTitle}</h2>
-              <p className="text-text-secondary mb-10 text-lg">{formDescription}</p>
-
-              <h3 className="text-2xl font-bold mb-8">Investor Contact Form</h3>
-
-              <form className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-6">
-                  <Input name="name" label="Name *" placeholder="Your name" required />
-                  <Input name="profession" label="Profession *" placeholder="Your profession" required />
-                </div>
-                <div className="grid sm:grid-cols-2 gap-6">
-                  <Input name="email" label="Email *" type="email" placeholder="Your email" required />
-                  <Input name="phone" label="Phone Number *" type="tel" placeholder="+91" required />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold text-text-primary">Country *</label>
-                  <select
-                    required
-                    className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors appearance-none"
-                    defaultValue=""
-                  >
-                    <option value="" disabled>Select country</option>
-                    <option value="india">India</option>
-                    <option value="us">United States</option>
-                    <option value="uk">United Kingdom</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <Textarea name="information" label="Other Information *" placeholder="Your message..." rows={6} required />
-                <Button size="lg" className="bg-brand-red hover:bg-brand-red-hover text-white px-8">
-                  Send Message
-                </Button>
-              </form>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      <InvestorClient formTitle={formTitle} formDescription={formDescription} />
     </div>
   );
 }

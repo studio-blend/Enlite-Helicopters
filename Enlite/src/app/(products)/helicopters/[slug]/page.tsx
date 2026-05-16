@@ -37,7 +37,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   if (!heli) return { title: "Not Found" };
-  return { title: `${heli.name} | Enlite Helicopters`, description: heli.tagline };
+  
+  return { 
+    title: {
+      absolute: `${heli.name} | Autonomous Cargo Helicopter (70kg Payload) | Enlite`,
+    },
+    description: `${heli.name}: ${heli.tagline}. An autonomous unmanned helicopter designed for ${heli.category} with 500km range and zero-pilot logistics.` 
+  };
 }
 
 export default async function HelicopterDetailPage({ params }: Props) {

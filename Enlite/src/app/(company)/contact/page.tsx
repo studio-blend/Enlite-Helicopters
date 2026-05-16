@@ -6,7 +6,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea } from "@/components/ui/Input";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
-import { submitContactForm } from "@/lib/actions/contact";
+import { submitContactForm } from "@/lib/actions/submissions";
 import { siteConfig } from "@/lib/constants";
 
 export default function ContactPage() {

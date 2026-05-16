@@ -5,6 +5,7 @@ import { ArrowRight, Search, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/shared/ScrollReveal";
 import { Career } from "@/types";
+import { submitCareerApplication } from "@/lib/actions/submissions";
 
 interface CareersClientProps {
   careers: Career[];
@@ -14,6 +15,8 @@ export function CareersClient({ careers }: CareersClientProps) {
   const [view, setView] = useState<"listings" | "form" | "success">("listings");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState("");
 
   const filteredCareers = careers.filter((job) =>
     job.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -21,12 +24,26 @@ export function CareersClient({ careers }: CareersClientProps) {
 
   const handleApplyClick = (title: string) => {
     setSelectedRole(title);
+    setFormError("");
     setView("form");
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setView("success");
+  const handleFormSubmit = async (formData: FormData) => {
+    setIsSubmitting(true);
+    setFormError("");
+    
+    try {
+      const result = await submitCareerApplication(formData);
+      if (result.success) {
+        setView("success");
+      } else {
+        setFormError(result.message || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setFormError("A network error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -96,31 +113,31 @@ export function CareersClient({ careers }: CareersClientProps) {
               </p>
 
               <div className="bg-bg-card border border-border-default rounded-2xl p-8 lg:p-10 shadow-sm">
-                <form onSubmit={handleFormSubmit} className="space-y-6">
+                <form action={handleFormSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-sm font-semibold">Full Name</label>
-                      <input required type="text" className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors" placeholder="John Doe" />
+                      <input name="name" required type="text" className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors" placeholder="John Doe" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-semibold">Email</label>
-                      <input required type="email" className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors" placeholder="john@example.com" />
+                      <input name="email" required type="email" className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors" placeholder="john@example.com" />
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-sm font-semibold">Mobile number</label>
-                      <input required type="tel" className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors" placeholder="+91 98765 43210" />
+                      <input name="phone" required type="tel" className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors" placeholder="+91 98765 43210" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-semibold">City</label>
-                      <input required type="text" className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors" placeholder="Bengaluru" />
+                      <input name="city" required type="text" className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors" placeholder="Bengaluru" />
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="text-sm font-semibold">Position Applying</label>
-                      <select required className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors appearance-none" value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)}>
+                      <select name="position" required className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors appearance-none" value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)}>
                         <option value="" disabled>Select Position</option>
                         {careers.map(job => (
                           <option key={job.id} value={job.title}>{job.title}</option>
@@ -129,20 +146,23 @@ export function CareersClient({ careers }: CareersClientProps) {
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-semibold">How did you hear about us?</label>
-                      <select required className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors appearance-none" defaultValue="">
+                      <select name="source" required className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors appearance-none" defaultValue="">
                         <option value="" disabled>Select Source</option>
-                        <option value="linkedin">LinkedIn</option>
-                        <option value="website">Website</option>
-                        <option value="referral">Referral</option>
-                        <option value="other">Other</option>
+                        <option value="LinkedIn">LinkedIn</option>
+                        <option value="Website">Website</option>
+                        <option value="Referral">Referral</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-semibold">Tell us about yourself</label>
-                    <textarea required rows={4} className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors resize-none" placeholder="A brief introduction..."></textarea>
+                    <textarea name="bio" required rows={4} className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors resize-none" placeholder="A brief introduction..."></textarea>
                   </div>
-                  <Button type="submit" size="lg" className="w-full bg-brand-red hover:bg-brand-red-hover text-white text-base py-4 h-auto uppercase tracking-wider font-bold">
+                  
+                  {formError && <p className="text-red-500 text-sm">{formError}</p>}
+
+                  <Button type="submit" size="lg" loading={isSubmitting} className="w-full bg-brand-red hover:bg-brand-red-hover text-white text-base py-4 h-auto uppercase tracking-wider font-bold">
                     Apply
                   </Button>
                 </form>

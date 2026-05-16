@@ -48,5 +48,13 @@ export default defineType({
         { name: "instagram", type: "url", title: "Instagram" },
       ],
     }),
+    defineField({
+      name: "brochure",
+      title: "Company Brochure",
+      type: "file",
+      options: {
+        accept: ".pdf",
+      },
+    }),
   ],
 });

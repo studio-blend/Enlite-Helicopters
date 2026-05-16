@@ -3,7 +3,13 @@ import { allTeamMembersQuery } from "@/lib/sanity-queries";
 import TeamClient from "./TeamClient";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Meet the Team" };
+export const metadata: Metadata = {
+  title: {
+    absolute: "Our Team | The Visionaries Behind Enlite Helicopters",
+  },
+  description:
+    "Meet the expert team of aerospace engineers, roboticists, and aviation professionals designing India's most advanced autonomous cargo helicopters.",
+};
 
 
 
