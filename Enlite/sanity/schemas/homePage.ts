@@ -57,7 +57,25 @@ export default defineType({
       type: "string",
       group: "testing",
       readOnly: true,
-      description: "Note: Videos in this section are automatically pulled from the Gallery (Category: 'Flight Test').",
+      description: "Note: Videos in this section are now automatically pulled from the Gallery (Category: 'Flight Test'). The field below is deprecated.",
+    }),
+    defineField({
+      name: "testingVideos",
+      title: "Deprecated: Testing Videos (Legacy)",
+      type: "array",
+      group: "testing",
+      description: "This field is deprecated. Please manage flight test videos in the Gallery collection instead.",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "title", type: "string" },
+            { name: "subtitle", type: "string" },
+            { name: "thumbnailUrl", type: "url" },
+            { name: "video", type: "file" },
+          ],
+        },
+      ],
     }),
     // ... other fields ...
     // ... after product section fields ...

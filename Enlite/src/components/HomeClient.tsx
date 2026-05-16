@@ -77,10 +77,10 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
 
   return (
     <div className="flex flex-col min-h-screen bg-bg-primary text-text-primary">
-      <VideoModal 
-        isOpen={!!selectedVideo} 
-        onClose={() => setSelectedVideo(null)} 
-        videoUrl={selectedVideo || ""} 
+      <VideoModal
+        isOpen={!!selectedVideo}
+        onClose={() => setSelectedVideo(null)}
+        videoUrl={selectedVideo || ""}
       />
       {/* ── Hero ── */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-24 text-center overflow-hidden">
