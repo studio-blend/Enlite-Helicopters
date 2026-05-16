@@ -177,12 +177,20 @@ export const homePageQuery = groq`
     testingTitle,
     testingDescription,
     testingVideoPlayMode,
-    "testingVideos": *[_type == "gallery" && category == "Flight Test"] | order(date desc) [0...3] {
-      title,
-      "subtitle": category,
-      "videoUrl": select(defined(video.asset) => video.asset->url, defined(videoUrl) => videoUrl, null),
-      "thumbnail": select(defined(image.asset) => image.asset->url, defined(externalImageUrl) => externalImageUrl, "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&h=800&fit=crop")
-    },
+    "testingVideos": select(
+      count(featuredTestingVideos) > 0 => featuredTestingVideos[]-> {
+        title,
+        "subtitle": category,
+        "videoUrl": select(defined(video.asset) => video.asset->url, defined(videoUrl) => videoUrl, null),
+        "thumbnail": select(defined(image.asset) => image.asset->url, defined(externalImageUrl) => externalImageUrl, "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&h=800&fit=crop")
+      },
+      *[_type == "gallery" && category == "Flight Test"] | order(date desc) [0...3] {
+        title,
+        "subtitle": category,
+        "videoUrl": select(defined(video.asset) => video.asset->url, defined(videoUrl) => videoUrl, null),
+        "thumbnail": select(defined(image.asset) => image.asset->url, defined(externalImageUrl) => externalImageUrl, "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&h=800&fit=crop")
+      }
+    ),
     rangeTitle,
     rangeDescription,
     rangeBullets

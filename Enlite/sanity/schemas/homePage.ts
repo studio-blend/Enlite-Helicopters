@@ -57,7 +57,16 @@ export default defineType({
       type: "string",
       group: "testing",
       readOnly: true,
-      description: "Note: Videos in this section are now automatically pulled from the Gallery (Category: 'Flight Test'). The field below is deprecated.",
+      description: "Note: Videos in this section are pulled from the Gallery (Category: 'Flight Test'). You can manually pick 3 below, or leave it empty to show the latest 3 automatically.",
+    }),
+    defineField({
+      name: "featuredTestingVideos",
+      title: "Featured Flight Tests (Manual Selection)",
+      type: "array",
+      group: "testing",
+      of: [{ type: "reference", to: [{ type: "gallery" }] }],
+      validation: (Rule) => Rule.max(3),
+      description: "Select up to 3 flight tests to feature. If left empty, the latest 3 'Flight Test' items will be shown.",
     }),
     defineField({
       name: "testingVideos",
