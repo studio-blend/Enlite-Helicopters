@@ -83,6 +83,25 @@ export default function MapComponent() {
   const [center, setCenter] = useState<[number, number]>([21.1458, 79.0882]);
   const [mounted, setMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const [locationName, setLocationName] = useState("India (Center)");
+
+  // Reverse geocoding to get location name from coordinates
+  useEffect(() => {
+    const getName = async () => {
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${center[0]}&lon=${center[1]}&zoom=10`);
+        const data = await res.json();
+        if (data.display_name) {
+          const parts = data.display_name.split(',');
+          setLocationName(parts[0] + (parts[1] ? `, ${parts[1]}` : ''));
+        }
+      } catch (err) {
+        console.error("Reverse geocoding error:", err);
+      }
+    };
+    if (mounted) getName();
+  }, [center, mounted]);
 
   useEffect(() => {
     setMounted(true);
@@ -95,13 +114,37 @@ export default function MapComponent() {
     })).filter(city => city.distance <= 500).sort((a, b) => a.distance - b.distance);
   }, [center]);
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-    const city = CITIES.find(c => c.name.toLowerCase().includes(searchQuery.toLowerCase()));
-    if (city) {
-      setCenter([city.lat, city.lng]);
+    if (!searchQuery.trim()) return;
+
+    setIsSearching(true);
+    try {
+      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}&countrycodes=in`);
+      const data = await res.json();
+      
+      if (data && data.length > 0) {
+        const { lat, lon, display_name } = data[0];
+        setCenter([parseFloat(lat), parseFloat(lon)]);
+        setSearchQuery("");
+      } else {
+        alert("Location not found. Please try a different name.");
+      }
+    } catch (err) {
+      console.error("Search error:", err);
+      alert("Error searching for location. Please try again.");
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const handleLocateMe = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setCenter([position.coords.latitude, position.coords.longitude]);
+      });
     } else {
-      alert("City not found in our simplified demo database.");
+      alert("Geolocation is not supported by your browser.");
     }
   };
 
@@ -113,20 +156,40 @@ export default function MapComponent() {
       <div className="w-full lg:w-[400px] h-[400px] lg:h-full bg-bg-secondary flex flex-col border-b lg:border-b-0 lg:border-r border-border-default z-10 shadow-xl">
         <div className="p-6 border-b border-border-default">
           <h2 className="text-2xl font-bold mb-2">Operational Range</h2>
+          <div className="flex items-center gap-2 mb-4 p-3 bg-bg-primary border border-border-default rounded-lg">
+            <div className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
+            <span className="text-xs font-bold uppercase tracking-widest text-text-secondary">Launch Point:</span>
+            <span className="text-xs font-semibold text-text-primary truncate">{locationName}</span>
+          </div>
           <p className="text-text-secondary text-sm mb-6">
-            Drag the pin or click anywhere on the map to set a launch point and visualize the 500 km delivery radius.
+            Search for any city in India or drag the pin to visualize the 500 km delivery radius.
           </p>
 
-          <form onSubmit={handleSearch} className="relative">
+          <form onSubmit={handleSearch} className="relative mb-3">
             <input
               type="text"
-              placeholder="Search major city..."
+              placeholder="Search any city or town..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-bg-primary border border-border-default rounded-lg pl-10 pr-4 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-red transition-colors"
+              disabled={isSearching}
+              className="w-full bg-bg-primary border border-border-default rounded-lg pl-10 pr-12 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-red transition-colors disabled:opacity-50"
             />
-            <Search className="absolute left-3 top-3.5 w-4 h-4 text-text-muted" />
+            <Search className={`absolute left-3 top-3.5 w-4 h-4 text-text-muted ${isSearching ? 'animate-pulse' : ''}`} />
+            <button 
+              type="submit" 
+              disabled={isSearching}
+              className="absolute right-3 top-2.5 p-1 text-brand-red hover:bg-brand-red/10 rounded transition-colors"
+            >
+              {isSearching ? <div className="w-4 h-4 border-2 border-brand-red border-t-transparent rounded-full animate-spin" /> : <Target className="w-4 h-4" />}
+            </button>
           </form>
+          
+          <button 
+            onClick={handleLocateMe}
+            className="w-full py-2 flex items-center justify-center gap-2 text-xs font-bold text-text-secondary hover:text-brand-red transition-colors border border-dashed border-border-default rounded-lg hover:border-brand-red/50"
+          >
+            <MapPin className="w-3 h-3" /> Use My Current Location
+          </button>
         </div>
 
         <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
@@ -201,7 +264,7 @@ export default function MapComponent() {
         </MapContainer>
         
         {/* Map Overlay Badge */}
-        <div className="absolute bottom-8 right-8 z-[400] bg-black/80 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-2xl pointer-events-none">
+        <div className="absolute top-8 right-8 z-[400] bg-black/80 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-2xl pointer-events-none">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-3 h-3 rounded-full bg-brand-red animate-pulse" />
             <span className="text-white font-bold tracking-widest uppercase text-xs">Radar Active</span>

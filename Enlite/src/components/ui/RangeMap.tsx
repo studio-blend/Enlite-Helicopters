@@ -5,7 +5,7 @@ import { MapPin, Navigation } from "lucide-react";
 
 export function RangeMap() {
   return (
-    <div className="relative w-full aspect-square md:aspect-[21/9] bg-[#0a0a0a] rounded-3xl overflow-hidden border border-border-default shadow-2xl flex items-center justify-center">
+    <div className="relative w-full aspect-square md:aspect-[16/9] bg-[#0a0a0a] rounded-3xl overflow-hidden border border-border-default shadow-2xl flex items-center justify-center">
       {/* Abstract Map Grid Background */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -54,7 +54,7 @@ export function RangeMap() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.5 }}
-        className="absolute top-6 left-6 md:top-10 md:left-10 bg-black/60 backdrop-blur-md border border-white/10 p-4 md:p-6 rounded-2xl max-w-[200px] md:max-w-[280px]"
+        className="absolute top-6 left-6 md:top-10 md:left-10 bg-black/60 backdrop-blur-md border border-white/10 p-4 md:p-6 rounded-2xl max-w-[200px] md:max-w-[280px] z-20"
       >
         <div className="flex items-center gap-3 mb-2 text-brand-red">
           <Navigation className="w-5 h-5" />
@@ -71,7 +71,7 @@ export function RangeMap() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.7 }}
-        className="absolute bottom-6 right-6 md:bottom-10 md:right-10 bg-black/60 backdrop-blur-md border border-white/10 p-4 md:p-5 rounded-2xl flex items-center gap-4"
+        className="absolute bottom-6 right-6 md:bottom-10 md:right-10 bg-black/60 backdrop-blur-md border border-white/10 p-4 md:p-5 rounded-2xl flex items-center gap-4 z-20"
       >
         <div className="w-12 h-12 rounded-full bg-brand-red/20 flex items-center justify-center text-brand-red">
           <MapPin className="w-6 h-6" />

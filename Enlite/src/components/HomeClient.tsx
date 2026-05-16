@@ -389,18 +389,14 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                   </li>
                 ))}
               </ul>
-              <Link href="/interactive-range">
-                <Button size="lg" className="bg-brand-red hover:bg-brand-red/90 text-white px-8">
-                  Explore Applications <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
+
             </ScrollReveal>
-            <ScrollReveal direction="right">
+            <ScrollReveal direction="right" className="relative">
               <div className="flex flex-col items-center">
                 <RangeMap />
                 <Link href="/interactive-range" className="mt-8">
                   <Button variant="outline" className="border-brand-red text-brand-red hover:bg-brand-red hover:text-white transition-colors flex items-center gap-2 group px-8">
-                    Check for yourself <MapPin className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
+                    Interactive Range Map <MapPin className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
                   </Button>
                 </Link>
               </div>
