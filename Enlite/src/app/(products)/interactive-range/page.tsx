@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import InteractiveMapClient from "./InteractiveMapClient";
 
 export const metadata: Metadata = {
-  title: "Interactive Range Map | Enlite Helicopters",
-  description: "Visualize the 500 km operational range of Enlite's autonomous cargo helicopters across India.",
+  title: {
+    absolute: "Interactive Range Map | Visualize Logistics Coverage | Enlite",
+  },
+  description:
+    "Experience the massive 500 km operational range of Enlite autonomous cargo helicopters. Interactive mapping tool showing tactical reach across India.",
 };
 
 export default function InteractiveRangePage() {

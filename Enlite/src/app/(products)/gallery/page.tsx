@@ -3,6 +3,15 @@ import { sanityFetch } from "@/lib/sanity";
 import { allGalleryItemsQuery } from "@/lib/sanity-queries";
 import GalleryClient from "./GalleryClient";
 import { GalleryItem } from "@/types";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Gallery | High-Fidelity Renders & Flight Test Media | Enlite",
+  },
+  description:
+    "View the Enlite autonomous helicopter fleet in action. High-fidelity 3D renders, tactical flight test videos, and behind-the-scenes engineering media.",
+};
 
 export default async function GalleryPage() {
   let galleryItems: GalleryItem[] = [];
