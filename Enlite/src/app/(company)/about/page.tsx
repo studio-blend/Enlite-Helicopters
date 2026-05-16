@@ -212,7 +212,7 @@ export default async function AboutPage() {
                     <ScrollReveal direction="right" className="order-1 lg:order-2">
                       <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-8">
                         {section.highlightText ? (
-                          <>{section.title.replace(section.highlightText, "").trim()} <br /><span className="text-brand-red">{section.highlightText}</span></>
+                          <>{section.title?.replace(section.highlightText || "", "").trim()} <br /><span className="text-brand-red">{section.highlightText}</span></>
                         ) : (
                           section.title
                         )}

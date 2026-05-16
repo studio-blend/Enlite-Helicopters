@@ -104,6 +104,7 @@ export const allGalleryItemsQuery = groq`
     title,
     description,
     "image": select(defined(image.asset) => image.asset->url, externalImageUrl),
+    "videoUrl": coalesce(video.asset->url, videoUrl),
     category,
     date
   } | order(date desc)
@@ -133,6 +134,7 @@ export const allPartnersQuery = groq`
 `;
 
 export const siteSettingsQuery = groq`
+  *[_id == "settings"][0] {
     siteName,
     description,
     "logo": select(defined(logo.asset) => logo.asset->url, null),
@@ -144,7 +146,7 @@ export const siteSettingsQuery = groq`
 `;
 
 export const homePageQuery = groq`
-  *[_type == "homePage"][0] {
+  *[_id == "homePage"][0] {
     heroTitle,
     heroSubtitle,
     heroDescription,
@@ -160,7 +162,7 @@ export const homePageQuery = groq`
     solutionTitle,
     solutionDescription,
     "solutionImage": select(defined(solutionImage.asset) => solutionImage.asset->url, solutionImage),
-    "solutionVideoUrl": select(defined(solutionVideo.asset) => solutionVideo.asset->url, null),
+    "solutionVideoUrl": coalesce(solutionVideo.asset->url, solutionVideoUrl),
     solutionTags,
     missionTitle,
     missionSubtitle,
@@ -186,7 +188,7 @@ export const homePageQuery = groq`
 `;
 
 export const aboutPageQuery = groq`
-  *[_type == "aboutPage"][0] {
+  *[_id == "aboutPage"][0] {
     title,
     subtitle,
     videoTitle,
@@ -200,7 +202,7 @@ export const aboutPageQuery = groq`
       highlightText,
       content,
       "image": select(defined(image.asset) => image.asset->url, image),
-      "videoUrl": select(defined(video.asset) => video.asset->url, null),
+      "videoUrl": coalesce(video.asset->url, videoUrl),
       badge,
       reverse
     },
@@ -213,7 +215,7 @@ export const aboutPageQuery = groq`
 `;
 
 export const investorPageQuery = groq`
-  *[_type == "investorPage"][0] {
+  *[_id == "investorPage"][0] {
     title,
     subtitle,
     partnerSection {

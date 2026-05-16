@@ -48,6 +48,19 @@ export default defineType({
       description: "Paste a direct image URL (e.g. from Unsplash or a CDN). Used only if no image is uploaded above.",
     }),
     defineField({
+      name: "video",
+      title: "Video (Upload)",
+      type: "file",
+      options: { accept: "video/*" },
+      description: "Upload a video file. If provided, this item will be treated as a video.",
+    }),
+    defineField({
+      name: "videoUrl",
+      title: "External Video URL",
+      type: "url",
+      description: "Paste a direct video URL (e.g. from a CDN). Used only if no video is uploaded above.",
+    }),
+    defineField({
       name: "category",
       title: "Category",
       type: "string",
@@ -57,6 +70,7 @@ export default defineType({
           { title: "Manufacturing", value: "Manufacturing" },
           { title: "Events", value: "Events" },
           { title: "People", value: "People" },
+          { title: "Testing", value: "Testing" },
         ],
       },
       validation: (Rule) => Rule.required(),

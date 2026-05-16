@@ -159,9 +159,9 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
           <div className="grid grid-cols-2 md:grid-cols-6 divide-x divide-border-default border-y border-border-default">
             {(homeData?.stats || stats).map((stat, i) => {
               // Parse number and suffix from string like "70 kg"
-              const match = stat.value.match(/^([\d.]+)\s*(.*)$/);
+              const match = stat.value?.match(/^([\d.]+)\s*(.*)$/);
               const num = match ? parseFloat(match[1]) : 0;
-              const suffix = match ? " " + match[2] : stat.value;
+              const suffix = match ? " " + match[2] : stat.value || "";
 
               return (
                 <div key={i} className="px-6 py-6 text-center flex flex-col items-center justify-center">
@@ -368,7 +368,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
             <ScrollReveal direction="left">
               <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight">
                 {homeData?.rangeTitle ? (
-                  <span dangerouslySetInnerHTML={{ __html: homeData.rangeTitle.replace("Operational Range", '<span class="text-brand-red">Operational Range</span>') }} />
+                  <span dangerouslySetInnerHTML={{ __html: homeData.rangeTitle?.replace("Operational Range", '<span class="text-brand-red">Operational Range</span>') }} />
                 ) : (
                   <>Unmatched <span className="text-brand-red">Operational Range</span></>
                 )}
@@ -420,9 +420,11 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
               </ScrollReveal>
             </div>
             <ScrollReveal direction="right">
-              <Button variant="outline" className="border-brand-red text-brand-red hover:bg-brand-red hover:text-white transition-all group">
-                View All Missions <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <Link href="/gallery?filter=Testing">
+                <Button variant="outline" className="border-brand-red text-brand-red hover:bg-brand-red hover:text-white transition-all group">
+                  View More <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </ScrollReveal>
           </div>
 

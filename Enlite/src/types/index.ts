@@ -53,6 +53,7 @@ export interface GalleryItem {
   title: string;
   description?: string;
   image: string;
+  videoUrl?: string;
   category: string;
   date: string;
 }
