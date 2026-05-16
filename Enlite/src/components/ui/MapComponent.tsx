@@ -156,7 +156,7 @@ export default function MapComponent() {
   return (
     <div className="relative flex flex-col lg:flex-row w-full h-[calc(100vh-80px)] mt-20 overflow-hidden bg-bg-primary">
       {/* Mobile Header / Search Bar Overlay */}
-      <div className="lg:hidden absolute top-4 left-4 right-4 z-[500] flex flex-col gap-2">
+      <div className="lg:hidden absolute top-4 left-4 right-4 z-30 flex flex-col gap-2">
         <div className="bg-bg-secondary/90 backdrop-blur-md border border-border-default rounded-2xl shadow-2xl p-4">
           <form onSubmit={handleSearch} className="relative">
             <input
@@ -314,7 +314,7 @@ export default function MapComponent() {
         </MapContainer>
 
         {/* Map Overlay Badge - Repositioned for mobile */}
-        <div className="absolute bottom-24 lg:bottom-auto lg:top-8 right-4 lg:right-8 z-[400] bg-black/80 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-2xl pointer-events-none max-w-[200px] lg:max-w-none">
+        <div className="absolute bottom-24 lg:bottom-auto lg:top-8 right-4 lg:right-8 z-20 bg-black/80 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-2xl pointer-events-none max-w-[200px] lg:max-w-none">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-3 h-3 rounded-full bg-brand-red animate-pulse" />
             <span className="text-white font-bold tracking-widest uppercase text-[10px] lg:text-xs">Radar Active</span>
@@ -325,7 +325,7 @@ export default function MapComponent() {
         </div>
 
         {/* Mobile Floating Locate Button */}
-        <div className="lg:hidden absolute bottom-6 right-4 z-[400] flex flex-col gap-3">
+        <div className="lg:hidden absolute bottom-6 right-4 z-20 flex flex-col gap-3">
           <button
             onClick={handleLocateMe}
             className="w-12 h-12 bg-brand-red text-white rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-transform"
@@ -344,14 +344,14 @@ export default function MapComponent() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowCities(false)}
-              className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[600]"
+              className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
             />
             <motion.div
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="lg:hidden fixed bottom-0 left-0 right-0 h-[70vh] bg-bg-secondary rounded-t-[32px] z-[601] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] flex flex-col"
+              className="lg:hidden fixed bottom-0 left-0 right-0 h-[70vh] bg-bg-secondary rounded-t-[32px] z-[40] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] flex flex-col"
             >
               <div className="flex items-center justify-between p-6 border-b border-border-default">
                 <div className="flex flex-col">
