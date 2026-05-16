@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Clock, Download, MapPin, Play, X } from "lucide-react";
 import { DynamicVideoPlayer } from "@/components/shared/DynamicVideoPlayer";
+import { VideoModal } from "@/components/shared/VideoModal";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/shared/ScrollReveal";
 import { ComparisonTable } from "@/components/ui/ComparisonTable";
@@ -72,8 +73,15 @@ const solutionTags = ["Autonomous", "VTOL Capable", "High Payload", "Cost Effect
 export default function HomeClient({ helicopters, articles, partners, homeData }: HomeClientProps) {
   const { theme } = useTheme();
 
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+
   return (
     <div className="flex flex-col min-h-screen bg-bg-primary text-text-primary">
+      <VideoModal 
+        isOpen={!!selectedVideo} 
+        onClose={() => setSelectedVideo(null)} 
+        videoUrl={selectedVideo || ""} 
+      />
       {/* ── Hero ── */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-24 text-center overflow-hidden">
         <HeroBackground />
@@ -131,8 +139,8 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
               className="relative aspect-square w-full max-w-[600px] mx-auto flex items-center justify-center"
             >
               <Image
-                src={theme === "dark" 
-                  ? (homeData?.heroImageDark || "/images/hero-3d-dark.png") 
+                src={theme === "dark"
+                  ? (homeData?.heroImageDark || "/images/hero-3d-dark.png")
                   : (homeData?.heroImageLight || "/images/hero-3d-light.png")}
                 alt="Enlite autonomous heavy-lift cargo helicopter - 3D high-fidelity concept render"
                 width={800}
@@ -282,7 +290,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white font-bold text-lg border border-white/20">M</div>
+                  <div className="w-12 h-12 rounded-full bg-bg-secondary flex items-center justify-center text-primary font-bold text-lg border border-border-default">M</div>
                   <div>
                     <div className="font-bold text-text-primary">Mohanakannan</div>
                     <div className="text-sm text-text-muted italic opacity-80">Founder & CEO, Enlite Helicopters</div>
@@ -425,8 +433,9 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                     videoUrl={test.videoUrl}
                     thumbnail={test.thumbnail}
                     alt={test.title}
-                    playMode="click"
-                    type="inline"
+                    playMode={homeData?.testingVideoPlayMode || "scroll"}
+                    type={homeData?.testingVideoPlayMode === "click" ? "modal" : "inline"}
+                    onModalOpen={() => setSelectedVideo(test.videoUrl)}
                     className="aspect-video"
                   />
                   <div className="p-6">

@@ -36,6 +36,29 @@ export default defineType({
       group: "testing",
       initialValue: "Our technology is not just on paper. We rigorously test our platforms in real-world conditions to ensure mission reliability.",
     }),
+    defineField({
+      name: "testingVideoPlayMode",
+      title: "Testing Videos Playback Mode",
+      type: "string",
+      options: {
+        list: [
+          { title: "Play on Click (Opens Modal)", value: "click" },
+          { title: "Play on Scroll (Inline)", value: "scroll" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "scroll",
+      group: "testing",
+      description: "Choose how videos in this section behave. 'Click' opens a modal, 'Scroll' plays inline.",
+    }),
+    defineField({
+      name: "testingSourceNote",
+      title: "Source Note",
+      type: "string",
+      group: "testing",
+      readOnly: true,
+      description: "Note: Videos in this section are automatically pulled from the Gallery (Category: 'Flight Test').",
+    }),
     // ... other fields ...
     // ... after product section fields ...
     // --- MISSION / FOUNDER VIDEO SECTION ---

@@ -176,6 +176,7 @@ export const homePageQuery = groq`
     aircraftFeatures,
     testingTitle,
     testingDescription,
+    testingVideoPlayMode,
     "testingVideos": *[_type == "gallery" && category == "Flight Test"] | order(date desc) [0...3] {
       title,
       "subtitle": category,
