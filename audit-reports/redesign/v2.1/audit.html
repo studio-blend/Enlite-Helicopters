@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Audit - Enlite Helicopters</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #050505;
+            --bg-secondary: #0d0d0d;
+            --bg-card: #141414;
+            --accent-red: #e63946;
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --border: #222;
+            --success: #2d6a4f;
+            --warning: #ffb703;
+            --critical: #d00000;
+            --good: #52b788;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            width: 280px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+            position: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-red);
+            font-style: italic;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .score-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .score-high { background: var(--good); }
+        .score-mid { background: var(--warning); }
+        .score-low { background: var(--critical); }
+
+        /* Main Content */
+        main {
+            margin-left: 280px;
+            padding: 4rem;
+            width: calc(100% - 280px);
+        }
+
+        section {
+            margin-bottom: 6rem;
+            scroll-margin-top: 4rem;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 { font-size: 3.5rem; line-height: 1.1; }
+        h2 { font-size: 2.2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 2rem; }
+
+        .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+
+        /* Site Intelligence */
+        .intel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .intel-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .intel-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .intel-value { font-weight: 600; font-size: 1.1rem; }
+
+        /* Page Reviews */
+        .page-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border);
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .page-scores {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .score-pill {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            background: #222;
+            border: 1px solid #333;
+        }
+
+        .finding {
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            border-left: 4px solid transparent;
+        }
+
+        .critical { background: rgba(208, 0, 0, 0.1); border-left-color: var(--critical); }
+        .major { background: rgba(255, 183, 3, 0.1); border-left-color: var(--warning); }
+        .minor { background: rgba(160, 160, 160, 0.1); border-left-color: var(--text-secondary); }
+        .good { background: rgba(82, 183, 136, 0.1); border-left-color: var(--good); }
+
+        .severity-tag {
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            height: fit-content;
+        }
+
+        /* SEO Audit */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th { background: #111; color: var(--text-secondary); text-transform: uppercase; font-size: 0.7rem; }
+
+        /* Roadmap */
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .phase-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .phase-number { font-size: 0.8rem; color: var(--accent-red); font-weight: 700; margin-bottom: 0.5rem; display: block; }
+
+        .action-item {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #222;
+        }
+
+        .effort-pill {
+            font-size: 0.65rem;
+            background: #333;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        /* Summary */
+        .progression-bar {
+            height: 12px;
+            background: #222;
+            border-radius: 6px;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .progression-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-red), var(--good));
+            border-radius: 6px;
+            transition: width 1s ease-in-out;
+        }
+
+        .marker {
+            position: absolute;
+            top: -25px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 1024px) {
+            aside { display: none; }
+            main { margin-left: 0; padding: 2rem; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="logo">Enlite_Audit</div>
+        <nav>
+            <ul>
+                <li><a href="#intelligence"><div class="score-dot score-high"></div> Intelligence</a></li>
+                <li><a href="#tree"><div class="score-dot score-mid"></div> Site Tree</a></li>
+                <li><a href="#reviews"><div class="score-dot score-mid"></div> Page Reviews</a></li>
+                <li><a href="#seo"><div class="score-dot score-low"></div> SEO Audit</a></li>
+                <li><a href="#roadmap"><div class="score-dot score-mid"></div> Roadmap</a></li>
+                <li><a href="#summary"><div class="score-dot score-high"></div> Summary</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+        <section id="intelligence">
+            <span class="mono" style="color: var(--accent-red)">PHASE 2 — SITE INTELLIGENCE</span>
+            <h1>Investor-Grade Analysis</h1>
+            
+            <div class="intel-grid">
+                <div class="intel-card">
+                    <span class="intel-label">What they do</span>
+                    <span class="intel-value">Design & develop autonomous unmanned cargo helicopters for long-range logistics.</span>
+                </div>
+                <div class="intel-card">
+                    <span class="intel-label">Industry</span>
+                    <span class="intel-value">Aerospace / Deep Tech / B2B Logistics</span>
+                </div>
+                <div class="intel-card">
+                    <span class="intel-label">Target Audience</span>
+                    <span class="intel-value">Defence Logistics, Remote Supply Chain, Investors, Gov Agencies.</span>
+                </div>
+                <div class="intel-card">
+                    <span class="intel-label">Company Stage</span>
+                    <span class="intel-value">Growth / Pre-Series (R2 Prototype established, R3 in development).</span>
+                </div>
+                <div class="intel-card">
+                    <span class="intel-label">Tech Stack</span>
+                    <span class="intel-value">Next.js / Sanity CMS / Vercel / Tailwind CSS</span>
+                </div>
+            </div>
+
+            <p style="color: var(--text-secondary); line-height: 1.6;">
+                The company presents as a highly sophisticated aerospace startup. The visual language is cinematic and premium, targeting high-value contracts and institutional investors. However, there are notable "cracks" in the content substance—specifically placeholder assets and missing conversion links—that suggest the site is recently updated or still in a hardening phase.
+            </p>
+        </section>
+
+        <section id="tree">
+            <h2>Architecture Map</h2>
+            <div class="intel-card">
+                <pre class="mono" style="line-height: 1.5; color: var(--text-primary);">
+/ (Home) 
+├── /about (Mission & Identity)
+├── /helicopters (Product Hub)
+│   ├── /enlite-r2 (Active Prototype)
+│   └── /enlite-r3 (Future Platform)
+├── /markets (Vertical Solutions)
+│   ├── /intercity-cargo-delivery
+│   ├── /remote-location-delivery
+│   ├── /medical-emergency-delivery
+│   └── /defence-applications
+├── /team (E-E-A-T Signals)
+├── /investor (B2B/VC Portal)
+├── /gallery (Visual Proof)
+├── /news (Authority/Updates)
+├── /careers (Talent Acquisition)
+├── /contact (Lead Capture)
+└── /interactive-range <span style="color: var(--good)">[GEMS: High-Engagement Asset]</span>
+
+<span style="color: var(--critical)">[!] 404 DETECTED: /enlite-brochure.pdf (Linked from Home)</span>
+<span style="color: var(--critical)">[!] 404 DETECTED: /brochure.pdf (Linked from Footer)</span>
+<span style="color: var(--warning)">[!] NAVIGATION GAP: Range map not in main nav, only body-linked.</span>
+                </pre>
+            </div>
+        </section>
+
+        <section id="reviews">
+            <h2>Page-by-Page Audit</h2>
+
+            <!-- Home Page -->
+            <div class="page-card">
+                <div class="page-header">
+                    <div>
+                        <h3>Home Page</h3>
+                        <span class="mono" style="color: var(--text-secondary)">/</span>
+                    </div>
+                    <div class="page-scores">
+                        <span class="score-pill">UI: 9/10</span>
+                        <span class="score-pill">UX: 8/10</span>
+                        <span class="score-pill">CONTENT: 6/10</span>
+                        <span class="score-pill">TRUST: 7/10</span>
+                    </div>
+                </div>
+
+                <div class="finding critical">
+                    <span class="severity-tag" style="background: var(--critical)">Critical</span>
+                    <div>
+                        <strong>Broken Conversion Path (Brochure)</strong>
+                        <p>The primary CTA "Download Brochure" in the hero section links to <code class="mono">/enlite-brochure.pdf</code> which returns a 404. For an investor-grade site, a broken PDF link in the hero is a major credibility killer.</p>
+                    </div>
+                </div>
+
+                <div class="finding major">
+                    <span class="severity-tag" style="background: var(--warning)">Major</span>
+                    <div>
+                        <strong>Inconsistent Asset Branding</strong>
+                        <p>The video and image assets on the homepage show "AURORA" and "AERO-CARGO 420" branding on the aircraft. This conflicts with the company name "Enlite" and product names "R2". Users may perceive the product as a white-labeled or unbranded prototype.</p>
+                    </div>
+                </div>
+
+                <div class="finding good">
+                    <span class="severity-tag" style="background: var(--good)">Good</span>
+                    <div>
+                        <strong>Interactive Range Engagement</strong>
+                        <p>The "Interactive Range Map" is a world-class engagement feature. It provides immediate value and technical proof of concept for logistics planners.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Helicopters Page -->
+            <div class="page-card">
+                <div class="page-header">
+                    <div>
+                        <h3>The Fleet (R2 / R3)</h3>
+                        <span class="mono" style="color: var(--text-secondary)">/helicopters</span>
+                    </div>
+                    <div class="page-scores">
+                        <span class="score-pill">UI: 9/10</span>
+                        <span class="score-pill">UX: 8/10</span>
+                        <span class="score-pill">CONTENT: 5/10</span>
+                        <span class="score-pill">TRUST: 4/10</span>
+                    </div>
+                </div>
+
+                <div class="finding major">
+                    <span class="severity-tag" style="background: var(--warning)">Major</span>
+                    <div>
+                        <strong>Spec Sheets vs Visuals</strong>
+                        <p>The R2 page claims 70kg payload, but the accompanying visual is clearly a 3D render labeled as "AERO-CARGO". There is a lack of high-resolution "real" hardware photography, which is critical for the "Defence" and "Investor" audiences.</p>
+                    </div>
+                </div>
+
+                <div class="finding minor">
+                    <span class="severity-tag" style="background: var(--text-secondary)">Minor</span>
+                    <div>
+                        <strong>Duplicate SEO Title</strong>
+                        <p>The R2 and R3 pages share the exact same title tag as the homepage: "Enlite Helicopters — Autonomous Unmanned Cargo Helicopters". This creates internal competition for rankings (cannibalization).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Page -->
+            <div class="page-card">
+                <div class="page-header">
+                    <div>
+                        <h3>Team / E-E-A-T</h3>
+                        <span class="mono" style="color: var(--text-secondary)">/team</span>
+                    </div>
+                    <div class="page-scores">
+                        <span class="score-pill">UI: 8/10</span>
+                        <span class="score-pill">UX: 8/10</span>
+                        <span class="score-pill">CONTENT: 9/10</span>
+                        <span class="score-pill">TRUST: 9/10</span>
+                    </div>
+                </div>
+
+                <div class="finding good">
+                    <span class="severity-tag" style="background: var(--good)">Good</span>
+                    <div>
+                        <strong>Strong Technical Leadership</strong>
+                        <p>Listing Major Generals and Ph.Ds with verifiable backgrounds significantly boosts E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness). This is the site's strongest credibility asset.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="seo">
+            <h2>SEO Audit</h2>
+            
+            <div class="intel-grid">
+                <div class="intel-card">
+                    <span class="intel-label">Technical Score</span>
+                    <span class="intel-value">4/10</span>
+                    <p class="mono" style="font-size: 0.7rem; margin-top: 0.5rem;">Issues: Broken sitemap domains, missing unique metas.</p>
+                </div>
+                <div class="intel-card">
+                    <span class="intel-label">On-Page Score</span>
+                    <span class="intel-value">5/10</span>
+                    <p class="mono" style="font-size: 0.7rem; margin-top: 0.5rem;">Issues: Duplicated titles across 80% of pages.</p>
+                </div>
+                <div class="intel-card">
+                    <span class="intel-label">Authority Score</span>
+                    <span class="intel-value">7/10</span>
+                    <p class="mono" style="font-size: 0.7rem; margin-top: 0.5rem;">Strengths: Press mentions, strong advisory board.</p>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Page</th>
+                        <th>Title Tag (Chars)</th>
+                        <th>H1 Status</th>
+                        <th>OG:Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Home</td>
+                        <td>Enlite Helicopters — Autonomous Unmanned... (59) <span style="color: var(--good)">✓</span></td>
+                        <td><span style="color: var(--good)">✓</span> Targeted</td>
+                        <td><span style="color: var(--good)">✓</span> Set</td>
+                    </tr>
+                    <tr>
+                        <td>About</td>
+                        <td>About | Enlite Helicopters (24) <span style="color: var(--critical)">✗ Short</span></td>
+                        <td><span style="color: var(--good)">✓</span> Unique</td>
+                        <td><span style="color: var(--warning)">! Duplicated</span></td>
+                    </tr>
+                    <tr>
+                        <td>R2 Page</td>
+                        <td>Enlite Helicopters — Autonomous Unmanned... (59) <span style="color: var(--critical)">✗ Duplicate</span></td>
+                        <td><span style="color: var(--good)">✓</span> Targeted</td>
+                        <td><span style="color: var(--warning)">! Duplicated</span></td>
+                    </tr>
+                    <tr>
+                        <td>Markets</td>
+                        <td>Markets | Enlite Helicopters | Enlite... (45) <span style="color: var(--good)">✓</span></td>
+                        <td><span style="color: var(--good)">✓</span> Present</td>
+                        <td><span style="color: var(--warning)">! Duplicated</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="finding major">
+                <span class="severity-tag" style="background: var(--warning)">Major</span>
+                <div>
+                    <strong>Sitemap Domain Mismatch</strong>
+                    <p>The sitemap at <code class="mono">/sitemap.xml</code> lists all URLs as <code class="mono">enlitehelicopters.com</code>. However, the site is currently being served on <code class="mono">enlite-helicopters.vercel.app</code>. This confuses crawlers and splits authority between two domains. Canonical tags should be enforced.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap">
+            <h2>Improvement Roadmap</h2>
+
+            <div class="phase-grid">
+                <!-- Phase 1 -->
+                <div class="phase-card">
+                    <span class="phase-number">Phase 1</span>
+                    <h3>Stop the Bleeding (Week 1)</h3>
+                    
+                    <div class="action-item">
+                        <span class="effort-pill">15 Min</span>
+                        <h4 style="margin: 0.5rem 0;">Fix Brochure 404s</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Upload PDF to public/ and ensure links <code class="mono">/enlite-brochure.pdf</code> and <code class="mono">/brochure.pdf</code> are valid.</p>
+                    </div>
+
+                    <div class="action-item">
+                        <span class="effort-pill">2 Hours</span>
+                        <h4 style="margin: 0.5rem 0;">Meta Hardening</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Update unique Title Tags and Meta Descriptions for R2, R3, and all Market subpages to stop cannibalization.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="phase-card">
+                    <span class="phase-number">Phase 2</span>
+                    <h3>Build Substance (Month 1)</h3>
+                    
+                    <div class="action-item">
+                        <span class="effort-pill">Half Day</span>
+                        <h4 style="margin: 0.5rem 0;">Asset Branding Purge</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Remove or Photoshop any references to "AURORA" or "AERO-CARGO" from primary visual assets to ensure brand consistency.</p>
+                    </div>
+
+                    <div class="action-item">
+                        <span class="effort-pill">1 Week</span>
+                        <h4 style="margin: 0.5rem 0;">Technical Documentation</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Build out the "Specifications" section for R2/R3 with real flight test data vs just theoretical capacity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="summary">
+            <h2>Audit Summary</h2>
+            <div class="intel-card">
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <span style="font-size: 3rem; font-weight: 800;">6.8<span style="font-size: 1.5rem; color: var(--text-secondary);">/10</span></span>
+                    <span class="mono" style="color: var(--good)">GROWTH POTENTIAL: HIGH</span>
+                </div>
+                
+                <div class="progression-bar">
+                    <div class="progression-fill" style="width: 68%;"></div>
+                    <div class="marker" style="left: 68%;">Current</div>
+                    <div class="marker" style="left: 92%;">Goal (Q4)</div>
+                </div>
+
+                <div style="margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <h4 style="color: var(--critical); margin-bottom: 0.5rem;">Top Risk</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Broken high-intent CTAs (Brochure) and mismatched product branding (Aurora vs Enlite) erode trust with high-ticket B2B/Defence buyers.</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--good); margin-bottom: 0.5rem;">Top Opportunity</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">The Interactive Range Map is a unique sales tool. Promoting this on LinkedIn/Social can drive high-quality logistics leads.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Simple scroll spy for sidebar
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

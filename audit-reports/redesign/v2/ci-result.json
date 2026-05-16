@@ -1,0 +1,186 @@
+[
+  {
+    "path": "/",
+    "score": 0.95,
+    "performance": 0.88,
+    "accessibility": 0.94,
+    "best-practices": 0.96,
+    "seo": 1
+  },
+  {
+    "path": "/about",
+    "score": 0.98,
+    "performance": 0.96,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/careers",
+    "score": 0.98,
+    "performance": 0.98,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/contact",
+    "score": 0.98,
+    "performance": 0.98,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/gallery",
+    "score": 0.98,
+    "performance": 0.97,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/gallery?filter=Flight%20Test",
+    "score": 0.96,
+    "performance": 0.91,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/helicopters",
+    "score": 0.95,
+    "performance": 0.91,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 0.91
+  },
+  {
+    "path": "/helicopters/enlite-r2",
+    "score": 0.97,
+    "performance": 0.92,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/helicopters/enlite-r3",
+    "score": 0.97,
+    "performance": 0.93,
+    "accessibility": 0.96,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/interactive-range",
+    "score": 0.93,
+    "performance": 0.83,
+    "accessibility": 0.88,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/investor",
+    "score": 0.97,
+    "performance": 0.98,
+    "accessibility": 0.91,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/markets",
+    "score": 0.97,
+    "performance": 0.94,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/markets/defence-applications",
+    "score": 0.98,
+    "performance": 0.97,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/markets/intercity-cargo-delivery",
+    "score": 0.98,
+    "performance": 0.98,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/markets/medical-emergency-delivery",
+    "score": 0.98,
+    "performance": 0.99,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/markets/remote-location-delivery",
+    "score": 0.98,
+    "performance": 0.98,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/news",
+    "score": 0.97,
+    "performance": 0.93,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/news/enlite-aero-defcon-2025",
+    "score": 0.98,
+    "performance": 0.97,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/news/thanthi-news-enlite-coverage",
+    "score": 0.97,
+    "performance": 0.95,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/news/vikatan-aero-defcon-photo-album",
+    "score": 0.97,
+    "performance": 0.94,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/privacy",
+    "score": 0.97,
+    "performance": 0.98,
+    "accessibility": 0.9,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/team",
+    "score": 0.97,
+    "performance": 0.92,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  },
+  {
+    "path": "/terms",
+    "score": 0.98,
+    "performance": 0.98,
+    "accessibility": 0.94,
+    "best-practices": 1,
+    "seo": 1
+  }
+]
