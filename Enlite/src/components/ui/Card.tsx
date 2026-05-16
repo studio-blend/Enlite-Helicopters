@@ -24,8 +24,8 @@ interface ArticleCardProps {
 export function ArticleCard({
   title, excerpt, image, category, date, readingTime, slug, externalLink, featured, className,
 }: ArticleCardProps) {
-  const href = externalLink || `/news/${slug}`;
-  const isExternal = !!externalLink;
+  const href = `/news/${slug}`;
+  const isExternal = false;
   return (
     <motion.article
       whileHover={{ y: -4 }}

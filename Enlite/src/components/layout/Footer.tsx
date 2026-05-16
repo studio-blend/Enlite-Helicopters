@@ -158,12 +158,6 @@ export async function Footer() {
           </div>
         </div>
 
-        {/* Demo Disclaimer */}
-        <div className="py-3 border-t border-white/5 text-center">
-          <p className="text-[11px] text-amber-400/70 tracking-wide">
-            Demo build with placeholder content for visual reference. Final content will be sourced from Enlite.
-          </p>
-        </div>
 
         {/* Bottom Bar */}
         <div className="py-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">

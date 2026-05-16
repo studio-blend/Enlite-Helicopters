@@ -119,7 +119,7 @@ export default async function MarketPage({
             ) : (
               <Image
                 src={data.heroImage}
-                alt={data.heroHeadline}
+                alt={`${data.heroHeadline} - Enlite Autonomous Helicopter Solutions for ${data.category}`}
                 fill
                 className="object-cover opacity-25 scale-105"
                 priority
@@ -184,7 +184,7 @@ export default async function MarketPage({
                   <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl bg-bg-tertiary border border-border-default">
                     <Image
                       src={data.contextImage}
-                      alt={data.contextTitle || ""}
+                      alt={`${data.contextTitle} - Visualizing ${market.title} autonomous operations and logistical impact`}
                       fill
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"

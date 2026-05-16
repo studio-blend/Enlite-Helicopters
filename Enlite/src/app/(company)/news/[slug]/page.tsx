@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowLeft, Calendar, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { ArticleCard } from "@/components/ui/Card";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
@@ -124,6 +124,23 @@ export default async function ArticleDetailPage({ params }: Props) {
               article.content?.split("\n\n").map((paragraph: string, i: number) => (
                 <p key={i}>{paragraph}</p>
               ))
+            )}
+
+            {article.externalLink && (
+              <div className="mt-12 p-8 rounded-2xl bg-bg-secondary border border-border-default flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div>
+                  <h3 className="text-xl font-bold text-text-primary mb-2">Read Full Coverage</h3>
+                  <p className="text-text-secondary text-sm">This article was originally published on an external news platform.</p>
+                </div>
+                <Link 
+                  href={article.externalLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-brand-red text-white font-semibold rounded-lg hover:bg-brand-red/90 transition-colors shrink-0"
+                >
+                  View Original Article <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
             )}
           </article>
         </ScrollReveal>

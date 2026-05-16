@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Play } from "lucide-react";
+import { Play, ShieldCheck, Cpu, Globe, Zap, Award, Target, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/shared/ScrollReveal";
 import { sanityFetch } from "@/lib/sanity";
@@ -100,10 +100,10 @@ export default async function AboutPage() {
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-bg-tertiary overflow-hidden border border-border-default">
-                    <div className="w-full h-full bg-brand-red/20 flex items-center justify-center text-brand-red font-bold">VS</div>
+                    <div className="w-full h-full bg-brand-red/20 flex items-center justify-center text-brand-red font-bold text-lg">M</div>
                   </div>
                   <div>
-                    <div className="font-bold text-text-primary">Vimal Selvam</div>
+                    <div className="font-bold text-text-primary">Mohanakannan</div>
                     <div className="text-sm text-text-muted italic">Founder & CEO, Enlite Helicopters</div>
                   </div>
                 </div>
@@ -274,27 +274,58 @@ export default async function AboutPage() {
             </div>
           </ScrollReveal>
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {values.map((v: any, i: number) => (
-              <StaggerItem key={i}>
-                <div className="rounded-xl overflow-hidden bg-bg-card border border-border-default hover:shadow-xl hover:border-brand-red/30 transition-all duration-300 h-full flex flex-col group">
-                  {v.image && (
-                    <div className="relative aspect-[4/3] bg-bg-tertiary overflow-hidden">
-                      <Image
-                        src={v.image}
-                        alt={v.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
+            {values.map((v: any, i: number) => {
+              // Map icons to value titles
+              const iconMap: Record<string, any> = {
+                "Engineering Excellence": Cpu,
+                "Reliability": ShieldCheck,
+                "Safety First": ShieldCheck,
+                "Indigenous Capability": Globe,
+                "Innovation": Zap,
+                "Quality": Award,
+                "Mission Driven": Target,
+                "Future Focused": Rocket
+              };
+              
+              const IconComponent = iconMap[v.title] || Award;
+
+              return (
+                <StaggerItem key={i}>
+                  <div className="rounded-2xl overflow-hidden bg-bg-card border border-border-default hover:shadow-2xl hover:border-brand-red/40 transition-all duration-500 h-full flex flex-col group relative">
+                    {/* Background accent gradient on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-red/0 via-transparent to-brand-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                    
+                    {v.image ? (
+                      <div className="relative aspect-[4/3] bg-bg-tertiary overflow-hidden">
+                        <Image
+                          src={v.image}
+                          alt={v.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
+                      </div>
+                    ) : (
+                      <div className="relative aspect-[4/3] bg-bg-tertiary flex items-center justify-center overflow-hidden">
+                        <div className="absolute inset-0 opacity-10">
+                          <IconComponent className="w-full h-full scale-150 -rotate-12 translate-x-1/4 translate-y-1/4" />
+                        </div>
+                        <div className="relative w-20 h-20 rounded-2xl bg-brand-red/10 flex items-center justify-center text-brand-red group-hover:scale-110 group-hover:bg-brand-red group-hover:text-white transition-all duration-500 shadow-lg">
+                          <IconComponent className="w-10 h-10" />
+                        </div>
+                      </div>
+                    )}
+                    
+                    <div className="p-8 flex-1 flex flex-col relative z-10">
+                      <div className="w-10 h-1 bg-brand-red/30 group-hover:w-20 group-hover:bg-brand-red transition-all duration-500 mb-6 rounded-full" />
+                      <h3 className="text-2xl font-bold mb-4 group-hover:text-brand-red transition-colors">{v.title}</h3>
+                      <p className="text-text-secondary text-lg leading-relaxed">{v.description}</p>
                     </div>
-                  )}
-                  <div className="p-8 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold mb-3">{v.title}</h3>
-                    <p className="text-text-secondary leading-relaxed">{v.description}</p>
                   </div>
-                </div>
-              </StaggerItem>
-            ))}
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
         </div>
       </section>

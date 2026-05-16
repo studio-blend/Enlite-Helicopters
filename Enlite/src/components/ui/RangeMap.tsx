@@ -7,8 +7,8 @@ export function RangeMap() {
   return (
     <div className="relative w-full aspect-square md:aspect-[21/9] bg-[#0a0a0a] rounded-3xl overflow-hidden border border-border-default shadow-2xl flex items-center justify-center">
       {/* Abstract Map Grid Background */}
-      <div 
-        className="absolute inset-0 opacity-[0.03]" 
+      <div
+        className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: "linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px)",
           backgroundSize: "40px 40px"
@@ -17,21 +17,21 @@ export function RangeMap() {
 
       {/* Radar Rings (500km radius visualization) */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <motion.div 
+        <motion.div
           initial={{ scale: 0, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="absolute w-[80%] h-[80%] md:w-[60vh] md:h-[60vh] rounded-full border border-brand-red/20 bg-brand-red/[0.02]"
         />
-        <motion.div 
+        <motion.div
           initial={{ scale: 0, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
           className="absolute w-[50%] h-[50%] md:w-[35vh] md:h-[35vh] rounded-full border border-brand-red/40 bg-brand-red/[0.04]"
         />
-        
+
         {/* Radar Sweep Animation */}
         <motion.div
           animate={{ rotate: 360 }}
@@ -49,7 +49,7 @@ export function RangeMap() {
       </div>
 
       {/* Floating Info Cards */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
@@ -66,7 +66,7 @@ export function RangeMap() {
         </p>
       </motion.div>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

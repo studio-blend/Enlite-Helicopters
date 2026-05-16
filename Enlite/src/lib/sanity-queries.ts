@@ -133,10 +133,9 @@ export const allPartnersQuery = groq`
 `;
 
 export const siteSettingsQuery = groq`
-  *[_type == "settings"][0] {
     siteName,
     description,
-    "logo": logo.asset->url,
+    "logo": select(defined(logo.asset) => logo.asset->url, null),
     email,
     phone,
     address,
@@ -149,28 +148,28 @@ export const homePageQuery = groq`
     heroTitle,
     heroSubtitle,
     heroDescription,
-    "heroImageLight": heroImageLight.asset->url,
-    "heroImageDark": heroImageDark.asset->url,
+    "heroImageLight": select(defined(heroImageLight.asset) => heroImageLight.asset->url, heroImageLight),
+    "heroImageDark": select(defined(heroImageDark.asset) => heroImageDark.asset->url, heroImageDark),
     stats,
     featuresTitle,
     features[] {
       title,
       description,
-      "image": image.asset->url
+      "image": select(defined(image.asset) => image.asset->url, image)
     },
     solutionTitle,
     solutionDescription,
-    "solutionImage": solutionImage.asset->url,
-    "solutionVideoUrl": solutionVideo.asset->url,
+    "solutionImage": select(defined(solutionImage.asset) => solutionImage.asset->url, solutionImage),
+    "solutionVideoUrl": select(defined(solutionVideo.asset) => solutionVideo.asset->url, null),
     solutionTags,
     missionTitle,
     missionSubtitle,
     missionDescription,
     missionVideoUrl,
-    "missionThumbnail": missionThumbnail.asset->url,
+    "missionThumbnail": select(defined(missionThumbnail.asset) => missionThumbnail.asset->url, missionThumbnail),
     aircraftTitle,
     aircraftDescription,
-    "aircraftImage": aircraftImage.asset->url,
+    "aircraftImage": select(defined(aircraftImage.asset) => aircraftImage.asset->url, aircraftImage),
     aircraftFeatures,
     testingTitle,
     testingDescription,
@@ -178,7 +177,7 @@ export const homePageQuery = groq`
       title,
       subtitle,
       videoUrl,
-      "thumbnail": thumbnail.asset->url
+      "thumbnail": select(defined(thumbnail.asset) => thumbnail.asset->url, thumbnail)
     },
     rangeTitle,
     rangeDescription,
@@ -194,21 +193,21 @@ export const aboutPageQuery = groq`
     videoSubtitle,
     videoDescription,
     videoUrl,
-    "videoThumbnail": videoThumbnail.asset->url,
+    "videoThumbnail": select(defined(videoThumbnail.asset) => videoThumbnail.asset->url, videoThumbnail),
     stats,
     sections[] {
       title,
       highlightText,
       content,
-      "image": image.asset->url,
-      "videoUrl": video.asset->url,
+      "image": select(defined(image.asset) => image.asset->url, image),
+      "videoUrl": select(defined(video.asset) => video.asset->url, null),
       badge,
       reverse
     },
     values[] {
       title,
       description,
-      "image": image.asset->url
+      "image": select(defined(image.asset) => image.asset->url, null)
     }
   }
 `;

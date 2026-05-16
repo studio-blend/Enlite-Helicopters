@@ -132,7 +132,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                 src={theme === "dark" 
                   ? (homeData?.heroImageDark || "/images/hero-3d-dark.png") 
                   : (homeData?.heroImageLight || "/images/hero-3d-light.png")}
-                alt="Enlite 3D Helicopter Render"
+                alt="Enlite autonomous heavy-lift cargo helicopter - 3D high-fidelity concept render"
                 width={800}
                 height={800}
                 className={cn(
@@ -190,7 +190,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
               <StaggerItem key={i}>
                 <div className="rounded-xl bg-bg-card border border-border-default overflow-hidden group hover:border-brand-red/30 hover:shadow-xl transition-all h-full flex flex-col">
                   <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image src={feature.image} alt={feature.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, 33vw" />
+                    <Image src={feature.image} alt={`Logistics Challenge: ${feature.title}`} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, 33vw" />
                   </div>
                   <div className="p-8 flex-1 flex flex-col">
                     <h3 className="text-lg font-bold mb-3">{feature.title}</h3>
@@ -231,7 +231,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                   <source src={homeData.solutionVideoUrl} type="video/mp4" />
                 </video>
               ) : (
-                <Image src={homeData?.solutionImage || "/images/solution.png"} alt="Enlite autonomous cargo helicopter in flight" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                <Image src={homeData?.solutionImage || "/images/solution.png"} alt="Enlite R2 autonomous unmanned cargo helicopter performing a long-range logistics mission" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
               )}
               <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent" />
             </div>
@@ -280,12 +280,10 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-bg-tertiary overflow-hidden border border-border-default">
-                    <div className="w-full h-full bg-brand-red/20 flex items-center justify-center text-brand-red font-bold">VS</div>
-                  </div>
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white font-bold text-lg border border-white/20">M</div>
                   <div>
-                    <div className="font-bold text-text-primary">Vimal Selvam</div>
-                    <div className="text-sm text-text-muted italic">Founder & CEO, Enlite Helicopters</div>
+                    <div className="font-bold text-text-primary">Mohanakannan</div>
+                    <div className="text-sm text-text-muted italic opacity-80">Founder & CEO, Enlite Helicopters</div>
                   </div>
                 </div>
               </ScrollReveal>
@@ -296,7 +294,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
                 <div className="group relative aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black cursor-pointer">
                   <Image 
                     src={homeData?.missionThumbnail || "/images/mission-thumb.png"} 
-                    alt="Founder and Mission Video" 
+                    alt="Enlite Helicopters Founder Mohanakannan explaining the mission and vision for autonomous aerial logistics" 
                     fill 
                     className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" 
                     sizes="(max-width: 1024px) 100vw, 60vw"
@@ -337,7 +335,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
             <div className="relative max-w-5xl mx-auto aspect-video mb-16 rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] bg-black">
               <Image
                 src={homeData?.aircraftImage || "/images/aircraft.png"}
-                alt="Enlite autonomous cargo helicopter fleet overview"
+                alt="Enlite autonomous cargo helicopter fleet overview showing R2 and R3 technical specifications"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1280px) 100vw, 1024px"
@@ -441,7 +439,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
               <StaggerItem key={i}>
                 <div className="group relative rounded-2xl overflow-hidden bg-bg-card border border-border-default hover:border-brand-red/30 transition-all duration-500 shadow-sm hover:shadow-xl cursor-pointer">
                   <div className="relative aspect-video">
-                    <Image src={test.thumbnail} alt={test.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                    <Image src={test.thumbnail} alt={`Enlite Flight Test: ${test.title} - ${test.subtitle}`} fill className="object-cover group-hover:scale-110 transition-transform duration-700" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       <div className="w-14 h-14 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-500">
@@ -495,7 +493,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
               </ScrollReveal>
               <ScrollReveal direction="right">
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
-                  <Image src="/images/civilian.png" alt="Civilian Cargo Operations" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                  <Image src="/images/civilian.png" alt="Enlite R2 helicopter delivering heavy cargo in an urban intercity logistics scenario" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-8 left-8">
                     <p className="text-white font-bold text-2xl">Urban Logistics</p>
@@ -509,7 +507,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
               <div className="order-2 lg:order-1">
                 <ScrollReveal direction="left">
                   <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
-                    <Image src="/images/defence.png" alt="Defence Cargo Operations" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                    <Image src="/images/defence.png" alt="Enlite R3 tactical helicopter performing autonomous resupply at high-altitude defence outpost" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-8 left-8">
                       <p className="text-white font-bold text-2xl">Tactical Resupply</p>
@@ -602,8 +600,8 @@ export default function HomeClient({ helicopters, articles, partners, homeData }
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {articles.slice(0, 3).map((article) => {
-              const href = article.externalLink || `/news/${article.slug}`;
-              const isExternal = !!article.externalLink;
+              const href = `/news/${article.slug}`;
+              const isExternal = false;
               return (
                 <StaggerItem key={article.id}>
                   <Link
