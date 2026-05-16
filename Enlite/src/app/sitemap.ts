@@ -1,9 +1,10 @@
 import { MetadataRoute } from "next";
 import { client } from "@/lib/sanity";
 import { allMarketsQuery, allHelicoptersQuery, allArticlesQuery } from "@/lib/sanity-queries";
+import { siteConfig } from "@/lib/constants";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://enlite-helicopters.vercel.app";
+  const baseUrl = siteConfig.url;
 
   // Static routes
   const staticRoutes = [
