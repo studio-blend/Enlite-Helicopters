@@ -12,7 +12,7 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/shared
 import { ComparisonTable } from "@/components/ui/ComparisonTable";
 import { RangeMap } from "@/components/ui/RangeMap";
 import { CountUp } from "@/components/ui/CountUp";
-import { Helicopter, Article } from "@/types";
+import { Helicopter, Article, Client, BusinessPartner } from "@/types";
 import { HeroBackground } from "@/components/ui/HeroBackground";
 import { useTheme } from "@/components/shared/ThemeProvider";
 import { cn } from "@/lib/utils";
@@ -21,6 +21,9 @@ interface HomeClientProps {
   helicopters: Helicopter[];
   articles: Article[];
   partners: { id: string; name: string; logo: string; url?: string }[];
+  clients?: Client[];
+  businessPartners?: BusinessPartner[];
+
   homeData?: {
     heroTitle?: string;
     heroSubtitle?: string;
@@ -75,7 +78,7 @@ const stats = [
 
 const solutionTags = ["Autonomous", "VTOL Capable", "High Payload", "Cost Effective", "Rapid Response"];
 
-export default function HomeClient({ helicopters, articles, partners, homeData, settings }: HomeClientProps) {
+export default function HomeClient({ helicopters, articles, partners, clients = [], businessPartners = [], homeData, settings }: HomeClientProps) {
   const { theme } = useTheme();
 
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
@@ -553,8 +556,88 @@ export default function HomeClient({ helicopters, articles, partners, homeData, 
         </div>
       </section>
 
+      {/* Clients & Collaborators Section */}
+      {(clients.length > 0 || businessPartners.length > 0) && (
+        <section className="py-24 bg-bg-primary border-t border-border-default">
+          <div className="max-w-7xl mx-auto px-6 lg:px-10">
+            <div className="grid lg:grid-cols-2 gap-16 items-start">
+              
+              {/* Clients Column */}
+              {clients.length > 0 ? (
+                <ScrollReveal direction="left" className="space-y-10">
+                  <div>
+                    <h3 className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Our Clients</h3>
+                    <h2 className="text-3xl font-bold tracking-tight">Who Trusts Enlite</h2>
+                    <p className="text-text-secondary mt-3 text-lg leading-relaxed">
+                      Deploying state-of-the-art unmanned flight capabilities for critical missions, defensive resupply, and civil operations.
+                    </p>
+                  </div>
+                  
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    {clients.map((clientItem) => (
+                      <div key={clientItem.id} className="p-6 rounded-2xl bg-bg-secondary border border-border-default hover:border-brand-red/30 transition-all duration-300 flex items-center gap-5 group">
+                        <div className="relative h-16 w-16 flex-shrink-0 bg-white rounded-xl p-2 border border-border-default flex items-center justify-center">
+                          {clientItem.logo ? (
+                            <Image src={clientItem.logo} alt={clientItem.name} fill className="object-contain p-2" sizes="64px" />
+                          ) : (
+                            <span className="font-bold text-text-primary text-xs">{clientItem.name[0]}</span>
+                          )}
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-text-primary group-hover:text-brand-red transition-colors">{clientItem.name}</h4>
+                          {clientItem.description && (
+                            <p className="text-xs text-text-secondary line-clamp-2 mt-1">{clientItem.description}</p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </ScrollReveal>
+              ) : null}
+
+              {/* Technical Partners Column */}
+              {businessPartners.length > 0 ? (
+                <ScrollReveal direction="right" className="space-y-10">
+                  <div>
+                    <h3 className="text-xs font-bold text-brand-red uppercase tracking-widest mb-3">Technical Partners</h3>
+                    <h2 className="text-3xl font-bold tracking-tight">Collaborators in Flight</h2>
+                    <p className="text-text-secondary mt-3 text-lg leading-relaxed">
+                      Working hand-in-hand with leading technology providers, aerospace institutions, and manufacturing allies to design autonomous platforms.
+                    </p>
+                  </div>
+                  
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    {businessPartners.map((partnerItem) => (
+                      <div key={partnerItem.id} className="p-6 rounded-2xl bg-bg-secondary border border-border-default hover:border-brand-red/30 transition-all duration-300 flex items-center gap-5 group">
+                        <div className="relative h-16 w-16 flex-shrink-0 bg-white rounded-xl p-2 border border-border-default flex items-center justify-center">
+                          {partnerItem.logo ? (
+                            <Image src={partnerItem.logo} alt={partnerItem.name} fill className="object-contain p-2" sizes="64px" />
+                          ) : (
+                            <span className="font-bold text-text-primary text-xs">{partnerItem.name[0]}</span>
+                          )}
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-text-primary group-hover:text-brand-red transition-colors">{partnerItem.name}</h4>
+                          {partnerItem.partnershipType && (
+                            <span className="inline-block bg-brand-red/10 text-brand-red text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full mt-1.5">
+                              {partnerItem.partnershipType}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </ScrollReveal>
+              ) : null}
+
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Partners Section */}
       {partners.length > 0 && (
+
         <section className="py-24 bg-bg-secondary border-t border-border-default">
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
             <ScrollReveal>

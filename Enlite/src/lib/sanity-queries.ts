@@ -133,6 +133,31 @@ export const allPartnersQuery = groq`
   } | order(order asc)
 `;
 
+export const allClientsQuery = groq`
+  *[_type == "client"] {
+    _id,
+    "id": _id,
+    name,
+    "logo": select(defined(logo.asset) => logo.asset->url, externalLogoUrl),
+    url,
+    description,
+    order
+  } | order(order asc)
+`;
+
+export const allBusinessPartnersQuery = groq`
+  *[_type == "businessPartner"] {
+    _id,
+    "id": _id,
+    name,
+    "logo": select(defined(logo.asset) => logo.asset->url, externalLogoUrl),
+    url,
+    partnershipType,
+    order
+  } | order(order asc)
+`;
+
+
 export const siteSettingsQuery = groq`
   *[_id == "settings"][0] {
     siteName,

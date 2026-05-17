@@ -90,9 +90,28 @@ export interface Partner {
   id: string;
   name: string;
   logo: string;
-  description: string;
+  description?: string;
   url?: string;
 }
+
+export interface Client {
+  id: string;
+  name: string;
+  logo: string;
+  url?: string;
+  description?: string;
+  order?: number;
+}
+
+export interface BusinessPartner {
+  id: string;
+  name: string;
+  logo: string;
+  url?: string;
+  partnershipType?: string;
+  order?: number;
+}
+
 
 export interface SiteConfig {
   name: string;

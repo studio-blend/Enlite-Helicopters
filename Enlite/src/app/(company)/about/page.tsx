@@ -5,8 +5,9 @@ import { Play, ShieldCheck, Cpu, Globe, Zap, Award, Target, Rocket } from "lucid
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/shared/ScrollReveal";
 import { sanityFetch } from "@/lib/sanity";
-import { aboutPageQuery } from "@/lib/sanity-queries";
+import { aboutPageQuery, allClientsQuery, allBusinessPartnersQuery } from "@/lib/sanity-queries";
 import { PortableText } from "@portabletext/react";
+import { Client, BusinessPartner } from "@/types";
 
 import { AboutVideoSection } from "@/components/AboutVideoSection";
 
@@ -22,9 +23,18 @@ export const metadata: Metadata = {
 
 export default async function AboutPage() {
   let pageData: any = null;
+  let clients: Client[] = [];
+  let businessPartners: BusinessPartner[] = [];
 
   try {
-    pageData = await sanityFetch<any>({ query: aboutPageQuery, tags: ["aboutPage"] });
+    const [sanityPageData, sanityClients, sanityBusinessPartners] = await Promise.all([
+      sanityFetch<any>({ query: aboutPageQuery, tags: ["aboutPage"] }),
+      sanityFetch<Client[]>({ query: allClientsQuery, tags: ["client"] }),
+      sanityFetch<BusinessPartner[]>({ query: allBusinessPartnersQuery, tags: ["businessPartner"] }),
+    ]);
+    pageData = sanityPageData;
+    clients = sanityClients || [];
+    businessPartners = sanityBusinessPartners || [];
   } catch (error) {
     console.error("Sanity fetch error:", error);
   }
@@ -285,7 +295,83 @@ export default async function AboutPage() {
         </div>
       </section>
 
+      {/* ── Clients & Strategic Partners ─────────────── */}
+      {(clients.length > 0 || businessPartners.length > 0) && (
+        <section className="py-32 bg-bg-primary border-t border-border-default">
+          <div className="max-w-7xl mx-auto px-6 lg:px-10">
+            <ScrollReveal>
+              <div className="text-center max-w-2xl mx-auto mb-20">
+                <h2 className="text-4xl font-bold tracking-tight mb-4">Our Collaborative Ecosystem</h2>
+                <p className="text-text-secondary text-lg">Who we work with and who trusts our autonomous aviation technology.</p>
+              </div>
+            </ScrollReveal>
+
+            {/* Clients Grid */}
+            {clients.length > 0 && (
+              <div className="mb-20">
+                <ScrollReveal>
+                  <h3 className="text-xl font-bold mb-8 border-b border-border-default pb-4 text-brand-red uppercase tracking-wider">Strategic Clients</h3>
+                </ScrollReveal>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {clients.map((clientItem) => (
+                    <div key={clientItem.id} className="p-8 rounded-3xl bg-bg-card border border-border-default hover:shadow-2xl hover:border-brand-red/40 transition-all duration-500 flex flex-col md:flex-row gap-8 items-start group">
+                      <div className="relative h-24 w-24 flex-shrink-0 bg-white rounded-2xl p-3 border border-border-default flex items-center justify-center shadow-md">
+                        {clientItem.logo ? (
+                          <Image src={clientItem.logo} alt={clientItem.name} fill className="object-contain p-2" sizes="96px" />
+                        ) : (
+                          <span className="font-bold text-text-primary text-xl">{clientItem.name[0]}</span>
+                        )}
+                      </div>
+                      <div className="flex-1 space-y-3">
+                        <h4 className="text-2xl font-bold text-text-primary group-hover:text-brand-red transition-colors">{clientItem.name}</h4>
+                        {clientItem.description && (
+                          <p className="text-text-secondary text-base leading-relaxed">{clientItem.description}</p>
+                        )}
+                        {clientItem.url && (
+                          <a href={clientItem.url} target="_blank" rel="noopener noreferrer" className="inline-block text-sm font-semibold text-brand-red hover:underline mt-2">
+                            Visit Website →
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Technical Partners Grid */}
+            {businessPartners.length > 0 && (
+              <div>
+                <ScrollReveal>
+                  <h3 className="text-xl font-bold mb-8 border-b border-border-default pb-4 text-brand-red uppercase tracking-wider">Technology & Business Partners</h3>
+                </ScrollReveal>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                  {businessPartners.map((partnerItem) => (
+                    <div key={partnerItem.id} className="p-6 rounded-2xl bg-bg-card border border-border-default hover:shadow-lg hover:border-brand-red/30 transition-all duration-500 text-center flex flex-col items-center justify-center group">
+                      <div className="relative h-20 w-20 bg-white rounded-xl p-2 border border-border-default flex items-center justify-center shadow-sm mb-4">
+                        {partnerItem.logo ? (
+                          <Image src={partnerItem.logo} alt={partnerItem.name} fill className="object-contain p-2" sizes="80px" />
+                        ) : (
+                          <span className="font-bold text-text-primary text-lg">{partnerItem.name[0]}</span>
+                        )}
+                      </div>
+                      <h4 className="font-bold text-text-primary group-hover:text-brand-red transition-colors">{partnerItem.name}</h4>
+                      {partnerItem.partnershipType && (
+                        <span className="inline-block bg-brand-red/10 text-brand-red text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full mt-2">
+                          {partnerItem.partnershipType}
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* ── Contact CTA ─────────────────────────────── */}
+
       <section className="py-24 bg-bg-primary">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="bg-brand-red rounded-3xl p-12 md:p-20 text-white text-center relative overflow-hidden shadow-2xl">
