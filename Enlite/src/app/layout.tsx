@@ -47,15 +47,14 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let logoUrl = null;
+  let settings = null;
   try {
-    const settings = await sanityFetch<any>({ query: siteSettingsQuery, tags: ["settings"] });
-    if (settings && settings.logo) {
-      logoUrl = settings.logo;
-    }
+    settings = await sanityFetch<any>({ query: siteSettingsQuery, tags: ["settings"] });
   } catch (error) {
     console.error("Error fetching site settings for layout:", error);
   }
+
+  const logoUrl = settings?.logo || null;
 
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
@@ -86,7 +85,7 @@ export default async function RootLayout({
         <ThemeProvider>
           <Header logo={logoUrl} />
           <main className="min-h-screen">{children}</main>
-          <Footer />
+          <Footer settings={settings} />
         </ThemeProvider>
       </body>
     </html>

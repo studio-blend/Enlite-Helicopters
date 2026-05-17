@@ -2,25 +2,18 @@ import Link from "next/link";
 import { EnliteLogo } from "@/components/ui/Logo";
 import { siteConfig, navigation } from "@/lib/constants";
 import { Mail, Phone, MapPin, ChevronRight } from "lucide-react";
-import { sanityFetch } from "@/lib/sanity";
-import { siteSettingsQuery } from "@/lib/sanity-queries";
 
-export async function Footer() {
+export function Footer({ settings: passedSettings }: { settings?: any }) {
   let settings = siteConfig;
-  try {
-    const sanitySettings = await sanityFetch<any>({ query: siteSettingsQuery, tags: ["settings"] });
-    if (sanitySettings) {
-      settings = {
-        ...siteConfig,
-        ...sanitySettings,
-        social: {
-          ...siteConfig.social,
-          ...sanitySettings.social
-        }
-      };
-    }
-  } catch (error) {
-    console.error("Error fetching site settings for footer:", error);
+  if (passedSettings) {
+    settings = {
+      ...siteConfig,
+      ...passedSettings,
+      social: {
+        ...siteConfig.social,
+        ...passedSettings.social
+      }
+    };
   }
 
   return (
