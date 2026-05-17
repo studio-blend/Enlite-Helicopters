@@ -24,7 +24,7 @@ export async function Footer() {
   }
 
   return (
-    <footer className="relative bg-black text-gray-300 border-t border-white/5 overflow-hidden">
+    <footer className="relative bg-bg-footer text-text-secondary border-t border-border-default overflow-hidden transition-colors duration-300">
       {/* Subtle Gradient Background */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-brand-red/5 blur-[120px] pointer-events-none" />
 
@@ -33,7 +33,7 @@ export async function Footer() {
         <div className="py-20 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 lg:gap-16">
           {/* Brand */}
           <div className="space-y-8 lg:col-span-1">
-            <Link href="/" className="inline-block text-white hover:opacity-80 transition-opacity flex items-center">
+            <Link href="/" className="inline-block text-text-primary hover:opacity-80 transition-opacity flex items-center">
               {settings.logo ? (
                 <img
                   src={settings.logo}
@@ -45,7 +45,7 @@ export async function Footer() {
                 <EnliteLogo size={32} />
               )}
             </Link>
-            <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
+            <p className="text-sm text-text-secondary leading-relaxed max-w-xs">
               {settings.description}
             </p>
             <div className="flex gap-4">
@@ -58,7 +58,7 @@ export async function Footer() {
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-white/5 hover:bg-brand-red text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1"
+                    className="w-10 h-10 rounded-full bg-bg-tertiary hover:bg-brand-red text-text-primary hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-1"
                     aria-label={social}
                   >
                     <SocialIcon name={social} />
@@ -70,7 +70,7 @@ export async function Footer() {
 
           {/* Quick Links */}
           <div>
-            <p className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-8" role="heading" aria-level={3}>Quick Links</p>
+            <p className="text-text-primary font-bold text-xs uppercase tracking-[0.2em] mb-8" role="heading" aria-level={3}>Quick Links</p>
             <ul className="space-y-4">
               {[
                 { label: "Home", href: "/" },
@@ -78,7 +78,7 @@ export async function Footer() {
                 { label: "Our Team", href: "/team" }
               ].map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-[13px] text-gray-400 hover:text-brand-red hover:translate-x-1 inline-block transition-all duration-200">
+                  <Link href={item.href} className="text-[13px] text-text-secondary hover:text-brand-red hover:translate-x-1 inline-block transition-all duration-200">
                     {item.label}
                   </Link>
                 </li>
@@ -88,7 +88,7 @@ export async function Footer() {
 
           {/* Products */}
           <div>
-            <p className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-8" role="heading" aria-level={3}>Products</p>
+            <p className="text-text-primary font-bold text-xs uppercase tracking-[0.2em] mb-8" role="heading" aria-level={3}>Products</p>
             <ul className="space-y-4">
               {[
                 { label: "Our Fleet", href: "/helicopters" },
@@ -99,11 +99,11 @@ export async function Footer() {
               ].map((item) => (
                 <li key={item.label}>
                   {item.isExternal ? (
-                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-[13px] text-gray-400 hover:text-brand-red hover:translate-x-1 inline-block transition-all duration-200">
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-[13px] text-text-secondary hover:text-brand-red hover:translate-x-1 inline-block transition-all duration-200">
                       {item.label}
                     </a>
                   ) : (
-                    <Link href={item.href} className="text-[13px] text-gray-400 hover:text-brand-red hover:translate-x-1 inline-block transition-all duration-200">
+                    <Link href={item.href} className="text-[13px] text-text-secondary hover:text-brand-red hover:translate-x-1 inline-block transition-all duration-200">
                       {item.label}
                     </Link>
                   )}
@@ -114,7 +114,7 @@ export async function Footer() {
 
           {/* Resources */}
           <div>
-            <p className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-8" role="heading" aria-level={3}>Resources</p>
+            <p className="text-text-primary font-bold text-xs uppercase tracking-[0.2em] mb-8" role="heading" aria-level={3}>Resources</p>
             <ul className="space-y-4">
               {[
                 { label: "News", href: "/news" },
@@ -122,7 +122,7 @@ export async function Footer() {
                 { label: "Gallery", href: "/gallery" }
               ].map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-[13px] text-gray-400 hover:text-brand-red hover:translate-x-1 inline-block transition-all duration-200">
+                  <Link href={item.href} className="text-[13px] text-text-secondary hover:text-brand-red hover:translate-x-1 inline-block transition-all duration-200">
                     {item.label}
                   </Link>
                 </li>
@@ -132,63 +132,62 @@ export async function Footer() {
 
           {/* Enquiry */}
           <div className="lg:col-span-1">
-            <p className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-8" role="heading" aria-level={3}>Enquiry</p>
+            <p className="text-text-primary font-bold text-xs uppercase tracking-[0.2em] mb-8" role="heading" aria-level={3}>Enquiry</p>
             <ul className="space-y-6">
               <li className="flex flex-col gap-4 mb-2">
-                <Link href="/contact" className="text-[13px] text-gray-400 hover:text-brand-red transition-all duration-200 font-semibold flex items-center gap-2">
+                <Link href="/contact" className="text-[13px] text-text-secondary hover:text-brand-red transition-all duration-200 font-semibold flex items-center gap-2">
                   Contact Us <ChevronRight className="w-3 h-3" />
                 </Link>
-                <Link href="/investor" className="text-[13px] text-gray-400 hover:text-brand-red transition-all duration-200 font-semibold flex items-center gap-2">
+                <Link href="/investor" className="text-[13px] text-text-secondary hover:text-brand-red transition-all duration-200 font-semibold flex items-center gap-2">
                   Investor Relations <ChevronRight className="w-3 h-3" />
                 </Link>
               </li>
               <li className="flex gap-4 group">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-brand-red/10 transition-colors">
+                <div className="w-10 h-10 rounded-full bg-bg-tertiary flex items-center justify-center shrink-0 group-hover:bg-brand-red/10 transition-colors">
                   <MapPin className="w-4 h-4 text-brand-red" />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Address</p>
-                  <p className="text-[13px] text-gray-400 leading-relaxed">{settings.address}</p>
+                  <p className="text-[10px] text-text-muted uppercase tracking-widest font-bold">Address</p>
+                  <p className="text-[13px] text-text-secondary leading-relaxed">{settings.address}</p>
                 </div>
               </li>
               <li className="flex gap-4 group">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-brand-red/10 transition-colors">
+                <div className="w-10 h-10 rounded-full bg-bg-tertiary flex items-center justify-center shrink-0 group-hover:bg-brand-red/10 transition-colors">
                   <Mail className="w-4 h-4 text-brand-red" />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Email</p>
-                  <a href={`mailto:${settings.email}`} className="text-[13px] text-gray-400 hover:text-brand-red transition-colors">{settings.email}</a>
+                  <p className="text-[10px] text-text-muted uppercase tracking-widest font-bold">Email</p>
+                  <a href={`mailto:${settings.email}`} className="text-[13px] text-text-secondary hover:text-brand-red transition-colors">{settings.email}</a>
                 </div>
               </li>
               <li className="flex gap-4 group">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-brand-red/10 transition-colors">
+                <div className="w-10 h-10 rounded-full bg-bg-tertiary flex items-center justify-center shrink-0 group-hover:bg-brand-red/10 transition-colors">
                   <Phone className="w-4 h-4 text-brand-red" />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Phone</p>
-                  <a href={`tel:${settings.phone}`} className="text-[13px] text-gray-400 hover:text-brand-red transition-colors">{settings.phone}</a>
+                  <p className="text-[10px] text-text-muted uppercase tracking-widest font-bold">Phone</p>
+                  <a href={`tel:${settings.phone}`} className="text-[13px] text-text-secondary hover:text-brand-red transition-colors">{settings.phone}</a>
                 </div>
               </li>
             </ul>
           </div>
         </div>
 
-
         {/* Bottom Bar */}
-        <div className="py-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="py-8 border-t border-border-default flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
-            <p className="text-[11px] text-gray-500 uppercase tracking-widest font-medium">
+            <p className="text-[11px] text-text-muted uppercase tracking-widest font-medium">
               Copyright © {new Date().getFullYear()} ENLITE Helicopters | all rights reserved
             </p>
-            <div className="h-px w-8 bg-white/10 hidden md:block" />
-            <p className="text-[11px] text-gray-500 uppercase tracking-widest">
-              Designed by <span className="text-gray-300">Studio Blend</span>
+            <div className="h-px w-8 bg-border-default hidden md:block" />
+            <p className="text-[11px] text-text-muted uppercase tracking-widest">
+              Designed by <span className="text-text-primary font-semibold">Studio Blend</span>
             </p>
           </div>
           <div className="flex gap-8">
-            <Link href="/sitemap.xml" className="text-[11px] text-gray-500 hover:text-white uppercase tracking-widest transition-colors font-medium">Sitemap</Link>
-            <Link href="/privacy" className="text-[11px] text-gray-500 hover:text-white uppercase tracking-widest transition-colors font-medium">Privacy</Link>
-            <Link href="/terms" className="text-[11px] text-gray-500 hover:text-white uppercase tracking-widest transition-colors font-medium">Terms</Link>
+            <Link href="/sitemap.xml" className="text-[11px] text-text-muted hover:text-text-primary uppercase tracking-widest transition-colors font-medium">Sitemap</Link>
+            <Link href="/privacy" className="text-[11px] text-text-muted hover:text-text-primary uppercase tracking-widest transition-colors font-medium">Privacy</Link>
+            <Link href="/terms" className="text-[11px] text-text-muted hover:text-text-primary uppercase tracking-widest transition-colors font-medium">Terms</Link>
           </div>
         </div>
       </div>

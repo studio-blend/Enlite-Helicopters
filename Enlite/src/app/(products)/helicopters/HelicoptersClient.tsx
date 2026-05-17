@@ -168,7 +168,7 @@ export default function HelicoptersClient({ helicopters, brochureUrl = "/enlite-
                 <p className="text-text-secondary">Download our complete portfolio and technical specifications.</p>
               </div>
               <a href={brochureUrl} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="shrink-0 bg-bg-primary text-text-primary border-border-default hover:border-brand-red hover:text-brand-red px-8" iconRight={<Download className="w-4 h-4" />}>
+                <Button size="lg" variant="outline" className="shrink-0 bg-bg-primary !text-brand-red !border-brand-red hover:!bg-brand-red hover:!text-white hover:!border-brand-red px-8 transition-all duration-300" iconRight={<Download className="w-4 h-4" />}>
                   Download PDF
                 </Button>
               </a>

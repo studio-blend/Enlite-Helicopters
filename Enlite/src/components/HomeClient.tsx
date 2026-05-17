@@ -558,7 +558,7 @@ export default function HomeClient({ helicopters, articles, partners, clients = 
 
       {/* Clients & Collaborators Section */}
       {(clients.length > 0 || businessPartners.length > 0) && (
-        <section className="py-24 bg-bg-primary border-t border-border-default">
+        <section className="py-24 bg-bg-secondary border-t border-border-default">
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
               
@@ -575,7 +575,7 @@ export default function HomeClient({ helicopters, articles, partners, clients = 
                   
                   <div className="grid sm:grid-cols-2 gap-6">
                     {clients.map((clientItem) => (
-                      <div key={clientItem.id} className="p-6 rounded-2xl bg-bg-secondary border border-border-default hover:border-brand-red/30 transition-all duration-300 flex items-center gap-5 group">
+                      <div key={clientItem.id} className="p-6 rounded-2xl bg-bg-card border border-border-default hover:border-brand-red/30 hover:shadow-md transition-all duration-300 flex items-center gap-5 group">
                         <div className="relative h-16 w-16 flex-shrink-0 bg-white rounded-xl p-2 border border-border-default flex items-center justify-center">
                           {clientItem.logo ? (
                             <Image src={clientItem.logo} alt={clientItem.name} fill className="object-contain p-2" sizes="64px" />
@@ -608,7 +608,7 @@ export default function HomeClient({ helicopters, articles, partners, clients = 
                   
                   <div className="grid sm:grid-cols-2 gap-6">
                     {businessPartners.map((partnerItem) => (
-                      <div key={partnerItem.id} className="p-6 rounded-2xl bg-bg-secondary border border-border-default hover:border-brand-red/30 transition-all duration-300 flex items-center gap-5 group">
+                      <div key={partnerItem.id} className="p-6 rounded-2xl bg-bg-card border border-border-default hover:border-brand-red/30 hover:shadow-md transition-all duration-300 flex items-center gap-5 group">
                         <div className="relative h-16 w-16 flex-shrink-0 bg-white rounded-xl p-2 border border-border-default flex items-center justify-center">
                           {partnerItem.logo ? (
                             <Image src={partnerItem.logo} alt={partnerItem.name} fill className="object-contain p-2" sizes="64px" />
@@ -638,7 +638,7 @@ export default function HomeClient({ helicopters, articles, partners, clients = 
       {/* Partners Section */}
       {partners.length > 0 && (
 
-        <section className="py-24 bg-bg-secondary border-t border-border-default">
+        <section className="py-24 bg-bg-primary border-t border-border-default">
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
             <ScrollReveal>
               <h2 className="text-2xl font-bold text-center mb-16 uppercase tracking-widest text-text-muted">As Seen In</h2>
@@ -661,7 +661,7 @@ export default function HomeClient({ helicopters, articles, partners, clients = 
       )}
 
       {/* Latest News */}
-      <section className="py-24 lg:py-32 bg-bg-primary">
+      <section className="py-24 lg:py-32 bg-bg-secondary border-t border-border-default">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <ScrollReveal>
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
