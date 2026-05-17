@@ -82,7 +82,13 @@ export const DynamicVideoPlayer = ({
   if (!videoUrl) {
     return (
       <div className={`relative ${className}`}>
-        <Image src={activeThumbnail} alt={alt} fill className="object-cover" />
+        <Image 
+          src={activeThumbnail} 
+          alt={alt} 
+          fill 
+          className="object-cover" 
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
+        />
       </div>
     );
   }
@@ -100,6 +106,7 @@ export const DynamicVideoPlayer = ({
             alt={alt} 
             fill 
             className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" 
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-20 h-20 rounded-full bg-brand-red flex items-center justify-center text-white shadow-xl transform group-hover:scale-110 transition-transform duration-300">

@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     absolute: "Autonomous Unmanned Cargo Helicopter Fleet | Enlite R2 & R3",
   },
   description: "Explore the Enlite fleet of autonomous heavy-lift helicopters. From the R2 intercity delivery drone to the R3 tactical resupply platform, we define the future of aerial logistics.",
+  alternates: {
+    canonical: "https://enlitehelicopters.com/helicopters",
+  },
 };
 
 export default async function ProductsPage() {

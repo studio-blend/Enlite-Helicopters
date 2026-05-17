@@ -20,7 +20,7 @@ L.Marker.prototype.options.icon = DefaultIcon;
 // Custom pin icon for our marker
 const CustomPin = L.divIcon({
   className: "custom-pin",
-  html: `<div style="width: 24px; height: 24px; background-color: #ef4444; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);"></div>`,
+  html: `<div role="application" aria-label="Interactive operational range launch marker pin. Drag to update location." style="width: 24px; height: 24px; background-color: #ef4444; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);"></div>`,
   iconSize: [24, 24],
   iconAnchor: [12, 12],
 });
@@ -165,6 +165,8 @@ export default function MapComponent() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               disabled={isSearching}
+              aria-label="Search city"
+              id="mobile-city-search"
               className="w-full bg-bg-primary/50 border border-border-default rounded-xl pl-10 pr-12 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-red transition-all"
             />
             <Search className={cn("absolute left-3 top-3.5 w-4 h-4 text-text-muted", isSearching && "animate-pulse")} />
@@ -172,6 +174,7 @@ export default function MapComponent() {
               <button
                 type="submit"
                 disabled={isSearching}
+                aria-label="Search location coordinates"
                 className="p-1.5 text-brand-red hover:bg-brand-red/10 rounded-lg transition-colors"
               >
                 {isSearching ? <div className="w-4 h-4 border-2 border-brand-red border-t-transparent rounded-full animate-spin" /> : <Target className="w-4 h-4" />}
@@ -179,6 +182,7 @@ export default function MapComponent() {
               <button
                 type="button"
                 onClick={handleLocateMe}
+                aria-label="Use current location"
                 className="p-1.5 text-text-secondary hover:text-brand-red rounded-lg transition-colors"
               >
                 <Crosshair className="w-4 h-4" />
@@ -222,12 +226,15 @@ export default function MapComponent() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               disabled={isSearching}
+              aria-label="Search city or town in India"
+              id="desktop-city-search"
               className="w-full bg-bg-primary border border-border-default rounded-lg pl-10 pr-12 py-3 text-sm text-text-primary focus:outline-none focus:border-brand-red transition-colors disabled:opacity-50"
             />
             <Search className={`absolute left-3 top-3.5 w-4 h-4 text-text-muted ${isSearching ? 'animate-pulse' : ''}`} />
             <button
               type="submit"
               disabled={isSearching}
+              aria-label="Search location coordinates"
               className="absolute right-3 top-2.5 p-1 text-brand-red hover:bg-brand-red/10 rounded transition-colors"
             >
               {isSearching ? <div className="w-4 h-4 border-2 border-brand-red border-t-transparent rounded-full animate-spin" /> : <Target className="w-4 h-4" />}
@@ -328,6 +335,7 @@ export default function MapComponent() {
         <div className="lg:hidden absolute bottom-6 right-4 z-20 flex flex-col gap-3">
           <button
             onClick={handleLocateMe}
+            aria-label="Use current location"
             className="w-12 h-12 bg-brand-red text-white rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-transform"
           >
             <Crosshair className="w-6 h-6" />

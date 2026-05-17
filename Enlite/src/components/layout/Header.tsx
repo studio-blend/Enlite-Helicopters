@@ -48,7 +48,7 @@ export function Header({ logo }: { logo?: string | null }) {
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex items-center justify-between h-[80px]">
             {/* Logo */}
-            <Link href="/" className="relative z-10 flex-shrink-0 flex items-center">
+            <Link href="/" className="relative z-10 flex-shrink-0 flex items-center" aria-label="Enlite Helicopters Home">
               {logo ? (
                 <img
                   src={logo}

@@ -70,7 +70,7 @@ export async function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-8">Quick Links</h4>
+            <p className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-8" role="heading" aria-level={3}>Quick Links</p>
             <ul className="space-y-4">
               {[
                 { label: "Home", href: "/" },
@@ -88,7 +88,7 @@ export async function Footer() {
 
           {/* Products */}
           <div>
-            <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-8">Products</h4>
+            <p className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-8" role="heading" aria-level={3}>Products</p>
             <ul className="space-y-4">
               {[
                 { label: "Our Fleet", href: "/helicopters" },
@@ -114,7 +114,7 @@ export async function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-8">Resources</h4>
+            <p className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-8" role="heading" aria-level={3}>Resources</p>
             <ul className="space-y-4">
               {[
                 { label: "News", href: "/news" },
@@ -132,7 +132,7 @@ export async function Footer() {
 
           {/* Enquiry */}
           <div className="lg:col-span-1">
-            <h4 className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-8">Enquiry</h4>
+            <p className="text-white font-bold text-xs uppercase tracking-[0.2em] mb-8" role="heading" aria-level={3}>Enquiry</p>
             <ul className="space-y-6">
               <li className="flex flex-col gap-4 mb-2">
                 <Link href="/contact" className="text-[13px] text-gray-400 hover:text-brand-red transition-all duration-200 font-semibold flex items-center gap-2">

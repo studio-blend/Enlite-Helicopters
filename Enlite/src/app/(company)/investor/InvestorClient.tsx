@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { CheckCircle2, Send } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { Input, Textarea } from "@/components/ui/Input";
+import { Input, Textarea, Select } from "@/components/ui/Input";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { submitInvestorInquiry } from "@/lib/actions/submissions";
 
@@ -58,22 +58,20 @@ export function InvestorClient({ formTitle, formDescription }: InvestorClientPro
                   <Input name="email" label="Email *" type="email" placeholder="Your email" required error={errors.email?.[0]} />
                   <Input name="phone" label="Phone Number *" type="tel" placeholder="+91" required error={errors.phone?.[0]} />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold text-text-primary">Country *</label>
-                  <select
-                    name="country"
-                    required
-                    className="w-full bg-bg-primary border border-border-default rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors appearance-none"
-                    defaultValue=""
-                  >
-                    <option value="" disabled>Select country</option>
-                    <option value="India">India</option>
-                    <option value="United States">United States</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="Other">Other</option>
-                  </select>
-                  {errors.country?.[0] && <p className="text-red-500 text-xs">{errors.country[0]}</p>}
-                </div>
+                <Select
+                  name="country"
+                  label="Country *"
+                  required
+                  error={errors.country?.[0]}
+                  options={[
+                    { value: "", label: "Select country" },
+                    { value: "India", label: "India" },
+                    { value: "United States", label: "United States" },
+                    { value: "United Kingdom", label: "United Kingdom" },
+                    { value: "Other", label: "Other" }
+                  ]}
+                  defaultValue=""
+                />
                 <Textarea name="information" label="Other Information *" placeholder="Your message..." rows={6} required error={errors.information?.[0]} />
                 
                 {status === "error" && !Object.keys(errors).length && (
