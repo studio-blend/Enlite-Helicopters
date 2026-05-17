@@ -80,7 +80,7 @@ export default function HomeClient({ helicopters, articles, partners, homeData, 
 
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
-  const brochureUrl = settings?.brochure || "/enlite-brochure.pdf";
+  const brochureUrl = "/enlite-helicopters-product-brochure";
 
   return (
     <div className="flex flex-col min-h-screen bg-bg-primary text-text-primary">

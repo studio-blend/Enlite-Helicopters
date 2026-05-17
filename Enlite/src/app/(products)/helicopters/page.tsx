@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { sanityFetch } from "@/lib/sanity";
-import { allHelicoptersQuery, siteSettingsQuery } from "@/lib/sanity-queries";
+import { allHelicoptersQuery } from "@/lib/sanity-queries";
 import HelicoptersClient from "./HelicoptersClient";
 import { Helicopter } from "@/types";
 
@@ -13,21 +13,12 @@ export const metadata: Metadata = {
 
 export default async function ProductsPage() {
   let helicopters: Helicopter[] = [];
-  let brochureUrl = "/enlite-brochure.pdf";
 
   try {
-    const [sanityHelicopters, sanitySettings] = await Promise.all([
-      sanityFetch<Helicopter[]>({ query: allHelicoptersQuery, tags: ["product"] }),
-      sanityFetch<any>({ query: siteSettingsQuery, tags: ["settings"] }),
-    ]);
-    
-    helicopters = sanityHelicopters || [];
-    if (sanitySettings?.brochure) {
-      brochureUrl = sanitySettings.brochure;
-    }
+    helicopters = await sanityFetch<Helicopter[]>({ query: allHelicoptersQuery, tags: ["product"] }) || [];
   } catch (error) {
     console.error("Sanity fetch error:", error);
   }
 
-  return <HelicoptersClient helicopters={helicopters} brochureUrl={brochureUrl} />;
+  return <HelicoptersClient helicopters={helicopters} brochureUrl="/enlite-helicopters-product-brochure" />;
 }

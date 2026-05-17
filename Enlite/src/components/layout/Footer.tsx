@@ -86,7 +86,7 @@ export async function Footer() {
                 { label: "Markets", href: "/markets" },
                 { label: "Enlite R2", href: "/helicopters/enlite-r2" },
                 { label: "Enlite R3", href: "/helicopters/enlite-r3" },
-                { label: "Download Brochure", href: settings.brochure || "/enlite-brochure.pdf", isExternal: true }
+                { label: "Download Brochure", href: "/enlite-helicopters-product-brochure", isExternal: true }
               ].map((item) => (
                 <li key={item.label}>
                   {item.isExternal ? (

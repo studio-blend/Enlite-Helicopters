@@ -81,7 +81,7 @@ function MarketCard({ market }: { market: typeof markets[0] }) {
   );
 }
 
-export default function HelicoptersClient({ helicopters, brochureUrl = "/enlite-brochure.pdf" }: HelicoptersClientProps) {
+export default function HelicoptersClient({ helicopters, brochureUrl = "/enlite-helicopters-product-brochure" }: HelicoptersClientProps) {
   return (
     <div className="flex flex-col min-h-screen bg-bg-primary text-text-primary">
       {/* Hero */}
