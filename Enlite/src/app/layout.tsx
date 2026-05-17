@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { sanityFetch } from "@/lib/sanity";
+import { siteSettingsQuery } from "@/lib/sanity-queries";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,11 +42,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  let logoUrl = null;
+  try {
+    const settings = await sanityFetch<any>({ query: siteSettingsQuery, tags: ["settings"] });
+    if (settings && settings.logo) {
+      logoUrl = settings.logo;
+    }
+  } catch (error) {
+    console.error("Error fetching site settings for layout:", error);
+  }
+
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
       <head>
@@ -72,7 +84,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
         <ThemeProvider>
-          <Header />
+          <Header logo={logoUrl} />
           <main className="min-h-screen">{children}</main>
           <Footer />
         </ThemeProvider>

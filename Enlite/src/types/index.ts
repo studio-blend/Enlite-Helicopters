@@ -128,4 +128,5 @@ export interface SiteConfig {
     instagram?: string;
   };
   brochure?: string;
+  logo?: string;
 }

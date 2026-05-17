@@ -10,7 +10,7 @@ import { navigation } from "@/lib/constants";
 import { EnliteLogo } from "@/components/ui/Logo";
 import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
-export function Header() {
+export function Header({ logo }: { logo?: string | null }) {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -48,8 +48,17 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex items-center justify-between h-[80px]">
             {/* Logo */}
-            <Link href="/" className="relative z-10 flex-shrink-0">
-              <EnliteLogo size={28} />
+            <Link href="/" className="relative z-10 flex-shrink-0 flex items-center">
+              {logo ? (
+                <img
+                  src={logo}
+                  alt="Enlite Helicopters"
+                  className="h-8 w-auto object-contain"
+                  style={{ maxHeight: "32px" }}
+                />
+              ) : (
+                <EnliteLogo size={28} />
+              )}
             </Link>
 
             <div className="flex items-center gap-8">

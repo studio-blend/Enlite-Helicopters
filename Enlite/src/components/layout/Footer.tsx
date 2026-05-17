@@ -33,8 +33,17 @@ export async function Footer() {
         <div className="py-20 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 lg:gap-16">
           {/* Brand */}
           <div className="space-y-8 lg:col-span-1">
-            <Link href="/" className="inline-block text-white hover:opacity-80 transition-opacity">
-              <EnliteLogo size={32} />
+            <Link href="/" className="inline-block text-white hover:opacity-80 transition-opacity flex items-center">
+              {settings.logo ? (
+                <img
+                  src={settings.logo}
+                  alt={settings.name || "Enlite Helicopters"}
+                  className="h-10 w-auto object-contain"
+                  style={{ maxHeight: "40px" }}
+                />
+              ) : (
+                <EnliteLogo size={32} />
+              )}
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
               {settings.description}
