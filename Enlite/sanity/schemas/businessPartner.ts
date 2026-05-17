@@ -1,11 +1,11 @@
 import { defineField, defineType } from "sanity";
-import { Newspaper } from "lucide-react";
+import { Handshake } from "lucide-react";
 
 export default defineType({
-  name: "partner",
-  title: "Featured In (Press)",
+  name: "businessPartner",
+  title: "Business Partner",
   type: "document",
-  icon: Newspaper,
+  icon: Handshake,
   preview: {
     select: {
       title: "name",
@@ -15,22 +15,22 @@ export default defineType({
   fields: [
     defineField({
       name: "name",
-      title: "Name",
+      title: "Partner Name",
       type: "string",
       validation: (Rule) => Rule.required(),
+      description: "e.g. Technical collaborator, co-developer, etc.",
     }),
     defineField({
       name: "logo",
-      title: "Logo (Upload)",
+      title: "Partner Logo (Upload)",
       type: "image",
       options: { hotspot: true },
-      description: "Upload a logo image. Takes priority over the External Logo URL.",
     }),
     defineField({
       name: "externalLogoUrl",
       title: "External Logo URL",
       type: "url",
-      description: "Paste a direct image URL for the logo (e.g. Wikipedia SVG, CDN). Used only if no logo is uploaded.",
+      description: "Fallback direct URL if no logo is uploaded",
     }),
     defineField({
       name: "url",
@@ -38,8 +38,14 @@ export default defineType({
       type: "url",
     }),
     defineField({
+      name: "partnershipType",
+      title: "Partnership Type",
+      type: "string",
+      description: "e.g. Technology Partner, Operational Partner",
+    }),
+    defineField({
       name: "order",
-      title: "Order",
+      title: "Display Order",
       type: "number",
     }),
   ],
