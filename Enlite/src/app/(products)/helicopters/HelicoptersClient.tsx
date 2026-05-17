@@ -10,6 +10,7 @@ import { Helicopter } from "@/types";
 
 interface HelicoptersClientProps {
   helicopters: Helicopter[];
+  brochureUrl?: string;
 }
 
 const markets = [
@@ -80,7 +81,7 @@ function MarketCard({ market }: { market: typeof markets[0] }) {
   );
 }
 
-export default function HelicoptersClient({ helicopters }: HelicoptersClientProps) {
+export default function HelicoptersClient({ helicopters, brochureUrl = "/enlite-brochure.pdf" }: HelicoptersClientProps) {
   return (
     <div className="flex flex-col min-h-screen bg-bg-primary text-text-primary">
       {/* Hero */}
@@ -166,9 +167,11 @@ export default function HelicoptersClient({ helicopters }: HelicoptersClientProp
                 <h3 className="text-2xl font-bold mb-2">Company Brochure</h3>
                 <p className="text-text-secondary">Download our complete portfolio and technical specifications.</p>
               </div>
-              <Button size="lg" variant="outline" className="shrink-0 bg-bg-primary text-text-primary border-border-default hover:border-brand-red hover:text-brand-red px-8" iconRight={<Download className="w-4 h-4" />}>
-                Download PDF
-              </Button>
+              <a href={brochureUrl} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline" className="shrink-0 bg-bg-primary text-text-primary border-border-default hover:border-brand-red hover:text-brand-red px-8" iconRight={<Download className="w-4 h-4" />}>
+                  Download PDF
+                </Button>
+              </a>
             </div>
           </ScrollReveal>
         </div>
